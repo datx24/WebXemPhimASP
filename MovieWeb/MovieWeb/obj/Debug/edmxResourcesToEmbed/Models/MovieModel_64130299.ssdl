@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MovieDatabase_64130299Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Comment_64130299">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="MovieId" Type="int" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Favorite_64130299">
+    <Key>
+      <PropertyRef Name="FavoriteId" />
+    </Key>
+    <Property Name="FavoriteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="MovieId" Type="int" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Movie_64130299">
+    <Key>
+      <PropertyRef Name="MovieId" />
+    </Key>
+    <Property Name="MovieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ReleaseDate" Type="date" />
+    <Property Name="Genre" Type="nvarchar" MaxLength="100" />
+    <Property Name="PosterUrl" Type="nvarchar" MaxLength="512" />
+    <Property Name="TrailerUrl" Type="nvarchar" MaxLength="512" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="MovieUrl" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Rating_64130299">
+    <Key>
+      <PropertyRef Name="RatingId" />
+    </Key>
+    <Property Name="RatingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="MovieId" Type="int" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="User_64130299">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="UpdatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WatchHistory_64130299">
+    <Key>
+      <PropertyRef Name="HistoryId" />
+    </Key>
+    <Property Name="HistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="MovieId" Type="int" />
+    <Property Name="LastWatchedTime" Type="datetime" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Comment_6__Movie__2A4B4B5E">
+    <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="0..1" />
+    <End Role="Comment_64130299" Type="Self.Comment_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_64130299">
+        <PropertyRef Name="MovieId" />
+      </Principal>
+      <Dependent Role="Comment_64130299">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comment_6__UserI__29572725">
+    <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="0..1" />
+    <End Role="Comment_64130299" Type="Self.Comment_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_64130299">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Comment_64130299">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Favorite___Movie__1A14E395">
+    <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="0..1" />
+    <End Role="Favorite_64130299" Type="Self.Favorite_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_64130299">
+        <PropertyRef Name="MovieId" />
+      </Principal>
+      <Dependent Role="Favorite_64130299">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Favorite___UserI__1920BF5C">
+    <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="0..1" />
+    <End Role="Favorite_64130299" Type="Self.Favorite_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_64130299">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Favorite_64130299">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating_64__Movie__24927208">
+    <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="0..1" />
+    <End Role="Rating_64130299" Type="Self.Rating_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_64130299">
+        <PropertyRef Name="MovieId" />
+      </Principal>
+      <Dependent Role="Rating_64130299">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating_64__UserI__239E4DCF">
+    <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="0..1" />
+    <End Role="Rating_64130299" Type="Self.Rating_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_64130299">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Rating_64130299">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WatchHist__Movie__1ED998B2">
+    <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="0..1" />
+    <End Role="WatchHistory_64130299" Type="Self.WatchHistory_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_64130299">
+        <PropertyRef Name="MovieId" />
+      </Principal>
+      <Dependent Role="WatchHistory_64130299">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WatchHist__UserI__1DE57479">
+    <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="0..1" />
+    <End Role="WatchHistory_64130299" Type="Self.WatchHistory_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_64130299">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="WatchHistory_64130299">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MovieDatabase_64130299ModelStoreContainer">
+    <EntitySet Name="Comment_64130299" EntityType="Self.Comment_64130299" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Favorite_64130299" EntityType="Self.Favorite_64130299" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Movie_64130299" EntityType="Self.Movie_64130299" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rating_64130299" EntityType="Self.Rating_64130299" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_64130299" EntityType="Self.User_64130299" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WatchHistory_64130299" EntityType="Self.WatchHistory_64130299" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Comment_6__Movie__2A4B4B5E" Association="Self.FK__Comment_6__Movie__2A4B4B5E">
+      <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+      <End Role="Comment_64130299" EntitySet="Comment_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comment_6__UserI__29572725" Association="Self.FK__Comment_6__UserI__29572725">
+      <End Role="User_64130299" EntitySet="User_64130299" />
+      <End Role="Comment_64130299" EntitySet="Comment_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Favorite___Movie__1A14E395" Association="Self.FK__Favorite___Movie__1A14E395">
+      <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+      <End Role="Favorite_64130299" EntitySet="Favorite_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Favorite___UserI__1920BF5C" Association="Self.FK__Favorite___UserI__1920BF5C">
+      <End Role="User_64130299" EntitySet="User_64130299" />
+      <End Role="Favorite_64130299" EntitySet="Favorite_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating_64__Movie__24927208" Association="Self.FK__Rating_64__Movie__24927208">
+      <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+      <End Role="Rating_64130299" EntitySet="Rating_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating_64__UserI__239E4DCF" Association="Self.FK__Rating_64__UserI__239E4DCF">
+      <End Role="User_64130299" EntitySet="User_64130299" />
+      <End Role="Rating_64130299" EntitySet="Rating_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WatchHist__Movie__1ED998B2" Association="Self.FK__WatchHist__Movie__1ED998B2">
+      <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+      <End Role="WatchHistory_64130299" EntitySet="WatchHistory_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WatchHist__UserI__1DE57479" Association="Self.FK__WatchHist__UserI__1DE57479">
+      <End Role="User_64130299" EntitySet="User_64130299" />
+      <End Role="WatchHistory_64130299" EntitySet="WatchHistory_64130299" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,132 @@
+﻿@model IEnumerable<MovieWeb.Models.Movie_64130299>
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout641302999.cshtml";
+}
+
+<div class="relative bg-black">
+    <!-- Hero Banner -->
+    <div class="relative h-96">
+        <img src="https://via.placeholder.com/1920x400" alt="Hero Banner" class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative flex flex-col justify-center items-center h-full text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Chào mừng đến với Xem Phim</h1>
+            <p class="text-lg md:text-xl mb-6">Xem các bộ phim mới nhất và nổi bật ngay hôm nay!</p>
+            <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md">Xem ngay</a>
+        </div>
+    </div>
+
+    <!-- Carousel Danh Sách Phim -->
+    <div class="py-8">
+        <h2 class="text-2xl font-bold text-white mb-5 text-center">Danh sách phim</h2>
+        <div class="relative flex items-center">
+            <!-- Nút điều khiển bên trái -->
+            <button id="prev-movie" class="absolute left-0 z-10 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-black transition">
+                &#10094;
+            </button>
+
+            <!-- Carousel chứa các phim -->
+            <div id="movie-carousel" class="flex overflow-hidden space-x-4">
+                @foreach (var movie in Model)
+                {
+                    <div class="min-w-[160px]">
+                        <a href="@Url.Action("Details_64130299", "Home_64130299", new { id = movie.MovieId })">
+                            <!-- Thêm link đến trang chi tiết phim -->
+                            <img src="@movie.PosterUrl" class="rounded-lg w-full h-40 object-cover" alt="@movie.Title">
+                            <h5 class="text-sm font-bold text-white mt-2 truncate">@movie.Title</h5>
+                        </a>
+                    </div>
+                }
+            </div>
+
+            <!-- Nút điều khiển bên phải -->
+            <button id="next-movie" class="absolute right-0 z-10 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-black transition">
+                &#10095;
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Danh sách thể loại phim dạng carousel -->
+    <div class="py-8">
+        <h2 class="text-2xl font-bold text-white mb-5 text-center">Thể loại phim</h2>
+        <div class="relative flex items-center">
+            <!-- Nút điều khiển bên trái -->
+            <button id="prev-genre" class="absolute left-0 z-10 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-black transition">
+                &#10094;
+            </button>
+
+            <!-- Carousel thể loại phim -->
+            <div id="carousel-genre" class="flex overflow-hidden space-x-4">
+                <!-- Thể loại Hành Động -->
+                <div class="flex flex-col items-center bg-blue-500 text-white rounded-lg p-6 min-w-[220px]">
+                    <i class="fas fa-fist-raised text-4xl mb-2"></i> <!-- Icon for Action -->
+                    <span class="text-xl font-semibold">Hành Động</span>
+                </div>
+                <!-- Thể loại Hài -->
+                <div class="flex flex-col items-center bg-yellow-500 text-white rounded-lg p-6 min-w-[220px]">
+                    <i class="fas fa-laugh text-4xl mb-2"></i> <!-- Icon for Comedy -->
+                    <span class="text-xl font-semibold">Hài</span>
+                </div>
+                <!-- Thể loại Kinh Dị -->
+                <div class="flex flex-col items-center bg-red-500 text-white rounded-lg p-6 min-w-[220px]">
+                    <i class="fas fa-ghost text-4xl mb-2"></i> <!-- Icon for Horror -->
+                    <span class="text-xl font-semibold">Kinh Dị</span>
+                </div>
+                <!-- Thể loại Viễn Tưởng -->
+                <div class="flex flex-col items-center bg-green-500 text-white rounded-lg p-6 min-w-[220px]">
+                    <i class="fas fa-rocket text-4xl mb-2"></i> <!-- Icon for Sci-Fi -->
+                    <span class="text-xl font-semibold">Viễn Tưởng</span>
+                </div>
+                <!-- Thể loại Tình Cảm -->
+                <div class="flex flex-col items-center bg-pink-500 text-white rounded-lg p-6 min-w-[220px]">
+                    <i class="fas fa-heart text-4xl mb-2"></i> <!-- Icon for Romance -->
+                    <span class="text-xl font-semibold">Tình Cảm</span>
+                </div>
+                <!-- Thể loại Hoạt Hình -->
+                <div class="flex flex-col items-center bg-purple-500 text-white rounded-lg p-6 min-w-[220px]">
+                    <i class="fas fa-film text-4xl mb-2"></i> <!-- Icon for Animation -->
+                    <span class="text-xl font-semibold">Hoạt Hình</span>
+                </div>
+            </div>
+
+            <!-- Nút điều khiển bên phải -->
+            <button id="next-genre" class="absolute right-0 z-10 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-black transition">
+                &#10095;
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const movieCarousel = document.getElementById('movie-carousel');
+    const nextMovieButton = document.getElementById('next-movie');
+    const prevMovieButton = document.getElementById('prev-movie');
+
+    // Kích thước của mỗi phim
+    const movieItemWidth = 160; // Width của mỗi item (có thể điều chỉnh)
+
+    nextMovieButton.addEventListener('click', () => {
+        movieCarousel.scrollBy({ left: movieItemWidth * 2, behavior: 'smooth' }); // Cuộn qua 2 phim mỗi lần
+    });
+
+    prevMovieButton.addEventListener('click', () => {
+        movieCarousel.scrollBy({ left: -movieItemWidth * 2, behavior: 'smooth' }); // Cuộn ngược lại 2 phim mỗi lần
+    });
+
+    const genreCarousel = document.getElementById('carousel-genre');
+    const nextGenreButton = document.getElementById('next-genre');
+    const prevGenreButton = document.getElementById('prev-genre');
+
+    // Kích thước mỗi thể loại
+    const genreItemWidth = 220; // Width của mỗi genre item (có thể điều chỉnh)
+
+    nextGenreButton.addEventListener('click', () => {
+        genreCarousel.scrollBy({ left: genreItemWidth * 1, behavior: 'smooth' }); // Cuộn qua 1 thể loại mỗi lần
+    });
+
+    prevGenreButton.addEventListener('click', () => {
+        genreCarousel.scrollBy({ left: -genreItemWidth * 1, behavior: 'smooth' }); // Cuộn ngược lại 1 thể loại mỗi lần
+    });
+</script>

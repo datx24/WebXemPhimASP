@@ -1,0 +1,160 @@
+﻿/* movie-styles.css */
+.form-horizontal {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .form-horizontal h2, h4 {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        color: #34495e;
+    }
+
+.form-group label {
+    color: #34495e;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.btn-default {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+    .btn-default:hover {
+        background-color: #2980b9;
+    }
+
+.text-danger {
+    color: #e74c3c;
+}
+
+    .form-horizontal h2, h4 {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        color: #34495e;
+    }
+h2 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+    .table th, .table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table th {
+        background-color: #3498db;
+        color: white;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    .table tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .table td {
+        font-size: 14px;
+        color: #2c3e50;
+        max-width: 220px; /* Chiều rộng tối đa của ô */
+        white-space: nowrap; /* Không cho phép xuống dòng */
+        overflow: hidden; /* Ẩn phần nội dung thừa */
+        text-overflow: ellipsis; /* Thêm dấu ba chấm nếu chuỗi quá dài */
+    }
+
+        .table td:last-child {
+            text-align: center;
+        }
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+    a:hover {
+        color: #2980b9;
+    }
+
+/* Button styles */
+.btn {
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-edit {
+    background-color: #f1c40f; /* Yellow for "Edit" */
+}
+
+    .btn-edit:hover {
+        background-color: #d4ac0d;
+    }
+
+.btn-details {
+    background-color: #3498db; /* Blue for "Details" */
+}
+
+    .btn-details:hover {
+        background-color: #2980b9;
+    }
+
+.btn-delete {
+    background-color: #e74c3c; /* Red for "Delete" */
+}
+
+    .btn-delete:hover {
+        background-color: #c0392b;
+    }
+
+.btn-create {
+    background-color: #2ecc71; /* Green for "Create New" */
+    margin-bottom: 20px;
+}
+
+    .btn-create:hover {
+        background-color: #27ae60;
+    }
+
+.form-horizontal .form-group:last-child {
+    margin-top: 20px; /* Khoảng cách giữa form-group và nút Save */
+}

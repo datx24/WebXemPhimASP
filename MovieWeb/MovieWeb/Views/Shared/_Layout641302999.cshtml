@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - FPTPlay Clone</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+    <!-- Header -->
+    <header class="bg-black shadow">
+        <div class="container mx-auto px-44 py-4 flex items-center justify-between">
+            <div class="logo">
+                <a href="@Url.Action("home64130299", "Home_64130299")">
+                    <img src="~/Images/logo_fpt_clone_transparent_v2.png" alt="FPT Play Logo" height="60" width="200" />
+                </a>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li>@Html.ActionLink("Trang chủ", "home64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
+                    <li>@Html.ActionLink("Phim bộ", "tvseries_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
+                    <li>@Html.ActionLink("Phim lẻ", "film_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
+                    <li>@Html.ActionLink("Anime", "anime_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
+
+                    <!-- Dropdown for Thể loại -->
+                    <li class="relative group">
+                        <span class="text-gray-300 cursor-pointer">Thể loại</span>
+                        <ul class="dropdown-menu absolute left-1/2 mt-2 w-96 bg-gray-800 rounded-md shadow-lg hidden flex flex-wrap transform -translate-x-1/2">
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Hài hước</a></li>
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Tình cảm</a></li>
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Hành động</a></li>
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Kinh dị</a></li>
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Khoa học viễn tưởng</a></li>
+                        </ul>
+
+                    </li>
+                    <!-- Dropdown for Năm sản xuất -->
+                    <li class="relative group">
+                        <span class="text-gray-300 cursor-pointer">Năm sản xuất</span>
+                        <ul class="dropdown-menu absolute left-1/2 mt-2 w-96 bg-gray-800 rounded-md shadow-lg hidden flex flex-wrap transform -translate-x-1/2">
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2024</a></li>
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2023</a></li>
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2022</a></li>
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2021</a></li>
+                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2020</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <form class="max-w-xs">
+                    <div class="relative">
+                        <!-- Icon tìm kiếm -->
+                        <div class="absolute inset-y-0 left-4 top-1.5 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-white w-4 h-4 z-10"></i> <!-- Giảm kích thước icon -->
+                        </div>
+                        <input type="search" id="default-search" class="block w-48 p-2 pl-10 text-sm border border-gray-500 rounded-lg bg-slate-800 text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 ease-in-out transform hover:scale-105" placeholder="Nhập tên phim..." required />
+                    </div>
+                </form>
+
+                <button class="bg-orange-500 text-white font-medium rounded-lg px-4 py-2 hover:bg-orange-600">Mua gói</button>
+                <a class="text-white-500 hover:text-orange-500" href="#">Đăng nhập</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="content py-6">
+        <div class="container mx-auto px-44">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-4 px-44">
+        <div class="border-t border-gray-700 mb-4"></div> <!-- Đường viền phân cách -->
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 FPT Play Clone - All rights reserved</p>
+        </div>
+    </footer>
+
+
+    <script>
+        const dropdowns = document.querySelectorAll('.relative.group'); // Tìm tất cả các dropdown
+
+        dropdowns.forEach(dropdown => {
+            const menu = dropdown.querySelector('.dropdown-menu');
+            let timeoutId;
+
+            dropdown.addEventListener('mouseenter', () => {
+                clearTimeout(timeoutId);
+                menu.classList.remove('hidden'); // Hiện menu
+            });
+
+            dropdown.addEventListener('mouseleave', () => {
+                timeoutId = setTimeout(() => {
+                    menu.classList.add('hidden'); // Ẩn menu
+                }, 30); // Thời gian chờ trước khi ẩn (300ms)
+            });
+
+            menu.addEventListener('mouseenter', () => {
+                clearTimeout(timeoutId); // Giữ menu khi hover vào menu
+            });
+
+            menu.addEventListener('mouseleave', () => {
+                timeoutId = setTimeout(() => {
+                    menu.classList.add('hidden'); // Ẩn menu
+                }, 300); // Thời gian chờ trước khi ẩn (300ms)
+            });
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

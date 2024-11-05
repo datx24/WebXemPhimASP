@@ -1,0 +1,15 @@
+﻿* CSS Tùy Chỉnh cho độ trễ */
+.dropdown-menu {
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Vô hiệu hóa sự kiện chuột khi không hiển thị */
+    opacity: 0; /* Bắt đầu với độ mờ 0 */
+}
+
+.group:hover .dropdown-menu {
+    pointer-events: auto; /* Kích hoạt sự kiện chuột khi hover */
+    opacity: 1; /* Đặt độ mờ thành 1 khi hover */
+}
+
+    .group:hover .dropdown-menu:not(:hover) {
+        pointer-events: auto; /* Vẫn cho phép sự kiện chuột vào menu con */
+    }

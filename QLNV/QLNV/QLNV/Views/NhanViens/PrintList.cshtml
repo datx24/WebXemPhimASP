@@ -1,0 +1,116 @@
+﻿@model IEnumerable<QLNV.Models.NhanVien>
+@{
+    ViewBag.Title = "PrintList1";
+    string gtinh = "";
+    int i = 0;
+}
+<link href="~/Content/print.css" rel="stylesheet" />
+<title>Bản in</title>
+<table id='tb_main_title' style='border-collapse: collapse;' name='tb_main_title' width='700' class="table-print-title">
+    <tr>
+        <th align='left'class='bold main_title'>
+            CÔNG TY TNHH ABC
+        </th>
+    </tr>
+    <tr>
+        <th align='center' class='bold main_title' style='height:35px'>
+            DANH SÁCH NHÂN SỰ
+        </th>
+    </tr>
+</table>
+<br />
+<table id='tb_main_body' style='border-collapse: collapse;' name='tb_main_body' width='700' class="table-print" border="1">
+    <tr>
+        <th>
+            STT
+        </th>
+        <th>
+            Mã NV
+        </th>
+        <th>
+            Họ nhân viên
+        </th>
+        <th>
+            Tên nhân viên
+        </th>
+        <th align="center">
+            Giới tính
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th>
+            Lương
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Phòng ban
+        </th>
+        <th>
+            Ghi chú
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td align="center">
+                @{i++;}
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaNV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoNV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNV)
+            </td>
+            <td align="center">
+                @{if (item.GioiTinh == true)
+                    { gtinh = "Nam"; }
+                    else
+                    { gtinh = "Nữ"; }
+                }
+                @gtinh
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgaySinh)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Luong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhongBan.TenPB)
+            </td>
+            <td width='10%'>
+
+            </td>
+        </tr>
+    }
+</table>
+@{ 
+    var ngayIn = " ngày " + DateTime.Now.Day.ToString() + " tháng " + DateTime.Now.Month.ToString() + " năm " + DateTime.Now.Year.ToString();
+}
+<table id='tb_footer' name='tb_footer' width='700' border="0" class="fixheader">
+    <tr>
+        <td align='left' width='30%'></td>
+        <td align='center' width='30%'></td>
+        <td align='center' class='sign italic'>Khánh Hòa, @ngayIn
+        </td>
+    </tr>
+    <tr>
+        <td align='center' width='30%' class='bold'>Giám đốc</td>
+        <td align='center' width='30%' class='bold'>Kế toán</td>
+        <td align='center' class='bold'>Người lập danh sách</td>
+    </tr>
+</table>

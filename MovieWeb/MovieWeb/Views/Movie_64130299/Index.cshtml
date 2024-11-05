@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MovieWeb.Models.Movie_64130299>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Liên kết file CSS -->
+<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
+
+<h2>Danh sách phim</h2>
+
+<p>
+    <a class="btn btn-create" href="@Url.Action("Create")">Tạo mới</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Tiêu đề
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Ngày phát hành
+        </th>
+        <th>
+            Thể loại
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PosterUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrailerUrl)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PosterUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrailerUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieUrl)
+            </td>
+            <td>
+                <a class="btn btn-edit" href="@Url.Action("Edit", new { id=item.MovieId })">Sửa</a>
+                <a class="btn btn-details" href="@Url.Action("Details", new { id=item.MovieId })">Chi tiết</a>
+                <a class="btn btn-delete" href="@Url.Action("Delete", new { id=item.MovieId })">Xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>

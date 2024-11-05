@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a901d5ba131b4693b98e99fdb379e157" Name="Diagram1">
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.Comment_64130299" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.Favorite_64130299" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.Movie_64130299" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.Rating_64130299" Width="1.5" PointX="6.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.User_64130299" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.WatchHistory_64130299" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__Comment_6__Movie__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__Comment_6__UserI__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__Favorite___Movie__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__Favorite___UserI__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__Rating_64__Movie__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__WatchHist__Movie__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__Rating_64__UserI__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__WatchHist__UserI__1ED998B2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,37 @@
+﻿@model MovieWeb.Models.User_64130299
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Liên kết file CSS -->
+<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
+
+<h2>Thông tin chi tiết người dùng</h2>
+
+<div class="form-horizontal">
+    <h4>Thông tin người dùng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.UserId }, new { @class = "btn btn-default" }) |
+    @Html.ActionLink("Quay lại", "Index", new { @class = "btn btn-default" })
+</div>
+

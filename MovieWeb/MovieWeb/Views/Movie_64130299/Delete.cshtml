@@ -1,0 +1,72 @@
+﻿@model MovieWeb.Models.Movie_64130299
+
+@{
+    ViewBag.Title = "Xóa phim";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
+<h2>Xóa phim</h2>
+
+<h3 class="text-danger">Bạn có chắc chắn muôn xóa phim này không?</h3>
+<div>
+    <hr />
+    <dl class="form-horizontal">
+        <dt>
+            Tiêu đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            Mô tả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Ngày phát hành
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dt>
+            Thể loại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PosterUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosterUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrailerUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrailerUrl)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default text-bg-danger" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

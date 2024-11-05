@@ -1,0 +1,262 @@
+F:\ChuanBi\QLNV\QLNV\bin\ApplicationInsights.config
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\csc.exe
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\System.Collections.Immutable.dll
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\System.Reflection.Metadata.dll
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\vbc.exe
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\VBCSCompiler.exe
+F:\ChuanBi\QLNV\QLNV\bin\roslyn\VBCSCompiler.exe.config
+F:\ChuanBi\QLNV\QLNV\bin\QLNV.dll.config
+F:\ChuanBi\QLNV\QLNV\bin\QLNV.dll
+F:\ChuanBi\QLNV\QLNV\bin\QLNV.pdb
+F:\ChuanBi\QLNV\QLNV\bin\Antlr3.Runtime.dll
+F:\ChuanBi\QLNV\QLNV\bin\EntityFramework.dll
+F:\ChuanBi\QLNV\QLNV\bin\EntityFramework.SqlServer.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.Agent.Intercept.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.DependencyCollector.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.Web.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.WindowsServer.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.ApplicationInsights.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Core.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Owin.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Cookies.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Facebook.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Google.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.OAuth.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Twitter.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Web.Infrastructure.dll
+F:\ChuanBi\QLNV\QLNV\bin\Newtonsoft.Json.dll
+F:\ChuanBi\QLNV\QLNV\bin\Owin.dll
+F:\ChuanBi\QLNV\QLNV\bin\PagedList.dll
+F:\ChuanBi\QLNV\QLNV\bin\PagedList.Mvc.dll
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.Helpers.dll
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.Mvc.dll
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.Optimization.dll
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.Razor.dll
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.Deployment.dll
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.dll
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.Razor.dll
+F:\ChuanBi\QLNV\QLNV\bin\WebGrease.dll
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.DependencyCollector.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.Web.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.WindowsServer.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.ApplicationInsights.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\ChuanBi\QLNV\QLNV\bin\PagedList.xml
+F:\ChuanBi\QLNV\QLNV\bin\PagedList.Mvc.xml
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.Helpers.xml
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.Mvc.xml
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.Optimization.xml
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.Razor.xml
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.xml
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.Deployment.xml
+F:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.Razor.xml
+F:\ChuanBi\QLNV\QLNV\bin\Antlr3.Runtime.pdb
+F:\ChuanBi\QLNV\QLNV\bin\Newtonsoft.Json.xml
+F:\ChuanBi\QLNV\QLNV\bin\EntityFramework.xml
+F:\ChuanBi\QLNV\QLNV\bin\EntityFramework.SqlServer.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Core.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Owin.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Facebook.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Cookies.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.OAuth.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Google.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Twitter.xml
+F:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+F:\ChuanBi\QLNV\QLNV\obj\Debug\QLNV.dll
+F:\ChuanBi\QLNV\QLNV\obj\Debug\QLNV.pdb
+F:\ChuanBi\QLNV\QLNV\obj\Debug\QLNV.csprojResolveAssemblyReference.cache
+E:\ChuanBi\QLNV\QLNV\bin\ApplicationInsights.config
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\csc.exe
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\System.Collections.Immutable.dll
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\System.Reflection.Metadata.dll
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\vbc.exe
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\VBCSCompiler.exe
+E:\ChuanBi\QLNV\QLNV\bin\roslyn\VBCSCompiler.exe.config
+E:\ChuanBi\QLNV\QLNV\bin\QLNV.dll.config
+E:\ChuanBi\QLNV\QLNV\bin\QLNV.dll
+E:\ChuanBi\QLNV\QLNV\bin\QLNV.pdb
+E:\ChuanBi\QLNV\QLNV\bin\Antlr3.Runtime.dll
+E:\ChuanBi\QLNV\QLNV\bin\EntityFramework.dll
+E:\ChuanBi\QLNV\QLNV\bin\EntityFramework.SqlServer.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.Agent.Intercept.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.DependencyCollector.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.Web.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.WindowsServer.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.ApplicationInsights.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Core.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Cookies.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Facebook.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Google.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.OAuth.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Twitter.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Web.Infrastructure.dll
+E:\ChuanBi\QLNV\QLNV\bin\Newtonsoft.Json.dll
+E:\ChuanBi\QLNV\QLNV\bin\Owin.dll
+E:\ChuanBi\QLNV\QLNV\bin\PagedList.dll
+E:\ChuanBi\QLNV\QLNV\bin\PagedList.Mvc.dll
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.Helpers.dll
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.Mvc.dll
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.Optimization.dll
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.Razor.dll
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.Deployment.dll
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.dll
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.Razor.dll
+E:\ChuanBi\QLNV\QLNV\bin\WebGrease.dll
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.DependencyCollector.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.Web.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AI.WindowsServer.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.ApplicationInsights.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\ChuanBi\QLNV\QLNV\bin\PagedList.xml
+E:\ChuanBi\QLNV\QLNV\bin\PagedList.Mvc.xml
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.Helpers.xml
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.Mvc.xml
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.Optimization.xml
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.Razor.xml
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.xml
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.Deployment.xml
+E:\ChuanBi\QLNV\QLNV\bin\System.Web.WebPages.Razor.xml
+E:\ChuanBi\QLNV\QLNV\bin\Antlr3.Runtime.pdb
+E:\ChuanBi\QLNV\QLNV\bin\Newtonsoft.Json.xml
+E:\ChuanBi\QLNV\QLNV\bin\EntityFramework.xml
+E:\ChuanBi\QLNV\QLNV\bin\EntityFramework.SqlServer.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Core.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Facebook.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Cookies.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.OAuth.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Google.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.Twitter.xml
+E:\ChuanBi\QLNV\QLNV\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\ChuanBi\QLNV\QLNV\obj\Debug\QLNV.csprojAssemblyReference.cache
+E:\ChuanBi\QLNV\QLNV\obj\Debug\QLNV.csproj.CoreCompileInputs.cache
+E:\ChuanBi\QLNV\QLNV\obj\Debug\QLNV.csproj.CopyComplete
+E:\ChuanBi\QLNV\QLNV\obj\Debug\QLNV.dll
+E:\ChuanBi\QLNV\QLNV\obj\Debug\QLNV.pdb
+E:\Bai SV\QLNV\QLNV\bin\ApplicationInsights.config
+E:\Bai SV\QLNV\QLNV\bin\roslyn\csc.exe
+E:\Bai SV\QLNV\QLNV\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Bai SV\QLNV\QLNV\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Bai SV\QLNV\QLNV\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Bai SV\QLNV\QLNV\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Bai SV\QLNV\QLNV\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Bai SV\QLNV\QLNV\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Bai SV\QLNV\QLNV\bin\roslyn\System.Collections.Immutable.dll
+E:\Bai SV\QLNV\QLNV\bin\roslyn\System.Reflection.Metadata.dll
+E:\Bai SV\QLNV\QLNV\bin\roslyn\vbc.exe
+E:\Bai SV\QLNV\QLNV\bin\roslyn\VBCSCompiler.exe
+E:\Bai SV\QLNV\QLNV\bin\roslyn\VBCSCompiler.exe.config
+E:\Bai SV\QLNV\QLNV\bin\QLNV.dll.config
+E:\Bai SV\QLNV\QLNV\bin\QLNV.dll
+E:\Bai SV\QLNV\QLNV\bin\QLNV.pdb
+E:\Bai SV\QLNV\QLNV\bin\Antlr3.Runtime.dll
+E:\Bai SV\QLNV\QLNV\bin\EntityFramework.dll
+E:\Bai SV\QLNV\QLNV\bin\EntityFramework.SqlServer.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.Agent.Intercept.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.DependencyCollector.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.Web.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.WindowsServer.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.ApplicationInsights.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.Cookies.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.Facebook.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.Google.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.OAuth.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.Twitter.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Web.Infrastructure.dll
+E:\Bai SV\QLNV\QLNV\bin\Newtonsoft.Json.dll
+E:\Bai SV\QLNV\QLNV\bin\Owin.dll
+E:\Bai SV\QLNV\QLNV\bin\PagedList.dll
+E:\Bai SV\QLNV\QLNV\bin\PagedList.Mvc.dll
+E:\Bai SV\QLNV\QLNV\bin\System.Web.Helpers.dll
+E:\Bai SV\QLNV\QLNV\bin\System.Web.Mvc.dll
+E:\Bai SV\QLNV\QLNV\bin\System.Web.Optimization.dll
+E:\Bai SV\QLNV\QLNV\bin\System.Web.Razor.dll
+E:\Bai SV\QLNV\QLNV\bin\System.Web.WebPages.Deployment.dll
+E:\Bai SV\QLNV\QLNV\bin\System.Web.WebPages.dll
+E:\Bai SV\QLNV\QLNV\bin\System.Web.WebPages.Razor.dll
+E:\Bai SV\QLNV\QLNV\bin\WebGrease.dll
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.DependencyCollector.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.Web.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AI.WindowsServer.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.ApplicationInsights.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Bai SV\QLNV\QLNV\bin\PagedList.xml
+E:\Bai SV\QLNV\QLNV\bin\PagedList.Mvc.xml
+E:\Bai SV\QLNV\QLNV\bin\System.Web.Helpers.xml
+E:\Bai SV\QLNV\QLNV\bin\System.Web.Mvc.xml
+E:\Bai SV\QLNV\QLNV\bin\System.Web.Optimization.xml
+E:\Bai SV\QLNV\QLNV\bin\System.Web.Razor.xml
+E:\Bai SV\QLNV\QLNV\bin\System.Web.WebPages.xml
+E:\Bai SV\QLNV\QLNV\bin\System.Web.WebPages.Deployment.xml
+E:\Bai SV\QLNV\QLNV\bin\System.Web.WebPages.Razor.xml
+E:\Bai SV\QLNV\QLNV\bin\Antlr3.Runtime.pdb
+E:\Bai SV\QLNV\QLNV\bin\Newtonsoft.Json.xml
+E:\Bai SV\QLNV\QLNV\bin\EntityFramework.xml
+E:\Bai SV\QLNV\QLNV\bin\EntityFramework.SqlServer.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.Facebook.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.Cookies.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.OAuth.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.Google.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.Twitter.xml
+E:\Bai SV\QLNV\QLNV\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\Bai SV\QLNV\QLNV\obj\Debug\QLNV.csproj.AssemblyReference.cache
+E:\Bai SV\QLNV\QLNV\obj\Debug\QLNV.csproj.CoreCompileInputs.cache
+E:\Bai SV\QLNV\QLNV\obj\Debug\QLNV.csproj.CopyComplete
+E:\Bai SV\QLNV\QLNV\obj\Debug\QLNV.dll
+E:\Bai SV\QLNV\QLNV\obj\Debug\QLNV.pdb

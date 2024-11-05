@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MovieDatabase_64130299ModelStoreContainer" CdmEntityContainer="MovieDatabase_64130299Entities">
+    <EntitySetMapping Name="Comment_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Comment_64130299">
+        <MappingFragment StoreEntitySet="Comment_64130299">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Favorite_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Favorite_64130299">
+        <MappingFragment StoreEntitySet="Favorite_64130299">
+          <ScalarProperty Name="FavoriteId" ColumnName="FavoriteId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movie_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Movie_64130299">
+        <MappingFragment StoreEntitySet="Movie_64130299">
+          <ScalarProperty Name="MovieUrl" ColumnName="MovieUrl" />
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="PosterUrl" ColumnName="PosterUrl" />
+          <ScalarProperty Name="TrailerUrl" ColumnName="TrailerUrl" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rating_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Rating_64130299">
+        <MappingFragment StoreEntitySet="Rating_64130299">
+          <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.User_64130299">
+        <MappingFragment StoreEntitySet="User_64130299">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WatchHistory_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.WatchHistory_64130299">
+        <MappingFragment StoreEntitySet="WatchHistory_64130299">
+          <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="LastWatchedTime" ColumnName="LastWatchedTime" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

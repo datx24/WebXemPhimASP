@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MovieWeb.Models.User_64130299>
+
+@{
+    ViewBag.Title = "Index";
+}
+<!-- Liên kết file CSS -->
+<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
+
+
+<h2>Danh sách người dùng</h2>
+
+<p>
+    <a class="btn btn-create" href="@Url.Action("Create")">Tạo mới</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                <a class="btn btn-edit" href="@Url.Action("Edit", new { id = item.UserId })">Sửa</a>
+                <a class="btn btn-details" href="@Url.Action("Details", new { id = item.UserId })">Chi tiết</a>
+                <a class="btn btn-delete" href="@Url.Action("Delete", new { id = item.UserId })">Xóa</a>
+            </td>
+        </tr>
+    }
+</table>

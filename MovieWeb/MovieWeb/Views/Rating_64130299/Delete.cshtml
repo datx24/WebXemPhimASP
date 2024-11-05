@@ -1,0 +1,56 @@
+﻿@model MovieWeb.Models.Rating_64130299
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
+<h2>Xóa đánh giá</h2>
+
+<h3 class="text-danger">Bạn có chắc chắn muốn xóa đánh gia này không !</h3>
+<div>
+    <hr />
+    <dl class="form-horizontal">
+        <dt>
+            Thang điểm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            Ngày tạo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            Tiêu đề           
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movie_64130299.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_64130299.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_64130299.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default text-bg-danger" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>
