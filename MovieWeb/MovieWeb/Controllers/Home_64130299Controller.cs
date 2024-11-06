@@ -26,5 +26,20 @@ namespace MovieWeb.Controllers
             }
             return View(movie); // Return the movie details view
         }
+        public ActionResult Trailer_64130299(int id)
+        {
+            var movie = db.Movie_64130299.Find(id);
+            if (movie == null) return HttpNotFound();
+            return View(movie);
+        }
+
+        public ActionResult WatchMovie_64130299(int id)
+        {
+            var movie = db.Movie_64130299.Find(id);
+            if (movie == null) return HttpNotFound();
+            return View(movie);
+        }
+
+
     }
 }

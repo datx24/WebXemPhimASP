@@ -145,6 +145,12 @@
     <Compile Include="Models\Favorite_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Genre_64130299.cs">
+      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MovieEpisode_64130299.cs">
+      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MovieModel_64130299.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,6 +165,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MovieModel_64130299.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MovieSeries_64130299.cs">
+      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
@@ -279,6 +288,8 @@
     <Content Include="Views\Shared\_Layout641302999.cshtml" />
     <Content Include="Views\Home_64130299\Home64130299.cshtml" />
     <Content Include="Views\Home_64130299\Details_64130299.cshtml" />
+    <Content Include="Views\Home_64130299\Trailer_64130299.cshtml" />
+    <Content Include="Views\Home_64130299\WatchMovie_64130299.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

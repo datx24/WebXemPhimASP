@@ -24,6 +24,13 @@
           <Property Name="MovieId" Type="int" />
           <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
+        <EntityType Name="Genre_64130299">
+          <Key>
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="GenreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenreName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Movie_64130299">
           <Key>
             <PropertyRef Name="MovieId" />
@@ -35,9 +42,38 @@
           <Property Name="Genre" Type="nvarchar" MaxLength="100" />
           <Property Name="PosterUrl" Type="nvarchar" MaxLength="512" />
           <Property Name="TrailerUrl" Type="nvarchar" MaxLength="512" />
+          <Property Name="MovieUrl" Type="nvarchar(max)" />
+          <Property Name="SeriesId" Type="int" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedAt" Type="datetime" />
-          <Property Name="MovieUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MovieEpisode_64130299">
+          <Key>
+            <PropertyRef Name="EpisodeId" />
+          </Key>
+          <Property Name="EpisodeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovieId" Type="int" />
+          <Property Name="EpisodeNumber" Type="int" Nullable="false" />
+          <Property Name="ReleaseDate" Type="date" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MovieGenre_64130299">
+          <Key>
+            <PropertyRef Name="MovieId" />
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="MovieId" Type="int" Nullable="false" />
+          <Property Name="GenreId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MovieSeries_64130299">
+          <Key>
+            <PropertyRef Name="SeriesId" />
+          </Key>
+          <Property Name="SeriesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeriesName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
         </EntityType>
         <EntityType Name="Rating_64130299">
           <Key>
@@ -70,7 +106,7 @@
           <Property Name="LastWatchedTime" Type="datetime" />
           <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Comment_6__Movie__2A4B4B5E">
+        <Association Name="FK__Comment_6__Movie__398D8EEE">
           <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="0..1" />
           <End Role="Comment_64130299" Type="Self.Comment_64130299" Multiplicity="*" />
           <ReferentialConstraint>
@@ -82,7 +118,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Comment_6__UserI__29572725">
+        <Association Name="FK__Comment_6__UserI__38996AB5">
           <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="0..1" />
           <End Role="Comment_64130299" Type="Self.Comment_64130299" Multiplicity="*" />
           <ReferentialConstraint>
@@ -94,7 +130,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favorite___Movie__1A14E395">
+        <Association Name="FK__Favorite___Movie__29572725">
           <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="0..1" />
           <End Role="Favorite_64130299" Type="Self.Favorite_64130299" Multiplicity="*" />
           <ReferentialConstraint>
@@ -106,7 +142,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favorite___UserI__1920BF5C">
+        <Association Name="FK__Favorite___UserI__286302EC">
           <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="0..1" />
           <End Role="Favorite_64130299" Type="Self.Favorite_64130299" Multiplicity="*" />
           <ReferentialConstraint>
@@ -118,7 +154,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating_64__Movie__24927208">
+        <Association Name="FK__Movie_641__Serie__1BFD2C07">
+          <End Role="MovieSeries_64130299" Type="Self.MovieSeries_64130299" Multiplicity="0..1" />
+          <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovieSeries_64130299">
+              <PropertyRef Name="SeriesId" />
+            </Principal>
+            <Dependent Role="Movie_64130299">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MovieEpis__Movie__20C1E124">
+          <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="0..1" />
+          <End Role="MovieEpisode_64130299" Type="Self.MovieEpisode_64130299" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie_64130299">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="MovieEpisode_64130299">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MovieGenr__Genre__25869641">
+          <End Role="Genre_64130299" Type="Self.Genre_64130299" Multiplicity="1" />
+          <End Role="MovieGenre_64130299" Type="Self.MovieGenre_64130299" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre_64130299">
+              <PropertyRef Name="GenreId" />
+            </Principal>
+            <Dependent Role="MovieGenre_64130299">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MovieGenr__Movie__24927208">
+          <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="1" />
+          <End Role="MovieGenre_64130299" Type="Self.MovieGenre_64130299" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie_64130299">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="MovieGenre_64130299">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rating_64__Movie__33D4B598">
           <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="0..1" />
           <End Role="Rating_64130299" Type="Self.Rating_64130299" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,7 +214,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating_64__UserI__239E4DCF">
+        <Association Name="FK__Rating_64__UserI__32E0915F">
           <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="0..1" />
           <End Role="Rating_64130299" Type="Self.Rating_64130299" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,7 +226,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WatchHist__Movie__1ED998B2">
+        <Association Name="FK__WatchHist__Movie__2E1BDC42">
           <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="0..1" />
           <End Role="WatchHistory_64130299" Type="Self.WatchHistory_64130299" Multiplicity="*" />
           <ReferentialConstraint>
@@ -154,7 +238,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WatchHist__UserI__1DE57479">
+        <Association Name="FK__WatchHist__UserI__2D27B809">
           <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="0..1" />
           <End Role="WatchHistory_64130299" Type="Self.WatchHistory_64130299" Multiplicity="*" />
           <ReferentialConstraint>
@@ -169,39 +253,59 @@
         <EntityContainer Name="MovieDatabase_64130299ModelStoreContainer">
           <EntitySet Name="Comment_64130299" EntityType="Self.Comment_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Favorite_64130299" EntityType="Self.Favorite_64130299" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre_64130299" EntityType="Self.Genre_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movie_64130299" EntityType="Self.Movie_64130299" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovieEpisode_64130299" EntityType="Self.MovieEpisode_64130299" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovieGenre_64130299" EntityType="Self.MovieGenre_64130299" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovieSeries_64130299" EntityType="Self.MovieSeries_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rating_64130299" EntityType="Self.Rating_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_64130299" EntityType="Self.User_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WatchHistory_64130299" EntityType="Self.WatchHistory_64130299" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Comment_6__Movie__2A4B4B5E" Association="Self.FK__Comment_6__Movie__2A4B4B5E">
+          <AssociationSet Name="FK__Comment_6__Movie__398D8EEE" Association="Self.FK__Comment_6__Movie__398D8EEE">
             <End Role="Movie_64130299" EntitySet="Movie_64130299" />
             <End Role="Comment_64130299" EntitySet="Comment_64130299" />
           </AssociationSet>
-          <AssociationSet Name="FK__Comment_6__UserI__29572725" Association="Self.FK__Comment_6__UserI__29572725">
+          <AssociationSet Name="FK__Comment_6__UserI__38996AB5" Association="Self.FK__Comment_6__UserI__38996AB5">
             <End Role="User_64130299" EntitySet="User_64130299" />
             <End Role="Comment_64130299" EntitySet="Comment_64130299" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favorite___Movie__1A14E395" Association="Self.FK__Favorite___Movie__1A14E395">
+          <AssociationSet Name="FK__Favorite___Movie__29572725" Association="Self.FK__Favorite___Movie__29572725">
             <End Role="Movie_64130299" EntitySet="Movie_64130299" />
             <End Role="Favorite_64130299" EntitySet="Favorite_64130299" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favorite___UserI__1920BF5C" Association="Self.FK__Favorite___UserI__1920BF5C">
+          <AssociationSet Name="FK__Favorite___UserI__286302EC" Association="Self.FK__Favorite___UserI__286302EC">
             <End Role="User_64130299" EntitySet="User_64130299" />
             <End Role="Favorite_64130299" EntitySet="Favorite_64130299" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating_64__Movie__24927208" Association="Self.FK__Rating_64__Movie__24927208">
+          <AssociationSet Name="FK__Movie_641__Serie__1BFD2C07" Association="Self.FK__Movie_641__Serie__1BFD2C07">
+            <End Role="MovieSeries_64130299" EntitySet="MovieSeries_64130299" />
+            <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MovieEpis__Movie__20C1E124" Association="Self.FK__MovieEpis__Movie__20C1E124">
+            <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+            <End Role="MovieEpisode_64130299" EntitySet="MovieEpisode_64130299" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MovieGenr__Genre__25869641" Association="Self.FK__MovieGenr__Genre__25869641">
+            <End Role="Genre_64130299" EntitySet="Genre_64130299" />
+            <End Role="MovieGenre_64130299" EntitySet="MovieGenre_64130299" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MovieGenr__Movie__24927208" Association="Self.FK__MovieGenr__Movie__24927208">
+            <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+            <End Role="MovieGenre_64130299" EntitySet="MovieGenre_64130299" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rating_64__Movie__33D4B598" Association="Self.FK__Rating_64__Movie__33D4B598">
             <End Role="Movie_64130299" EntitySet="Movie_64130299" />
             <End Role="Rating_64130299" EntitySet="Rating_64130299" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating_64__UserI__239E4DCF" Association="Self.FK__Rating_64__UserI__239E4DCF">
+          <AssociationSet Name="FK__Rating_64__UserI__32E0915F" Association="Self.FK__Rating_64__UserI__32E0915F">
             <End Role="User_64130299" EntitySet="User_64130299" />
             <End Role="Rating_64130299" EntitySet="Rating_64130299" />
           </AssociationSet>
-          <AssociationSet Name="FK__WatchHist__Movie__1ED998B2" Association="Self.FK__WatchHist__Movie__1ED998B2">
+          <AssociationSet Name="FK__WatchHist__Movie__2E1BDC42" Association="Self.FK__WatchHist__Movie__2E1BDC42">
             <End Role="Movie_64130299" EntitySet="Movie_64130299" />
             <End Role="WatchHistory_64130299" EntitySet="WatchHistory_64130299" />
           </AssociationSet>
-          <AssociationSet Name="FK__WatchHist__UserI__1DE57479" Association="Self.FK__WatchHist__UserI__1DE57479">
+          <AssociationSet Name="FK__WatchHist__UserI__2D27B809" Association="Self.FK__WatchHist__UserI__2D27B809">
             <End Role="User_64130299" EntitySet="User_64130299" />
             <End Role="WatchHistory_64130299" EntitySet="WatchHistory_64130299" />
           </AssociationSet>
@@ -251,6 +355,10 @@
           <NavigationProperty Name="Rating_64130299" Relationship="Self.FK__Rating_64__Movie__25869641" FromRole="Movie_64130299" ToRole="Rating_64130299" />
           <NavigationProperty Name="WatchHistory_64130299" Relationship="Self.FK__WatchHist__Movie__1FCDBCEB" FromRole="Movie_64130299" ToRole="WatchHistory_64130299" />
           <Property Name="MovieUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesId" Type="Int32" />
+          <NavigationProperty Name="MovieSeries_64130299" Relationship="MovieDatabase_64130299Model.FK__Movie_641__Serie__1BFD2C07" FromRole="Movie_64130299" ToRole="MovieSeries_64130299" />
+          <NavigationProperty Name="MovieEpisode_64130299" Relationship="MovieDatabase_64130299Model.FK__MovieEpis__Movie__20C1E124" FromRole="Movie_64130299" ToRole="MovieEpisode_64130299" />
+          <NavigationProperty Name="Genre_64130299" Relationship="MovieDatabase_64130299Model.MovieGenre_64130299" FromRole="Movie_64130299" ToRole="Genre_64130299" />
         </EntityType>
         <EntityType Name="Rating_64130299">
           <Key>
@@ -426,7 +534,80 @@
             <End Role="User_64130299" EntitySet="User_64130299" />
             <End Role="WatchHistory_64130299" EntitySet="WatchHistory_64130299" />
           </AssociationSet>
+          <EntitySet Name="Genre_64130299" EntityType="MovieDatabase_64130299Model.Genre_64130299" />
+          <EntitySet Name="MovieEpisode_64130299" EntityType="MovieDatabase_64130299Model.MovieEpisode_64130299" />
+          <EntitySet Name="MovieSeries_64130299" EntityType="MovieDatabase_64130299Model.MovieSeries_64130299" />
+          <AssociationSet Name="FK__Movie_641__Serie__1BFD2C07" Association="MovieDatabase_64130299Model.FK__Movie_641__Serie__1BFD2C07">
+            <End Role="MovieSeries_64130299" EntitySet="MovieSeries_64130299" />
+            <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MovieEpis__Movie__20C1E124" Association="MovieDatabase_64130299Model.FK__MovieEpis__Movie__20C1E124">
+            <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+            <End Role="MovieEpisode_64130299" EntitySet="MovieEpisode_64130299" />
+          </AssociationSet>
+          <AssociationSet Name="MovieGenre_64130299" Association="MovieDatabase_64130299Model.MovieGenre_64130299">
+            <End Role="Genre_64130299" EntitySet="Genre_64130299" />
+            <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Genre_64130299">
+          <Key>
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="GenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenreName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Movie_64130299" Relationship="MovieDatabase_64130299Model.MovieGenre_64130299" FromRole="Genre_64130299" ToRole="Movie_64130299" />
+        </EntityType>
+        <EntityType Name="MovieEpisode_64130299">
+          <Key>
+            <PropertyRef Name="EpisodeId" />
+          </Key>
+          <Property Name="EpisodeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovieId" Type="Int32" />
+          <Property Name="EpisodeNumber" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Movie_64130299" Relationship="MovieDatabase_64130299Model.FK__MovieEpis__Movie__20C1E124" FromRole="MovieEpisode_64130299" ToRole="Movie_64130299" />
+        </EntityType>
+        <EntityType Name="MovieSeries_64130299">
+          <Key>
+            <PropertyRef Name="SeriesId" />
+          </Key>
+          <Property Name="SeriesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeriesName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Movie_64130299" Relationship="MovieDatabase_64130299Model.FK__Movie_641__Serie__1BFD2C07" FromRole="MovieSeries_64130299" ToRole="Movie_64130299" />
+        </EntityType>
+        <Association Name="FK__Movie_641__Serie__1BFD2C07">
+          <End Type="MovieDatabase_64130299Model.MovieSeries_64130299" Role="MovieSeries_64130299" Multiplicity="0..1" />
+          <End Type="MovieDatabase_64130299Model.Movie_64130299" Role="Movie_64130299" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovieSeries_64130299">
+              <PropertyRef Name="SeriesId" />
+            </Principal>
+            <Dependent Role="Movie_64130299">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MovieEpis__Movie__20C1E124">
+          <End Type="MovieDatabase_64130299Model.Movie_64130299" Role="Movie_64130299" Multiplicity="0..1" />
+          <End Type="MovieDatabase_64130299Model.MovieEpisode_64130299" Role="MovieEpisode_64130299" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie_64130299">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="MovieEpisode_64130299">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MovieGenre_64130299">
+          <End Type="MovieDatabase_64130299Model.Genre_64130299" Role="Genre_64130299" Multiplicity="*" />
+          <End Type="MovieDatabase_64130299Model.Movie_64130299" Role="Movie_64130299" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -457,6 +638,7 @@
           <EntitySetMapping Name="Movie_64130299">
             <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Movie_64130299">
               <MappingFragment StoreEntitySet="Movie_64130299">
+                <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
                 <ScalarProperty Name="MovieUrl" ColumnName="MovieUrl" />
                 <ScalarProperty Name="MovieId" ColumnName="MovieId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -504,6 +686,44 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Genre_64130299">
+            <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Genre_64130299">
+              <MappingFragment StoreEntitySet="Genre_64130299">
+                <ScalarProperty Name="GenreName" ColumnName="GenreName" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovieEpisode_64130299">
+            <EntityTypeMapping TypeName="MovieDatabase_64130299Model.MovieEpisode_64130299">
+              <MappingFragment StoreEntitySet="MovieEpisode_64130299">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="EpisodeNumber" ColumnName="EpisodeNumber" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="EpisodeId" ColumnName="EpisodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovieSeries_64130299">
+            <EntityTypeMapping TypeName="MovieDatabase_64130299Model.MovieSeries_64130299">
+              <MappingFragment StoreEntitySet="MovieSeries_64130299">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SeriesName" ColumnName="SeriesName" />
+                <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="MovieGenre_64130299" TypeName="MovieDatabase_64130299Model.MovieGenre_64130299" StoreEntitySet="MovieGenre_64130299">
+            <EndProperty Name="Movie_64130299">
+              <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+            </EndProperty>
+            <EndProperty Name="Genre_64130299">
+              <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

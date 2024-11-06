@@ -41,6 +41,10 @@
     <NavigationProperty Name="Rating_64130299" Relationship="Self.FK__Rating_64__Movie__25869641" FromRole="Movie_64130299" ToRole="Rating_64130299" />
     <NavigationProperty Name="WatchHistory_64130299" Relationship="Self.FK__WatchHist__Movie__1FCDBCEB" FromRole="Movie_64130299" ToRole="WatchHistory_64130299" />
     <Property Name="MovieUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SeriesId" Type="Int32" />
+    <NavigationProperty Name="MovieSeries_64130299" Relationship="MovieDatabase_64130299Model.FK__Movie_641__Serie__1BFD2C07" FromRole="Movie_64130299" ToRole="MovieSeries_64130299" />
+    <NavigationProperty Name="MovieEpisode_64130299" Relationship="MovieDatabase_64130299Model.FK__MovieEpis__Movie__20C1E124" FromRole="Movie_64130299" ToRole="MovieEpisode_64130299" />
+    <NavigationProperty Name="Genre_64130299" Relationship="MovieDatabase_64130299Model.MovieGenre_64130299" FromRole="Movie_64130299" ToRole="Genre_64130299" />
   </EntityType>
   <EntityType Name="Rating_64130299">
     <Key>
@@ -216,5 +220,78 @@
       <End Role="User_64130299" EntitySet="User_64130299" />
       <End Role="WatchHistory_64130299" EntitySet="WatchHistory_64130299" />
     </AssociationSet>
+    <EntitySet Name="Genre_64130299" EntityType="MovieDatabase_64130299Model.Genre_64130299" />
+    <EntitySet Name="MovieEpisode_64130299" EntityType="MovieDatabase_64130299Model.MovieEpisode_64130299" />
+    <EntitySet Name="MovieSeries_64130299" EntityType="MovieDatabase_64130299Model.MovieSeries_64130299" />
+    <AssociationSet Name="FK__Movie_641__Serie__1BFD2C07" Association="MovieDatabase_64130299Model.FK__Movie_641__Serie__1BFD2C07">
+      <End Role="MovieSeries_64130299" EntitySet="MovieSeries_64130299" />
+      <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MovieEpis__Movie__20C1E124" Association="MovieDatabase_64130299Model.FK__MovieEpis__Movie__20C1E124">
+      <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+      <End Role="MovieEpisode_64130299" EntitySet="MovieEpisode_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="MovieGenre_64130299" Association="MovieDatabase_64130299Model.MovieGenre_64130299">
+      <End Role="Genre_64130299" EntitySet="Genre_64130299" />
+      <End Role="Movie_64130299" EntitySet="Movie_64130299" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Genre_64130299">
+    <Key>
+      <PropertyRef Name="GenreId" />
+    </Key>
+    <Property Name="GenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GenreName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Movie_64130299" Relationship="MovieDatabase_64130299Model.MovieGenre_64130299" FromRole="Genre_64130299" ToRole="Movie_64130299" />
+  </EntityType>
+  <EntityType Name="MovieEpisode_64130299">
+    <Key>
+      <PropertyRef Name="EpisodeId" />
+    </Key>
+    <Property Name="EpisodeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MovieId" Type="Int32" />
+    <Property Name="EpisodeNumber" Type="Int32" Nullable="false" />
+    <Property Name="ReleaseDate" Type="DateTime" Precision="0" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Movie_64130299" Relationship="MovieDatabase_64130299Model.FK__MovieEpis__Movie__20C1E124" FromRole="MovieEpisode_64130299" ToRole="Movie_64130299" />
+  </EntityType>
+  <EntityType Name="MovieSeries_64130299">
+    <Key>
+      <PropertyRef Name="SeriesId" />
+    </Key>
+    <Property Name="SeriesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SeriesName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Movie_64130299" Relationship="MovieDatabase_64130299Model.FK__Movie_641__Serie__1BFD2C07" FromRole="MovieSeries_64130299" ToRole="Movie_64130299" />
+  </EntityType>
+  <Association Name="FK__Movie_641__Serie__1BFD2C07">
+    <End Type="MovieDatabase_64130299Model.MovieSeries_64130299" Role="MovieSeries_64130299" Multiplicity="0..1" />
+    <End Type="MovieDatabase_64130299Model.Movie_64130299" Role="Movie_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MovieSeries_64130299">
+        <PropertyRef Name="SeriesId" />
+      </Principal>
+      <Dependent Role="Movie_64130299">
+        <PropertyRef Name="SeriesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MovieEpis__Movie__20C1E124">
+    <End Type="MovieDatabase_64130299Model.Movie_64130299" Role="Movie_64130299" Multiplicity="0..1" />
+    <End Type="MovieDatabase_64130299Model.MovieEpisode_64130299" Role="MovieEpisode_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_64130299">
+        <PropertyRef Name="MovieId" />
+      </Principal>
+      <Dependent Role="MovieEpisode_64130299">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MovieGenre_64130299">
+    <End Type="MovieDatabase_64130299Model.Genre_64130299" Role="Genre_64130299" Multiplicity="*" />
+    <End Type="MovieDatabase_64130299Model.Movie_64130299" Role="Movie_64130299" Multiplicity="*" />
+  </Association>
 </Schema>

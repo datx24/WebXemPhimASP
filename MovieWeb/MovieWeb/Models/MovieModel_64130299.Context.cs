@@ -31,5 +31,8 @@ namespace MovieWeb.Models
         public virtual DbSet<Rating_64130299> Rating_64130299 { get; set; }
         public virtual DbSet<User_64130299> User_64130299 { get; set; }
         public virtual DbSet<WatchHistory_64130299> WatchHistory_64130299 { get; set; }
+        public virtual DbSet<Genre_64130299> Genre_64130299 { get; set; }
+        public virtual DbSet<MovieEpisode_64130299> MovieEpisode_64130299 { get; set; }
+        public virtual DbSet<MovieSeries_64130299> MovieSeries_64130299 { get; set; }
     }
 }

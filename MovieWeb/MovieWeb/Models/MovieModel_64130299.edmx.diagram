@@ -19,6 +19,12 @@
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__WatchHist__Movie__1FCDBCEB" ManuallyRouted="false" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__Rating_64__UserI__24927208" ManuallyRouted="false" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__WatchHist__UserI__1ED998B2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.Genre_64130299" Width="1.5" PointX="0.75" PointY="14.5" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.MovieEpisode_64130299" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.MovieSeries_64130299" Width="1.5" PointX="0.75" PointY="11.625" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__Movie_641__Serie__1BFD2C07" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__MovieEpis__Movie__20C1E124" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.MovieGenre_64130299" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
