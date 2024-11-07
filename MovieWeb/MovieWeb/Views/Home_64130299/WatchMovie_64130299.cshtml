@@ -1,14 +1,14 @@
-﻿@model MovieWeb.Models.Movie_64130299
+﻿@model MovieWeb.Models.MovieUrls_64130299
 
 @{
-    ViewBag.Title = "Xem Phim - " + Model.Title;
+    ViewBag.Title = "Xem Phim - " + Model.Movie_64130299.Title;
     Layout = "~/Views/Shared/_Layout641302999.cshtml";
 }
 
 <div class="container mx-auto py-8 text-center">
-    <h1 class="text-4xl font-bold text-white mb-6">Phim: @Model.Title</h1>
+    <h1 class="text-4xl font-bold text-white mb-6">Phim: @Model.Movie_64130299.Title</h1>
     <div class="flex justify-center">
-        <iframe src="@Model.MovieUrl" class="w-full md:w-3/4 h-screen rounded-lg shadow-lg" allowfullscreen></iframe>
+        <iframe src="@Model.Url" class="w-full md:w-3/4 h-screen rounded-lg shadow-lg" allowfullscreen></iframe>
     </div>
     <a href="@Url.Action("home64130299", "Home_64130299")" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-6 inline-block">
         Quay lại

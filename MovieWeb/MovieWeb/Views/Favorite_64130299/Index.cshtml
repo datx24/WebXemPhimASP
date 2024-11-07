@@ -4,20 +4,19 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<!-- Liên kết file CSS -->
-<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
-<h2>Danh sách yêu thích</h2>
+
+<h2>Index</h2>
 
 <p>
-    <a class="btn btn-create" href="@Url.Action("Create")">Tạo mới</a>
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Ngày tạo
+            @Html.DisplayNameFor(model => model.CreatedAt)
         </th>
         <th>
-            Tiêu đề
+            @Html.DisplayNameFor(model => model.Movie_64130299.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.User_64130299.Email)
@@ -25,24 +24,23 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie_64130299.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User_64130299.Email)
-            </td>
-            <td>
-                <a class="btn btn-edit" href="@Url.Action("Edit", new { id=item.FavoriteId })">Sửa</a>
-                <a class="btn btn-details" href="@Url.Action("Details", new { id=item.FavoriteId })">Chi tiết</a>
-                <a class="btn btn-delete" href="@Url.Action("Delete", new { id=item.FavoriteId })">Xóa</a>
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie_64130299.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_64130299.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FavoriteId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FavoriteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FavoriteId })
+        </td>
+    </tr>
+}
 
 </table>

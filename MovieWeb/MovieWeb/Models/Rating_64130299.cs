@@ -14,9 +14,9 @@ namespace MovieWeb.Models
     
     public partial class Rating_64130299
     {
-        public int RatingId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<int> MovieId { get; set; }
+        public string RatingId { get; set; }
+        public string UserId { get; set; }
+        public string MovieId { get; set; }
         public Nullable<int> Rating { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
     

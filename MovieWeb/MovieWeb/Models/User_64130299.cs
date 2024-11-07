@@ -23,12 +23,12 @@ namespace MovieWeb.Models
             this.WatchHistory_64130299 = new HashSet<WatchHistory_64130299>();
         }
     
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string Username { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
-        public string Username { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment_64130299> Comment_64130299 { get; set; }

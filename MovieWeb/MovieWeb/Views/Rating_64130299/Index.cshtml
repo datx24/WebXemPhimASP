@@ -4,20 +4,22 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
-<h2>Danh sách đánh giá</h2>
 
-<a class="btn btn-create" href="@Url.Action("Create")">Tạo mới</a>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
-            Thang điểm
+            @Html.DisplayNameFor(model => model.Rating)
         </th>
         <th>
-            Ngày tạo
+            @Html.DisplayNameFor(model => model.CreatedAt)
         </th>
         <th>
-            Tiêu đề
+            @Html.DisplayNameFor(model => model.Movie_64130299.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.User_64130299.Email)
@@ -40,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.User_64130299.Email)
         </td>
         <td>
-            <a class="btn btn-edit" href="@Url.Action("Edit", new { id = item.RatingId })">Sửa</a>
-            <a class="btn btn-details" href="@Url.Action("Details", new { id = item.RatingId })">Chi tiết</a>
-            <a class="btn btn-delete" href="@Url.Action("Delete", new { id = item.RatingId })">Xóa</a>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RatingId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RatingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RatingId })
         </td>
     </tr>
 }

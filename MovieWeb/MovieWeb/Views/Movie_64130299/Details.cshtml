@@ -1,17 +1,18 @@
 ﻿@model MovieWeb.Models.Movie_64130299
 
 @{
-    ViewBag.Title = "Chi tiết phim";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
-<h2>Thông tin </h2>
+
+<h2>Details</h2>
 
 <div>
+    <h4>Movie_64130299</h4>
     <hr />
-    <dl class="form-horizontal">
+    <dl class="dl-horizontal">
         <dt>
-            Tiêu đề
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
@@ -19,7 +20,7 @@
         </dd>
 
         <dt>
-            Mô tả
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
@@ -27,19 +28,51 @@
         </dd>
 
         <dt>
-            Ngày phát hành
+            @Html.DisplayNameFor(model => model.GenreId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenreId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GenreName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenreName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirectorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-
-        <dt>
-            Thể loại
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
         </dd>
 
         <dt>
@@ -58,13 +91,25 @@
             @Html.DisplayFor(model => model.TrailerUrl)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.MovieUrl)
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Sửa", "Edit", new { id = Model.MovieId }, new { @class = "btn btn-default" }) |
-    @Html.ActionLink("Quay lại", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MovieId }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

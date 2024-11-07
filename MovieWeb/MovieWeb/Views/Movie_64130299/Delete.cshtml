@@ -1,18 +1,19 @@
 ﻿@model MovieWeb.Models.Movie_64130299
 
 @{
-    ViewBag.Title = "Xóa phim";
+    ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
-<h2>Xóa phim</h2>
 
-<h3 class="text-danger">Bạn có chắc chắn muôn xóa phim này không?</h3>
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
 <div>
+    <h4>Movie_64130299</h4>
     <hr />
-    <dl class="form-horizontal">
+    <dl class="dl-horizontal">
         <dt>
-            Tiêu đề
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
@@ -20,7 +21,7 @@
         </dd>
 
         <dt>
-            Mô tả
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
@@ -28,19 +29,51 @@
         </dd>
 
         <dt>
-            Ngày phát hành
+            @Html.DisplayNameFor(model => model.GenreId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenreId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GenreName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenreName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirectorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-
-        <dt>
-            Thể loại
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
         </dd>
 
         <dt>
@@ -59,14 +92,30 @@
             @Html.DisplayFor(model => model.TrailerUrl)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-default text-bg-danger" /> |
-            @Html.ActionLink("Quay lại", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>

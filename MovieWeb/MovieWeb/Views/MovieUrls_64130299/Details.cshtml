@@ -1,4 +1,4 @@
-﻿@model MovieWeb.Models.Favorite_64130299
+﻿@model MovieWeb.Models.MovieUrls_64130299
 
 @{
     ViewBag.Title = "Details";
@@ -8,15 +8,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Favorite_64130299</h4>
+    <h4>MovieUrls_64130299</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            @Html.DisplayNameFor(model => model.Url)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
+            @Html.DisplayFor(model => model.Url)
         </dd>
 
         <dt>
@@ -27,17 +27,9 @@
             @Html.DisplayFor(model => model.Movie_64130299.Title)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User_64130299.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User_64130299.Email)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.FavoriteId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MovieUrlId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

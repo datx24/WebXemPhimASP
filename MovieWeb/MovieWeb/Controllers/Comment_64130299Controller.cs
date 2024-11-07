@@ -22,7 +22,7 @@ namespace MovieWeb.Controllers
         }
 
         // GET: Comment_64130299/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -64,7 +64,7 @@ namespace MovieWeb.Controllers
         }
 
         // GET: Comment_64130299/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -99,7 +99,7 @@ namespace MovieWeb.Controllers
         }
 
         // GET: Comment_64130299/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -116,7 +116,7 @@ namespace MovieWeb.Controllers
         // POST: Comment_64130299/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Comment_64130299 comment_64130299 = db.Comment_64130299.Find(id);
             db.Comment_64130299.Remove(comment_64130299);

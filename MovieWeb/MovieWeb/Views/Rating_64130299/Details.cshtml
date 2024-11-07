@@ -4,14 +4,15 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
-<h2>Chi tiết đánh giá</h2>
+
+<h2>Details</h2>
 
 <div>
+    <h4>Rating_64130299</h4>
     <hr />
-    <dl class="form-horizontal">
+    <dl class="dl-horizontal">
         <dt>
-            Thang điểm
+            @Html.DisplayNameFor(model => model.Rating)
         </dt>
 
         <dd>
@@ -19,7 +20,7 @@
         </dd>
 
         <dt>
-            Ngày tạo
+            @Html.DisplayNameFor(model => model.CreatedAt)
         </dt>
 
         <dd>
@@ -27,7 +28,7 @@
         </dd>
 
         <dt>
-            Tiêu đề
+            @Html.DisplayNameFor(model => model.Movie_64130299.Title)
         </dt>
 
         <dd>
@@ -45,6 +46,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Sửa", "Edit", new { id = Model.RatingId }, new { @class = "btn btn-default" }) |
-    @Html.ActionLink("Quay lại", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RatingId }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

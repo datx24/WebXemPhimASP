@@ -25,17 +25,28 @@
     <EntitySetMapping Name="Movie_64130299">
       <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Movie_64130299">
         <MappingFragment StoreEntitySet="Movie_64130299">
-          <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
-          <ScalarProperty Name="MovieUrl" ColumnName="MovieUrl" />
           <ScalarProperty Name="MovieId" ColumnName="MovieId" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+          <ScalarProperty Name="GenreName" ColumnName="GenreName" />
+          <ScalarProperty Name="DirectorName" ColumnName="DirectorName" />
+          <ScalarProperty Name="ActorName" ColumnName="ActorName" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
           <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-          <ScalarProperty Name="Genre" ColumnName="Genre" />
           <ScalarProperty Name="PosterUrl" ColumnName="PosterUrl" />
           <ScalarProperty Name="TrailerUrl" ColumnName="TrailerUrl" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovieUrls_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.MovieUrls_64130299">
+        <MappingFragment StoreEntitySet="MovieUrls_64130299">
+          <ScalarProperty Name="MovieUrlId" ColumnName="MovieUrlId" />
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -53,10 +64,10 @@
     <EntitySetMapping Name="User_64130299">
       <EntityTypeMapping TypeName="MovieDatabase_64130299Model.User_64130299">
         <MappingFragment StoreEntitySet="User_64130299">
-          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
         </MappingFragment>
@@ -73,43 +84,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Genre_64130299">
-      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Genre_64130299">
-        <MappingFragment StoreEntitySet="Genre_64130299">
-          <ScalarProperty Name="GenreName" ColumnName="GenreName" />
-          <ScalarProperty Name="GenreId" ColumnName="GenreId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MovieEpisode_64130299">
-      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.MovieEpisode_64130299">
-        <MappingFragment StoreEntitySet="MovieEpisode_64130299">
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-          <ScalarProperty Name="EpisodeNumber" ColumnName="EpisodeNumber" />
-          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
-          <ScalarProperty Name="EpisodeId" ColumnName="EpisodeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MovieSeries_64130299">
-      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.MovieSeries_64130299">
-        <MappingFragment StoreEntitySet="MovieSeries_64130299">
-          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="SeriesName" ColumnName="SeriesName" />
-          <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="MovieGenre_64130299" TypeName="MovieDatabase_64130299Model.MovieGenre_64130299" StoreEntitySet="MovieGenre_64130299">
-      <EndProperty Name="Movie_64130299">
-        <ScalarProperty Name="MovieId" ColumnName="MovieId" />
-      </EndProperty>
-      <EndProperty Name="Genre_64130299">
-        <ScalarProperty Name="GenreId" ColumnName="GenreId" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

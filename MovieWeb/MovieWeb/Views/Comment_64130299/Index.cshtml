@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Danh sách bình luận</h2>
-<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
+<h2>Index</h2>
+
 <p>
-    <a class="btn btn-create" href="@Url.Action("Create")">Tạo mới</a>
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -42,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.User_64130299.Email)
         </td>
         <td>
-            <a class="btn btn-edit" href="@Url.Action("Edit", new { id=item.MovieId })">Sửa</a>
-            <a class="btn btn-details" href="@Url.Action("Details", new { id=item.MovieId })">Chi tiết</a>
-            <a class="btn btn-delete" href="@Url.Action("Delete", new { id=item.MovieId })">Xóa</a>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CommentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CommentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CommentId })
         </td>
     </tr>
 }

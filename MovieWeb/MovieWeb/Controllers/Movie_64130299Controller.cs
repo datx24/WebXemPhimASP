@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,7 +21,7 @@ namespace MovieWeb.Controllers
         }
 
         // GET: Movie_64130299/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -47,23 +46,20 @@ namespace MovieWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Movie_64130299 movie)
+        public ActionResult Create([Bind(Include = "MovieId,Title,Description,GenreId,GenreName,DirectorName,ActorName,Country,ReleaseDate,PosterUrl,TrailerUrl,CreatedAt,UpdatedAt")] Movie_64130299 movie_64130299)
         {
             if (ModelState.IsValid)
             {
-                movie.CreatedAt = DateTime.Now;
-                movie.UpdatedAt = DateTime.Now;
-
-                db.Movie_64130299.Add(movie);
+                db.Movie_64130299.Add(movie_64130299);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(movie);
+
+            return View(movie_64130299);
         }
 
-
         // GET: Movie_64130299/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -82,7 +78,7 @@ namespace MovieWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieId,Title,Description,ReleaseDate,Genre,PosterUrl,TrailerUrl,MovieUrl")] Movie_64130299 movie_64130299)
+        public ActionResult Edit([Bind(Include = "MovieId,Title,Description,GenreId,GenreName,DirectorName,ActorName,Country,ReleaseDate,PosterUrl,TrailerUrl,CreatedAt,UpdatedAt")] Movie_64130299 movie_64130299)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +90,7 @@ namespace MovieWeb.Controllers
         }
 
         // GET: Movie_64130299/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -111,7 +107,7 @@ namespace MovieWeb.Controllers
         // POST: Movie_64130299/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Movie_64130299 movie_64130299 = db.Movie_64130299.Find(id);
             db.Movie_64130299.Remove(movie_64130299);

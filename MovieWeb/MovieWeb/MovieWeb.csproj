@@ -132,10 +132,10 @@
     <Compile Include="Controllers\Comment_64130299Controller.cs" />
     <Compile Include="Controllers\Favorite_64130299Controller.cs" />
     <Compile Include="Controllers\Home_64130299Controller.cs" />
+    <Compile Include="Controllers\MovieUrls_64130299Controller.cs" />
     <Compile Include="Controllers\Movie_64130299Controller.cs" />
     <Compile Include="Controllers\Rating_64130299Controller.cs" />
     <Compile Include="Controllers\User_64130299Controller.cs" />
-    <Compile Include="Controllers\WatchHistory_64130299Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,12 +143,6 @@
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Favorite_64130299.cs">
-      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Genre_64130299.cs">
-      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MovieEpisode_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MovieModel_64130299.Context.cs">
@@ -166,7 +160,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MovieModel_64130299.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\MovieSeries_64130299.cs">
+    <Compile Include="Models\MovieUrls_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie_64130299.cs">
@@ -252,24 +246,31 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout641302999.cshtml" />
+    <Content Include="Views\Home_64130299\Home64130299.cshtml" />
+    <Content Include="Views\Home_64130299\Details_64130299.cshtml" />
+    <Content Include="Views\Home_64130299\Trailer_64130299.cshtml" />
+    <Content Include="Views\Home_64130299\WatchMovie_64130299.cshtml" />
+    <Content Include="Views\User_64130299\Create.cshtml" />
+    <Content Include="Views\User_64130299\Delete.cshtml" />
+    <Content Include="Views\User_64130299\Details.cshtml" />
+    <Content Include="Views\User_64130299\Edit.cshtml" />
+    <Content Include="Views\User_64130299\Index.cshtml" />
     <Content Include="Views\Movie_64130299\Create.cshtml" />
     <Content Include="Views\Movie_64130299\Delete.cshtml" />
     <Content Include="Views\Movie_64130299\Details.cshtml" />
     <Content Include="Views\Movie_64130299\Edit.cshtml" />
     <Content Include="Views\Movie_64130299\Index.cshtml" />
+    <Content Include="Views\MovieUrls_64130299\Create.cshtml" />
+    <Content Include="Views\MovieUrls_64130299\Delete.cshtml" />
+    <Content Include="Views\MovieUrls_64130299\Details.cshtml" />
+    <Content Include="Views\MovieUrls_64130299\Edit.cshtml" />
+    <Content Include="Views\MovieUrls_64130299\Index.cshtml" />
     <Content Include="Views\Favorite_64130299\Create.cshtml" />
     <Content Include="Views\Favorite_64130299\Delete.cshtml" />
     <Content Include="Views\Favorite_64130299\Details.cshtml" />
     <Content Include="Views\Favorite_64130299\Edit.cshtml" />
     <Content Include="Views\Favorite_64130299\Index.cshtml" />
-    <Content Include="Views\WatchHistory_64130299\Create.cshtml" />
-    <Content Include="Views\WatchHistory_64130299\Delete.cshtml" />
-    <Content Include="Views\WatchHistory_64130299\Details.cshtml" />
-    <Content Include="Views\WatchHistory_64130299\Edit.cshtml" />
-    <Content Include="Views\WatchHistory_64130299\Index.cshtml" />
     <Content Include="Views\Rating_64130299\Create.cshtml" />
     <Content Include="Views\Rating_64130299\Delete.cshtml" />
     <Content Include="Views\Rating_64130299\Details.cshtml" />
@@ -280,16 +281,6 @@
     <Content Include="Views\Comment_64130299\Details.cshtml" />
     <Content Include="Views\Comment_64130299\Edit.cshtml" />
     <Content Include="Views\Comment_64130299\Index.cshtml" />
-    <Content Include="Views\User_64130299\Create.cshtml" />
-    <Content Include="Views\User_64130299\Delete.cshtml" />
-    <Content Include="Views\User_64130299\Details.cshtml" />
-    <Content Include="Views\User_64130299\Edit.cshtml" />
-    <Content Include="Views\User_64130299\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout641302999.cshtml" />
-    <Content Include="Views\Home_64130299\Home64130299.cshtml" />
-    <Content Include="Views\Home_64130299\Details_64130299.cshtml" />
-    <Content Include="Views\Home_64130299\Trailer_64130299.cshtml" />
-    <Content Include="Views\Home_64130299\WatchMovie_64130299.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,9 +14,9 @@ namespace MovieWeb.Models
     
     public partial class WatchHistory_64130299
     {
-        public int HistoryId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<int> MovieId { get; set; }
+        public string HistoryId { get; set; }
+        public string UserId { get; set; }
+        public string MovieId { get; set; }
         public Nullable<System.DateTime> LastWatchedTime { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
     

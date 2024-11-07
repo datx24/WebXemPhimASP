@@ -2,10 +2,9 @@
 USE MovieDatabase_64130299;
 DROP DATABASE MovieDatabase_64130299;*/
 
-/*THIẾT KẾ CƠ SỞ DỮ LIỆU*/
 -- Tạo bảng User
 CREATE TABLE User_64130299 (
-    UserId INT IDENTITY(1,1) PRIMARY KEY,
+    UserId VARCHAR(100) PRIMARY KEY,
     Email NVARCHAR(256) UNIQUE NOT NULL,
     Password NVARCHAR(256) NOT NULL,
     Username NVARCHAR(50) NOT NULL,
@@ -13,91 +12,104 @@ CREATE TABLE User_64130299 (
     UpdatedAt DATETIME DEFAULT GETDATE()
 );
 
--- Tạo bảng Movies
+-- Tạo bảng Movie
 CREATE TABLE Movie_64130299 (
     MovieId VARCHAR(100) PRIMARY KEY,
     Title NVARCHAR(256) NOT NULL,
     Description NVARCHAR(MAX),
-	GenreId BIT DEFAULT(1), //0 thì là phim lẻ,1 là phim bộ
-	GenreName NVARCHAR(100),
-	DirectorName NVARCHAR(256),
-	ActorName NVARCHAR(256)
+    GenreId BIT DEFAULT(1), -- 0 thì là phim lẻ, 1 là phim bộ
+    GenreName NVARCHAR(100),
+    DirectorName NVARCHAR(256),
+    ActorName NVARCHAR(256),
+	Country NVARCHAR(100),
     ReleaseDate DATE,
     PosterUrl NVARCHAR(512),
     TrailerUrl NVARCHAR(512),
     CreatedAt DATETIME DEFAULT GETDATE(),
     UpdatedAt DATETIME DEFAULT GETDATE()
 );
+
+-- Tạo bảng MovieUrls
 CREATE TABLE MovieUrls_64130299 (
     MovieUrlId VARCHAR(100) PRIMARY KEY,
-    MovieId VARCHAR(100),
+    MovieId VARCHAR(100) NOT NULL,
     Url NVARCHAR(512),
     FOREIGN KEY (MovieId) REFERENCES Movie_64130299(MovieId)
 );
 
 -- Tạo bảng Favorites
 CREATE TABLE Favorite_64130299 (
-    FavoriteId INT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT FOREIGN KEY REFERENCES User_64130299(UserId),
-    MovieId INT FOREIGN KEY REFERENCES Movie_64130299(MovieId),
-    CreatedAt DATETIME DEFAULT GETDATE()
+    FavoriteId VARCHAR(100) PRIMARY KEY,
+    UserId VARCHAR(100) NOT NULL,
+    MovieId VARCHAR(100) NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (UserId) REFERENCES User_64130299(UserId),
+    FOREIGN KEY (MovieId) REFERENCES Movie_64130299(MovieId)
 );
 
 -- Tạo bảng WatchHistory
 CREATE TABLE WatchHistory_64130299 (
-    HistoryId INT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT FOREIGN KEY REFERENCES User_64130299(UserId),
-    MovieId INT FOREIGN KEY REFERENCES Movie_64130299(MovieId),
+    HistoryId VARCHAR(100) PRIMARY KEY,
+    UserId VARCHAR(100) NOT NULL,
+    MovieId VARCHAR(100) NOT NULL,
     LastWatchedTime DATETIME DEFAULT GETDATE(),
-    CreatedAt DATETIME DEFAULT GETDATE()
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (UserId) REFERENCES User_64130299(UserId),
+    FOREIGN KEY (MovieId) REFERENCES Movie_64130299(MovieId)
 );
 
 -- Tạo bảng Ratings
 CREATE TABLE Rating_64130299 (
-    RatingId INT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT FOREIGN KEY REFERENCES User_64130299(UserId),
-    MovieId INT FOREIGN KEY REFERENCES Movie_64130299(MovieId),
+    RatingId VARCHAR(100) PRIMARY KEY,
+    UserId VARCHAR(100) NOT NULL,
+    MovieId VARCHAR(100) NOT NULL,
     Rating INT CHECK (Rating BETWEEN 1 AND 5),
-    CreatedAt DATETIME DEFAULT GETDATE()
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (UserId) REFERENCES User_64130299(UserId),
+    FOREIGN KEY (MovieId) REFERENCES Movie_64130299(MovieId)
 );
 
 -- Tạo bảng Comments
 CREATE TABLE Comment_64130299 (
-    CommentId INT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT FOREIGN KEY REFERENCES User_64130299(UserId),
-    MovieId INT FOREIGN KEY REFERENCES Movie_64130299(MovieId),
+    CommentId VARCHAR(100) PRIMARY KEY,
+    UserId VARCHAR(100) NOT NULL,
+    MovieId VARCHAR(100) NOT NULL,
     Content NVARCHAR(MAX),
-    CreatedAt DATETIME DEFAULT GETDATE()
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (UserId) REFERENCES User_64130299(UserId),
+    FOREIGN KEY (MovieId) REFERENCES Movie_64130299(MovieId)
 );
 
 
-INSERT INTO User_64130299 (Email, Password, Username)
+
+INSERT INTO User_64130299 (UserId,Email, Password, Username)
 VALUES
-('user1@example.com', 'password123', 'nguyen1'),
-('user2@example.com', 'password123', 'nguyen2'),
-('user3@example.com', 'password123', 'nguyen3'),
-('user4@example.com', 'password123', 'nguyen4'),
-('user5@example.com', 'password123', 'nguyen5'),
-('user6@example.com', 'password123', 'nguyen6'),
-('user7@example.com', 'password123', 'nguyen7'),
-('user8@example.com', 'password123', 'nguyen8'),
-('user9@example.com', 'password123', 'nguyen9'),
-('user10@example.com', 'password123', 'nguyen10');
+('1-nguyen1','user1@example.com', 'password123', 'nguyen1'),
+('2-nguyen2','user2@example.com', 'password123', 'nguyen2'),
+('3-nguyen3','user3@example.com', 'password123', 'nguyen3'),
+('4-nguyen4','user4@example.com', 'password123', 'nguyen4'),
+('5-nguyen5','user5@example.com', 'password123', 'nguyen5'),
+('6-nguyen6','user6@example.com', 'password123', 'nguyen6'),
+('7-nguyen7','user7@example.com', 'password123', 'nguyen7'),
+('8-nguyen8','user8@example.com', 'password123', 'nguyen8'),
+('9-nguyen9','user9@example.com', 'password123', 'nguyen9'),
+('10-nguyen10','user10@example.com', 'password123', 'nguyen10');
 
 
-INSERT INTO Movie_64130299 (MovieId,Title,Description,GenreId,GenreName,DirectorName,ActorName,ReleaseDate,PosterUrl,TrailerUrl)
+INSERT INTO Movie_64130299 (MovieId, Title, Description, GenreId, GenreName, DirectorName, ActorName, Country, ReleaseDate, PosterUrl, TrailerUrl)
 VALUES
-('1-ttzkndd'.'Tận Thế Z: Khởi Nguồn Đại Dịch', 'Mô tả về Phim 1',0,'Hành động','Alexandre Bruguès','Richard Armitage, Ana de Armas','2020-01-01', 'https://ohaytv.com/storage/hinh-anh/jaBToJ1DZcwn5wOsQeLOXFVlBLn.jpg', 'https://www.youtube.com/embed/pPvaIGldT-I?si=n-EXlY1Usw3rAur5'),
-('2-vqat','Về quê ăn Tết', 'Mô tả về Phim 2',0,'Hành động','Nguyễn Hoàng Anh', 'Ngô Thanh Vân, Jun Phạm', '2021-02-02', 'https://ohaytv.com/storage/hinh-anh/ve-que-an-tet-thumb.jpg', 'https://www.youtube.com/embed/HUxQIqTvqIU?si=X6n20Vq7Ad533rXP'),
-('3-tkxx','Thoát Khỏi Xiềng Xích', 'Mô tả về Phim 3',0,'Hành động','M. Night Shyamalan','James McAvoy, Anya Taylor-Joy', '2022-03-03','https://phimmoi.gay/storage/images/shaggy-scooby-doo-get-a-clue-phan-1-172439095333179/e9dcc9b2b631d38c6e099c0d5d9f7884.jpg', 'https://www.youtube.com/embed/Sbl6vozFEaI?si=006as2XkowZm35Je'),
-('4-o','Onibaba', 'Mô tả về Phim 4',0,'Hành động','Kaneto Shindo','Nobuko Otowa, Jitsuko Yoshimura, Kei Satô', '2023-04-04','https://phimmoi.gay/storage/images/onibaba/onibaba-thumb.jpg', 'https://www.youtube.com/embed/s2SkmwgU8qs?si=TTlZEsVBiooqAnMK',),
-('5-achx','Anh chàng hàng xóm', 'Mô tả về Phim 5',0,'Hành động','Rob Cohen','Jennifer Lopez, Ryan Guzman', '2020-05-05','https://phimmoi.gay/storage/images/anh-chang-hang-xom/anh-chang-hang-xom-thumb.jpg', 'https://www.youtube.com/embed/vV77Sz3qFrI?si=w-4BUlwbr5YdSTnM%22'),
-('6-cbaf','CẬU BÉ ARTEMIS FOWL', 'Mô tả về Phim 6',0,'Hành động','Eoin Colfer','Ferdia Shaw, Lara McDonnell ,Josh Gad, Colin Farrell', '2021-06-06','https://phimmoi.gay/storage/images/cau-be-artemis-fowl/iwSUqrUZn0kqLT1GRHX2fY1wi7I.jpg9mcXR.jpg', 'https://www.youtube.com/embed/qDRPO466ANA?si=Totdc1QjeAvnTFBV'),
-('7-d','Diana', 'Mô tả về Phim 7',0,'Hành động','Oliver Hirschbiegel','Naomi Watts, Douglas Hodge, Juliet Stevenson', '2022-07-07','https://phimmoi.gay/storage/images/diana/diana-thumb.jpg', 'https://www.youtube.com/embed/WllZh9aekDg?si=4WM0USP91pK_q3l9'),
-('8-nnln','Những Nhà Leo Núi', 'Mô tả về Phim 8',0,'Hành động','Lý Nhân Cảng','ử Di, Hồ Ca, Ngô Kinh, Thành Long, Tỉnh Bách Nhiên, và Trương Địch', '2023-08-08','https://phimmoi.gay/storage/images/nhung-nha-leo-nui/eRaUlATfycdhVcF0MRwD1X0qbHk.jpg', 'https://www.youtube.com/embed/eYxCcQk0J-I?si=D-5LLNvZMIyXZqrH'),
-('9-wc','Web Chìm', 'Mô tả về Phim 9',0,'Hành động','Alex Winter','Keanu Reeves, Ross Ulbricht, Cody Wilson, Lyn Ulbricht, Kirk Ulbricht' '2020-09-09','https://phimmoi.gay/storage/images/web-chim/deep-web-thumb.jpg', 'https://www.youtube.com/embed/BvC9oDlT8mM?si=mBJYCmjbAX-Siuda'),
-('10-sth','Sát thủ hào', 'Mô tả về Phim 10',0,'Hành động','Gary McKendry','Jason Statham, Clive Owen, Robert De Niro','2021-10-10','https://phimmoi.gay/storage/images/sat-thu-hao/sat-thu-hao-thumb.jpg', 'https://www.youtube.com/embed/1zX_9xnComI?si=6BRramxFVko-jQQ0'),
-('11-msty','Men Say Tình Yêu', 'Mô tả về Phim 11',1,'Tình cảm','Park Seon-ho','Chae Yong-ju, Yun Min-ju','2021-10-10','https://phimmoi.gay/storage/images/men-say-tinh-yeu/men-say-tinh-yeu-thumb.jpg', 'https://www.youtube.com/embed/3c9VmrTjiso?si=kHPs5PnQ7Upc4aum');
+('1-ttzkndd', N'Tận Thế Z: Khởi Nguồn Đại Dịch', N'Mô tả về Phim 1', 0, N'Hành động', N'Alexandre Bruguès', N'Richard Armitage, Ana de Armas', N'Việt Nam', '2020-01-01', 'https://ohaytv.com/storage/hinh-anh/jaBToJ1DZcwn5wOsQeLOXFVlBLn.jpg', 'https://www.youtube.com/embed/pPvaIGldT-I?si=n-EXlY1Usw3rAur5'),
+('2-vqat', N'Về quê ăn Tết', N'Mô tả về Phim 2', 0, N'Hành động', N'Nguyễn Hoàng Anh', N'Ngô Thanh Vân, Jun Phạm', N'Việt Nam', '2021-02-02', 'https://ohaytv.com/storage/hinh-anh/ve-que-an-tet-thumb.jpg', 'https://www.youtube.com/embed/HUxQIqTvqIU?si=X6n20Vq7Ad533rXP'),
+('3-tkxx', N'Thoát Khỏi Xiềng Xích', N'Mô tả về Phim 3', 0, N'Hành động', N'M. Night Shyamalan', N'James McAvoy, Anya Taylor-Joy', N'Mỹ', '2022-03-03', 'https://phimmoi.gay/storage/images/shaggy-scooby-doo-get-a-clue-phan-1-172439095333179/e9dcc9b2b631d38c6e099c0d5d9f7884.jpg', 'https://www.youtube.com/embed/Sbl6vozFEaI?si=006as2XkowZm35Je'),
+('4-o', N'Onibaba', N'Mô tả về Phim 4', 0, N'Hành động', N'Kaneto Shindo', N'Nobuko Otowa, Jitsuko Yoshimura, Kei Satô', N'Nhật Bản', '2023-04-04', 'https://phimmoi.gay/storage/images/onibaba/onibaba-thumb.jpg', 'https://www.youtube.com/embed/s2SkmwgU8qs?si=TTlZEsVBiooqAnMK'),
+('5-achx', N'Anh chàng hàng xóm', N'Mô tả về Phim 5', 0, N'Hành động', N'Rob Cohen', N'Jennifer Lopez, Ryan Guzman', N'Mỹ', '2020-05-05', 'https://phimmoi.gay/storage/images/anh-chang-hang-xom/anh-chang-hang-xom-thumb.jpg', 'https://www.youtube.com/embed/vV77Sz3qFrI?si=w-4BUlwbr5YdSTnM'),
+('6-cbaf', N'CẬU BÉ ARTEMIS FOWL', N'Mô tả về Phim 6', 0, N'Hành động', N'Eoin Colfer', N'Ferdia Shaw, Lara McDonnell ,Josh Gad, Colin Farrell', N'Mỹ', '2021-06-06', 'https://phimmoi.gay/storage/images/cau-be-artemis-fowl/iwSUqrUZn0kqLT1GRHX2fY1wi7I.jpg9mcXR.jpg', 'https://www.youtube.com/embed/qDRPO466ANA?si=Totdc1QjeAvnTFBV'),
+('7-d', N'Diana', N'Mô tả về Phim 7', 0, N'Hành động', N'Oliver Hirschbiegel', N'Naomi Watts, Douglas Hodge, Juliet Stevenson', N'Anh', '2022-07-07', 'https://phimmoi.gay/storage/images/diana/diana-thumb.jpg', 'https://www.youtube.com/embed/WllZh9aekDg?si=4WM0USP91pK_q3l9'),
+('8-nnln', N'Những Nhà Leo Núi', N'Mô tả về Phim 8', 0, N'Hành động', N'Lý Nhân Cảng', N'Tử Di, Hồ Ca, Ngô Kinh, Thành Long, Tỉnh Bách Nhiên, và Trương Địch', N'Nhật Bản', '2023-08-08', 'https://phimmoi.gay/storage/images/nhung-nha-leo-nui/eRaUlATfycdhVcF0MRwD1X0qbHk.jpg', 'https://www.youtube.com/embed/eYxCcQk0J-I?si=D-5LLNvZMIyXZqrH'),
+('9-wc', N'Web Chìm', N'Mô tả về Phim 9', 0, N'Hành động', N'Alex Winter', N'Keanu Reeves, Ross Ulbricht, Cody Wilson, Lyn Ulbricht, Kirk Ulbricht', N'Mỹ', '2020-09-09', 'https://phimmoi.gay/storage/images/web-chim/deep-web-thumb.jpg', 'https://www.youtube.com/embed/BvC9oDlT8mM?si=mBJYCmjbAX-Siuda'),
+('10-sth', N'Sát thủ hào', N'Mô tả về Phim 10', 0, N'Hành động', N'Gary McKendry', N'Jason Statham, Clive Owen, Robert De Niro', N'Anh', '2021-10-10', 'https://phimmoi.gay/storage/images/sat-thu-hao/sat-thu-hao-thumb.jpg', 'https://www.youtube.com/embed/1zX_9xnComI?si=6BRramxFVko-jQQ0'),
+('11-msty', N'Men Say Tình Yêu', N'Mô tả về Phim 11', 1, N'Tình cảm', N'Park Seon-ho', N'Chae Yong-ju, Yun Min-ju', N'Hàn Quốc', '2021-10-10', 'https://phimmoi.gay/storage/images/men-say-tinh-yeu/men-say-tinh-yeu-thumb.jpg', 'https://www.youtube.com/embed/3c9VmrTjiso?si=kHPs5PnQ7Upc4aum');
+
 
 INSERT INTO MovieUrls_64130299 (MovieUrlId,MovieId,Url)
 VALUES
@@ -113,6 +125,31 @@ VALUES
 ('10-sat-thu-hao','10-sth','https://vip.opstream11.com/share/674bfc5f6b72706fb769f5e93667bd23'),
 ('11-men-say-tinh-yeu-tap-1','11-msty','https://player.phimapi.com/player/?url=https://s4.phim1280.tv/20241104/vxFw722R/index.m3u8'),
 ('12-men-say-tinh-yeu-tap-2','11-msty','https://player.phimapi.com/player/?url=https://s5.phim1280.tv/20241105/z39OzEuB/index.m3u8');
+
+-- Thêm dữ liệu vào bảng Ratings
+INSERT INTO Rating_64130299 (RatingId, UserId, MovieId, Rating)
+VALUES
+('1-rating', '1-nguyen1', '1-ttzkndd', 5),
+('2-rating', '2-nguyen2', '2-vqat', 4),
+('3-rating', '3-nguyen3', '3-tkxx', 3);
+
+-- Thêm dữ liệu vào bảng Comments
+INSERT INTO Comment_64130299 (CommentId, UserId, MovieId, Content)
+VALUES
+('1-comment', '1-nguyen1', '1-ttzkndd', N'Phim rất hấp dẫn và đầy bất ngờ!'),
+('2-comment', '2-nguyen2', '2-vqat', N'Phim đáng xem cho những người thích hành động.');
+
+-- Thêm dữ liệu vào bảng Favorites
+INSERT INTO Favorite_64130299 (FavoriteId, UserId, MovieId)
+VALUES
+('1-favorite', '1-nguyen1', '1-ttzkndd'),
+('2-favorite', '2-nguyen2', '2-vqat');
+
+-- Thêm dữ liệu vào bảng WatchHistory
+INSERT INTO WatchHistory_64130299 (HistoryId, UserId, MovieId, LastWatchedTime)
+VALUES
+('1-history', '1-nguyen1', '1-ttzkndd', '2024-11-06 14:30:00'),
+('2-history', '2-nguyen2', '2-vqat', '2024-11-06 15:00:00');
 
 
 

@@ -4,12 +4,13 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/Content/movie64130299-styles.css" />
-<h2>Chi tiết bình luận</h2>
+
+<h2>Details</h2>
 
 <div>
+    <h4>Comment_64130299</h4>
     <hr />
-    <dl class="form-horizontal">
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Content)
         </dt>
@@ -45,6 +46,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Sửa bình luận", "Edit", new { id = Model.CommentId }, new { @class = "btn btn-default" }) |
-    @Html.ActionLink("Quay lại", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CommentId }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

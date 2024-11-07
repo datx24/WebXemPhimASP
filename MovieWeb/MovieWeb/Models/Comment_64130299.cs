@@ -14,9 +14,9 @@ namespace MovieWeb.Models
     
     public partial class Comment_64130299
     {
-        public int CommentId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<int> MovieId { get; set; }
+        public string CommentId { get; set; }
+        public string UserId { get; set; }
+        public string MovieId { get; set; }
         public string Content { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
     

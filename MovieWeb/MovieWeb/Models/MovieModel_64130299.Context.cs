@@ -28,11 +28,9 @@ namespace MovieWeb.Models
         public virtual DbSet<Comment_64130299> Comment_64130299 { get; set; }
         public virtual DbSet<Favorite_64130299> Favorite_64130299 { get; set; }
         public virtual DbSet<Movie_64130299> Movie_64130299 { get; set; }
+        public virtual DbSet<MovieUrls_64130299> MovieUrls_64130299 { get; set; }
         public virtual DbSet<Rating_64130299> Rating_64130299 { get; set; }
         public virtual DbSet<User_64130299> User_64130299 { get; set; }
         public virtual DbSet<WatchHistory_64130299> WatchHistory_64130299 { get; set; }
-        public virtual DbSet<Genre_64130299> Genre_64130299 { get; set; }
-        public virtual DbSet<MovieEpisode_64130299> MovieEpisode_64130299 { get; set; }
-        public virtual DbSet<MovieSeries_64130299> MovieSeries_64130299 { get; set; }
     }
 }
