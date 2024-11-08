@@ -15,10 +15,53 @@ namespace MovieWeb.Controllers
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
 
         // GET: User_64130299
-        public ActionResult Index()
+        public ActionResult Index(string emailFilter = "", string passwordFilter = "", string usernameFilter = "", DateTime? createdAtFrom = null, DateTime? createdAtTo = null, DateTime? updatedAtFrom = null, DateTime? updatedAtTo = null)
         {
-            return View(db.User_64130299.ToList());
+            var users = db.User_64130299.AsQueryable(); // Lấy danh sách tất cả người dùng
+
+            // Áp dụng bộ lọc nếu có
+            if (!string.IsNullOrEmpty(emailFilter))
+            {
+                users = users.Where(u => u.Email.Contains(emailFilter));
+            }
+            if (!string.IsNullOrEmpty(passwordFilter))
+            {
+                users = users.Where(u => u.Password.Contains(passwordFilter));
+            }
+            if (!string.IsNullOrEmpty(usernameFilter))
+            {
+                users = users.Where(u => u.Username.Contains(usernameFilter));
+            }
+            if (createdAtFrom.HasValue)
+            {
+                users = users.Where(u => u.CreatedAt >= createdAtFrom);
+            }
+            if (createdAtTo.HasValue)
+            {
+                users = users.Where(u => u.CreatedAt <= createdAtTo);
+            }
+            if (updatedAtFrom.HasValue)
+            {
+                users = users.Where(u => u.UpdatedAt >= updatedAtFrom);
+            }
+            if (updatedAtTo.HasValue)
+            {
+                users = users.Where(u => u.UpdatedAt <= updatedAtTo);
+            }
+
+            // Trả về view với danh sách đã lọc
+            ViewBag.EmailFilter = emailFilter;
+            ViewBag.PasswordFilter = passwordFilter;
+            ViewBag.UsernameFilter = usernameFilter;
+            ViewBag.CreatedAtFrom = createdAtFrom;
+            ViewBag.CreatedAtTo = createdAtTo;
+            ViewBag.UpdatedAtFrom = updatedAtFrom;
+            ViewBag.UpdatedAtTo = updatedAtTo;
+
+            return View("Index",users.ToList());
         }
+
+
 
         // GET: User_64130299/Details/5
         public ActionResult Details(string id)

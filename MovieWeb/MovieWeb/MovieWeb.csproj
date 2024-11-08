@@ -136,6 +136,7 @@
     <Compile Include="Controllers\Movie_64130299Controller.cs" />
     <Compile Include="Controllers\Rating_64130299Controller.cs" />
     <Compile Include="Controllers\User_64130299Controller.cs" />
+    <Compile Include="Controllers\WatchHistory_64130299Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -281,6 +282,11 @@
     <Content Include="Views\Comment_64130299\Details.cshtml" />
     <Content Include="Views\Comment_64130299\Edit.cshtml" />
     <Content Include="Views\Comment_64130299\Index.cshtml" />
+    <Content Include="Views\WatchHistory_64130299\Create.cshtml" />
+    <Content Include="Views\WatchHistory_64130299\Delete.cshtml" />
+    <Content Include="Views\WatchHistory_64130299\Details.cshtml" />
+    <Content Include="Views\WatchHistory_64130299\Edit.cshtml" />
+    <Content Include="Views\WatchHistory_64130299\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

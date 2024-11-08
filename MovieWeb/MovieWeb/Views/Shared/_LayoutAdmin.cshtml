@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -15,6 +16,7 @@
             margin: 0;
             font-family: 'Open Sans', sans-serif;
             background-color: #f4f4f9;
+            overflow: hidden; /* Prevent body scroll */
         }
 
         .sidebar {
@@ -56,14 +58,6 @@
             font-size: 24px;
         }
 
-            .logo i {
-                display: contents;
-                font-size: 24px;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%); /* Đảm bảo biểu tượng được căn giữa hoàn toàn */
-            }
-
         .logo-text {
             font-size: 20px;
             font-weight: 600;
@@ -97,7 +91,7 @@
         }
 
         .content {
-            margin-left: 250px;
+            margin-left: 250px; /* Adjust the margin left for the sidebar width */
             padding: 30px;
             flex: 1;
             background-color: #f8f9fa;
@@ -106,7 +100,7 @@
         }
 
             .content.hidden {
-                margin-left: 0;
+                margin-left: 0; /* Shrink content when sidebar is hidden */
             }
 
         footer {
@@ -115,11 +109,10 @@
             color: #7f8c8d;
         }
 
-        /* Nút icon mũi tên để ẩn/hiển thị sidebar */
         .btn-toggle {
             position: fixed;
             top: 50%;
-            left: 233px;
+            left: 233px; /* Adjust this for the position of the button */
             background-color: #1abc9c;
             color: white;
             border: none;
@@ -154,7 +147,6 @@
             display: none;
         }
 
-        /* Nút Thêm, Sửa, Chi tiết, Xóa */
         .btn {
             padding: 10px 20px;
             margin-right: 10px;
@@ -189,6 +181,7 @@
         .btn:hover {
             opacity: 0.8;
         }
+
     </style>
 </head>
 <body>
@@ -226,6 +219,10 @@
                 @Html.ActionLink("Quản lý đánh giá", "Index", "Rating_64130299", new { area = "" }, new { @class = "nav-link" })
             </li>
             <li class="nav-item d-flex align-items-center mb-3">
+                <i class="fas fa-star me-2"></i>
+                @Html.ActionLink("Quản lý lịch sử", "Index", "WatchHistory_64130299", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item d-flex align-items-center mb-3">
                 <i class="fas fa-sign-out-alt me-2"></i>
                 @Html.ActionLink("Đăng xuất", "Logout", "Account", new { area = "" }, new { @class = "nav-link" })
             </li>
@@ -241,20 +238,15 @@
     <!-- Main content area -->
     <div class="content" id="mainContent">
         @RenderBody()
-        <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Admin Panel</p>
+            <p>&copy; 2024 Admin Panel. All rights reserved.</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
     <script>
         document.getElementById("toggleBtn").addEventListener("click", function () {
-            var sidebar = document.getElementById("sidebar");
-            var mainContent = document.getElementById("mainContent");
+            const sidebar = document.getElementById("sidebar");
+            const mainContent = document.getElementById("mainContent");
             sidebar.classList.toggle("hidden");
             mainContent.classList.toggle("hidden");
         });
