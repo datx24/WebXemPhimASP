@@ -5,20 +5,23 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     var grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 4);
     int i = 0;
+    int totalItems = grid.TotalRowCount;
+    int totalPages = (int)Math.Ceiling((double)totalItems / grid.RowsPerPage);
+    int currentPage = grid.PageIndex + 1;
 }
-
-
+<style>
+    .grid-footer {
+        display: none;
+    }
+</style>
 
 <div class="container mx-auto my-8 p-6 bg-gray-100 rounded-lg shadow-md">
     <h2 class="text-3xl font-bold text-center mb-3 text-gray-800">DANH SÁCH NGƯỜI DÙNG</h2>
-    <div class="flex justify-between mb-6">
-        <!-- Nút Tạo mới (Căn trái) -->
-        @Html.ActionLink("Tạo mới", "Create", null, new { @class = "bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-md shadow transition-transform transform hover:scale-105" })
 
-        <!-- Nút Lọc dữ liệu (Căn phải) -->
+    <div class="flex justify-between mb-6">
+        @Html.ActionLink("Tạo mới", "Create", null, new { @class = "bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-md shadow transition-transform transform hover:scale-105" })
         <button onclick="toggleFilterCard()" class="bg-rose-600 hover:bg-rose-800 text-white font-semibold py-2 px-6 rounded-md shadow transition-transform transform hover:scale-105">Lọc dữ liệu</button>
     </div>
-
 
     <!-- Card lọc (ẩn mặc định) -->
     <div id="filterCard" class="hidden bg-white shadow-lg rounded-lg p-4 mb-6 max-w-md mx-auto">
@@ -70,16 +73,14 @@
         }
     </div>
 
-
-
-    <!-- Dữ liệu bảng -->
+    <!-- Table to display filtered data -->
     <div class="overflow-x-auto">
         @grid.GetHtml(
-            tableStyle: "min-w-full bg-white border border-gray-300 rounded-lg shadow-lg mx-auto p-100",
-            headerStyle: "bg-blue-600 text-white  text-center uppercase text-lg tracking-wide no-underline py-2 px-4 h-12",
-            alternatingRowStyle: "bg-gray-50",
+            tableStyle: "min-w-full bg-white border border-gray-300 rounded-lg mx-auto",
+            headerStyle: "bg-blue-600 text-white text-center uppercase text-lg tracking-wide no-underline py-2 px-4 h-12",
+            alternatingRowStyle: "table-secondary",
             rowStyle: "border-t border-gray-200 hover:bg-blue-50 transition-colors duration-200",
-            footerStyle: "text-gray-600 font-semibold text-center py-3 bg-gray-100 border-t",
+            footerStyle: "grid-footer",
             columns: grid.Columns(
                 grid.Column(header: "STT", format: (item) => { i++; return i; }, style: "text-center px-4 py-4 max-w-40"),
                 grid.Column("Email", "Email", style: "text-center px-4 py-4 max-w-40"),
@@ -97,19 +98,50 @@
             )
         )
     </div>
+    <!-- Pagination Controls -->
+    <div class="flex justify-center mt-4">
+        <div class="flex items-center space-x-2">
+            @if (currentPage > 1)
+            {
+                <a href="@Url.Action("Index", new { page = currentPage - 1 })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </span>
+            }
+
+            <!-- Page numbers -->
+            @for (var page = 1; page <= totalPages; page++)
+            {
+                <a href="@Url.Action("Index", new { page = page })" class="@((currentPage == page) ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-blue-200 hover:text-blue-700") py-2 px-4 rounded-lg transition duration-300">
+                    @page
+                </a>
+            }
+
+            @if (currentPage < totalPages)
+            {
+                <a href="@Url.Action("Index", new { page = currentPage + 1 })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </span>
+            }
+        </div>
+    </div>
+
 </div>
 
-<!-- Javascript để hiển thị/ẩn card lọc -->
 <script>
-    // Khi bấm "Áp dụng", không ẩn card lọc
-    function showFilterCard() {
-        return false;  // Ngừng ẩn card khi bấm "Áp dụng"
-    }
-
-    // Khi bấm "X" để ẩn card lọc
     function toggleFilterCard() {
         var filterCard = document.getElementById("filterCard");
         filterCard.classList.toggle("hidden");
     }
 </script>
-

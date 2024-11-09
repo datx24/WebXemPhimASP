@@ -5,55 +5,70 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<h2 class="text-3xl font-bold text-gray-800 mb-8">Chi tiết người dùng</h2>
 
-<div>
-    <h4>User_64130299</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+<div class="bg-white shadow rounded-lg p-8">
+    <h4 class="text-xl font-semibold text-gray-700 mb-6">Thông tin người dùng</h4>
+    <hr class="border-gray-300 mb-6" />
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+    <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <dt class="block text-gray-700 font-medium mb-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+        <div>
+            <dt class="block text-gray-700 font-medium mb-2">
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+            <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+        <div>
+            <dt class="block text-gray-700 font-medium mb-2">
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+            <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
+        <div>
+            <dt class="block text-gray-700 font-medium mb-2">
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </dt>
+            <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">
+                @Html.DisplayFor(model => model.CreatedAt)
+            </dd>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
+        <div>
+            <dt class="block text-gray-700 font-medium mb-2">
+                @Html.DisplayNameFor(model => model.UpdatedAt)
+            </dt>
+            <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">
+                @Html.DisplayFor(model => model.UpdatedAt)
+            </dd>
+        </div>
     </dl>
+
+    <div class="flex justify-between mt-8">
+        <!-- Chỉnh sửa (bên phải) -->
+        <div class="flex justify-end">
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.UserId }, new { @class = "bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" })
+        </div>
+        <!-- Quay lại danh sách (bên trái) -->
+        <div class="flex justify-start">
+            @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "text-blue-500 hover:underline" })
+        </div>
+
+
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

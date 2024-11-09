@@ -5,72 +5,66 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
+<h2 class="text-3xl font-bold text-gray-800 mb-8">Tạo người dùng mới</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "User_64130299", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>User_64130299</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
+
+<div class="bg-white shadow rounded-lg p-8">
+    <h4 class="text-xl font-semibold text-gray-700 mb-6">Thông tin người dùng</h4>
+    <hr class="border-gray-300 mb-6" />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-red-500 mb-4" })
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            @Html.LabelFor(model => model.UserId, new { @class = "block text-gray-700 font-medium mb-2" })
+            @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-red-500 text-sm mt-1" })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
+        <div>
+            @Html.LabelFor(model => model.Email, new { @class = "block text-gray-700 font-medium mb-2" })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-red-500 text-sm mt-1" })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
+        <div>
+            @Html.LabelFor(model => model.Password, "Mật khẩu", new { @class = "block text-gray-700 font-medium mb-2" })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-red-500 text-sm mt-1" })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-            </div>
+        <div>
+            @Html.LabelFor(model => model.Username, "Họ và tên", new { @class = "block text-gray-700 font-medium mb-2" })
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-red-500 text-sm mt-1" })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-danger" })
-            </div>
+        <div>
+            @Html.LabelFor(model => model.CreatedAt, new { @class = "block text-gray-700 font-medium mb-2" })
+            @Html.EditorFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-red-500 text-sm mt-1" })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UpdatedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+        <div>
+            @Html.LabelFor(model => model.UpdatedAt, new { @class = "block text-gray-700 font-medium mb-2" })
+            @Html.EditorFor(model => model.UpdatedAt, new { htmlAttributes = new { @class = "w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.UpdatedAt, "", new { @class = "text-red-500 text-sm mt-1" })
         </div>
     </div>
+
+    <div class="flex justify-between mt-8">
+        <div>
+            <input type="submit" value="Tạo mới" class="bg-fuchsia-600 hover:bg-fuchsia-800 text-white font-semibold py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" />
+        </div>
+        <div>
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "text-blue-500 hover:underline" })
+        </div>
+    </div>
+
+</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
