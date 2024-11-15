@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Account_64130299Controller.cs" />
     <Compile Include="Controllers\Comment_64130299Controller.cs" />
     <Compile Include="Controllers\Favorite_64130299Controller.cs" />
     <Compile Include="Controllers\Home_64130299Controller.cs" />
@@ -287,6 +288,7 @@
     <Content Include="Views\WatchHistory_64130299\Details.cshtml" />
     <Content Include="Views\WatchHistory_64130299\Edit.cshtml" />
     <Content Include="Views\WatchHistory_64130299\Index.cshtml" />
+    <Content Include="Views\Account_64130299\Login_64130299.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
