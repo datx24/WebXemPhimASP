@@ -5,124 +5,101 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<h2 class="text-2xl font-bold mb-4 text-center text-gray-800">Chỉnh Sửa Thông Tin Phim</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Movie_64130299</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mb-6">
+        <h4 class="text-xl font-semibold mb-6 text-center text-gray-800">Thông Tin Chi Tiết Phim</h4>
+        <hr class="mb-6" />
+        @Html.ValidationSummary(true, "", new { @class = "text-red-500" })
         @Html.HiddenFor(model => model.MovieId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Title -->
+            <div class="mb-5">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "block text-gray-700 text-sm font-medium mb-2" })
+                <div>
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-input mt-1 block w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-red-500 text-sm" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            <!-- Description -->
+            <div class="mb-5">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "block text-gray-700 text-sm font-medium mb-2" })
+                <div>
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-input mt-1 block w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-red-500 text-sm" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.GenreId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.GenreId)
-                    @Html.ValidationMessageFor(model => model.GenreId, "", new { @class = "text-danger" })
+            <!-- Genre -->
+            <div class="mb-5">
+                @Html.LabelFor(model => model.GenreName, htmlAttributes: new { @class = "block text-gray-700 text-sm font-medium mb-2" })
+                <div>
+                    @Html.EditorFor(model => model.GenreName, new { htmlAttributes = new { @class = "form-input mt-1 block w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm" } })
+                    @Html.ValidationMessageFor(model => model.GenreName, "", new { @class = "text-red-500 text-sm" })
+                </div>
+            </div>
+
+            <!-- Director -->
+            <div class="mb-5">
+                @Html.LabelFor(model => model.DirectorName, htmlAttributes: new { @class = "block text-gray-700 text-sm font-medium mb-2" })
+                <div>
+                    @Html.EditorFor(model => model.DirectorName, new { htmlAttributes = new { @class = "form-input mt-1 block w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm" } })
+                    @Html.ValidationMessageFor(model => model.DirectorName, "", new { @class = "text-red-500 text-sm" })
+                </div>
+            </div>
+
+            <!-- Actor -->
+            <div class="mb-5">
+                @Html.LabelFor(model => model.ActorName, htmlAttributes: new { @class = "block text-gray-700 text-sm font-medium mb-2" })
+                <div>
+                    @Html.EditorFor(model => model.ActorName, new { htmlAttributes = new { @class = "form-input mt-1 block w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm" } })
+                    @Html.ValidationMessageFor(model => model.ActorName, "", new { @class = "text-red-500 text-sm" })
+                </div>
+            </div>
+
+            <!-- Release Date -->
+            <div class="mb-5">
+                @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "block text-gray-700 text-sm font-medium mb-2" })
+                <div>
+                    @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-input mt-1 block w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm" } })
+                    @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-red-500 text-sm" })
+                </div>
+            </div>
+
+            <!-- Poster URL -->
+            <div class="mb-5">
+                @Html.LabelFor(model => model.PosterUrl, htmlAttributes: new { @class = "block text-gray-700 text-sm font-medium mb-2" })
+                <div>
+                    @Html.EditorFor(model => model.PosterUrl, new { htmlAttributes = new { @class = "form-input mt-1 block w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm" } })
+                    @Html.ValidationMessageFor(model => model.PosterUrl, "", new { @class = "text-red-500 text-sm" })
+                </div>
+            </div>
+
+            <!-- Trailer URL -->
+            <div class="mb-5">
+                @Html.LabelFor(model => model.TrailerUrl, htmlAttributes: new { @class = "block text-gray-700 text-sm font-medium mb-2" })
+                <div>
+                    @Html.EditorFor(model => model.TrailerUrl, new { htmlAttributes = new { @class = "form-input mt-1 block w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm" } })
+                    @Html.ValidationMessageFor(model => model.TrailerUrl, "", new { @class = "text-red-500 text-sm" })
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.GenreName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GenreName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GenreName, "", new { @class = "text-danger" })
+        <!-- Submit and Back Button -->
+        <div class="flex justify-between items-center mt-6">
+            <div>
+                <input type="submit" value="Lưu Thay Đổi" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md shadow-md transform transition-all duration-300 hover:scale-105" />
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DirectorName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DirectorName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DirectorName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ActorName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ActorName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ActorName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PosterUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PosterUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PosterUrl, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TrailerUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TrailerUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TrailerUrl, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UpdatedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div>
+                @Html.ActionLink("Quay lại", "Index", null, new { @class = "text-blue-500 hover:underline text-lg font-semibold" })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

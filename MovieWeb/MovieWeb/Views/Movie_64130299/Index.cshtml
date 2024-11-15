@@ -26,19 +26,13 @@
     <!-- Card lọc (ẩn mặc định) -->
     <div id="filterCard" class="hidden bg-white shadow-lg rounded-lg p-4 mb-6 max-w-2xl mx-auto">
         <h3 class="text-xl font-semibold mb-4 text-center">Lọc dữ liệu</h3>
-        @using (Html.BeginForm("Index", "Movie_64130299", FormMethod.Get, new { onsubmit = "return showFilterCard()" }))
+        @using (Html.BeginForm("Index", "Movie_64130299", FormMethod.Get))
         {
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 lg:space-y-0">
                 <!-- Tiêu đề -->
                 <div class="flex flex-col">
                     <label for="titleFilter" class="text-gray-600">Tiêu đề</label>
                     <input type="text" name="titleFilter" id="titleFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.TitleFilter" placeholder="Nhập tiêu đề phim..." />
-                </div>
-
-                <!-- Mô tả -->
-                <div class="flex flex-col">
-                    <label for="descriptionFilter" class="text-gray-600">Mô tả</label>
-                    <input type="text" name="descriptionFilter" id="descriptionFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.DescriptionFilter" placeholder="Nhập mô tả phim..." />
                 </div>
 
                 <!-- Định dạng -->
@@ -52,10 +46,24 @@
                     </div>
                 </div>
 
+                <!-- Created At (Từ) -->
+                <div class="flex flex-col">
+                    <label for="createdAtFrom" class="text-gray-600">Created At (Từ)</label>
+                    <input type="date" name="createdAtFrom" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.CreatedAtFrom" />
+                </div>
+
                 <!-- Thể loại -->
                 <div class="flex flex-col">
                     <label for="genreNameFilter" class="text-gray-600">Thể loại</label>
-                    <input type="text" name="genreNameFilter" id="genreNameFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.GenreNameFilter" placeholder="Nhập thể loại..." />
+                    <select name="genreNameFilter" id="genreNameFilter" class="w-full p-2 border rounded-md text-sm">
+                        <option value="" selected>Chọn thể loại...</option>
+                        <option value="Hành động" @(ViewBag.GenreNameFilter == "Hành động" ? "selected" : "")>Hành động</option>
+                        <option value="Hài kịch" @(ViewBag.GenreNameFilter == "Hài kịch" ? "selected" : "")>Hài kịch</option>
+                        <option value="Chính kịch" @(ViewBag.GenreNameFilter == "Chính kịch" ? "selected" : "")>Chính kịch</option>
+                        <option value="Kinh dị" @(ViewBag.GenreNameFilter == "Kinh dị" ? "selected" : "")>Kinh dị</option>
+                        <option value="Khoa học viễn tưởng" @(ViewBag.GenreNameFilter == "Khoa học viễn tưởng" ? "selected" : "")>Khoa học viễn tưởng</option>
+                        <!-- Thêm các thể loại khác nếu cần -->
+                    </select>
                 </div>
 
                 <!-- Đạo diễn -->
@@ -64,10 +72,10 @@
                     <input type="text" name="directorNameFilter" id="directorNameFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.DirectorNameFilter" placeholder="Nhập tên đạo diễn..." />
                 </div>
 
-                <!-- Diễn viên -->
+                <!-- Created At (Đến) -->
                 <div class="flex flex-col">
-                    <label for="actorNameFilter" class="text-gray-600">Diễn viên</label>
-                    <input type="text" name="actorNameFilter" id="actorNameFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.ActorNameFilter" placeholder="Nhập tên diễn viên..." />
+                    <label for="createdAtTo" class="text-gray-600">Created At (Đến)</label>
+                    <input type="date" name="createdAtTo" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.CreatedAtTo" />
                 </div>
 
                 <!-- Quốc gia -->
@@ -76,28 +84,28 @@
                     <input type="text" name="countryFilter" id="countryFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.CountryFilter" placeholder="Nhập quốc gia..." />
                 </div>
 
-                <!-- Ngày sản xuất -->
+                <!-- Diễn viên -->
                 <div class="flex flex-col">
-                    <label for="releaseDateFilter" class="text-gray-600">Ngày sản xuất</label>
-                    <input type="date" name="releaseDateFilter" id="releaseDateFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.ReleaseDateFilter" />
-                </div>
-
-                <!-- Created At (Từ) -->
-                <div class="flex flex-col">
-                    <label for="createdAtFrom" class="text-gray-600">Created At (Từ)</label>
-                    <input type="date" name="createdAtFrom" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.CreatedAtFrom" />
-                </div>
-
-                <!-- Created At (Đến) -->
-                <div class="flex flex-col">
-                    <label for="createdAtTo" class="text-gray-600">Created At (Đến)</label>
-                    <input type="date" name="createdAtTo" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.CreatedAtTo" />
+                    <label for="actorNameFilter" class="text-gray-600">Diễn viên</label>
+                    <input type="text" name="actorNameFilter" id="actorNameFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.ActorNameFilter" placeholder="Nhập tên diễn viên..." />
                 </div>
 
                 <!-- Updated At (Từ) -->
                 <div class="flex flex-col">
                     <label for="updatedAtFrom" class="text-gray-600">Updated At (Từ)</label>
                     <input type="date" name="updatedAtFrom" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.UpdatedAtFrom" />
+                </div>
+
+                <!-- Mô tả -->
+                <div class="flex flex-col">
+                    <label for="descriptionFilter" class="text-gray-600">Mô tả</label>
+                    <input type="text" name="descriptionFilter" id="descriptionFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.DescriptionFilter" placeholder="Nhập mô tả phim..." />
+                </div>
+
+                <!-- Ngày sản xuất -->
+                <div class="flex flex-col">
+                    <label for="releaseDateFilter" class="text-gray-600">Ngày sản xuất</label>
+                    <input type="date" name="releaseDateFilter" id="releaseDateFilter" class="w-full p-2 border rounded-md text-sm" value="@ViewBag.ReleaseDateFilter" />
                 </div>
 
                 <!-- Updated At (Đến) -->
@@ -138,10 +146,6 @@
                 grid.Column("ActorName", "Diễn viên", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
                 grid.Column("Country", "Quốc gia", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
                 grid.Column("ReleaseDate", "Ngày sản xuất", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
-                grid.Column("PosterUrl", "PosterUrl", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
-                grid.Column("TrailerUrl", "TrailerUrl", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
-                grid.Column("CreatedAt", "Created At", format: item => String.Format("{0:dd/MM/yyyy}", item.CreatedAt), style: "text-center px-4 py-4"),
-                grid.Column("UpdatedAt", "Updated At", format: item => String.Format("{0:dd/MM/yyyy}", item.UpdatedAt), style: "text-center px-4 py-4"),
                 grid.Column(header: "Chức năng", format: item => MvcHtmlString.Create(
                     $"<div class='flex justify-center space-x-6'>" +
                     $"<a href='{Url.Action("Edit", new { id = item.MovieId })}' class='text-blue-600 hover:text-blue-800 text-xl' title='Chỉnh sửa'><i class='fas fa-edit'></i></a>" +
@@ -195,7 +199,7 @@
 
 <script>
     function toggleFilterCard() {
-        var filterCard = document.getElementById("filterCard");
+        const filterCard = document.getElementById("filterCard");
         filterCard.classList.toggle("hidden");
     }
 </script>
