@@ -1,21 +1,39 @@
 ﻿@{
     ViewBag.Title = "Đăng nhập";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Đăng nhập</h2>
-@using (Html.BeginForm("Login", "Account_64130299", FormMethod.Post))
-{
-    <div>
-        <label for="username">Tên đăng nhập</label>
-        @Html.TextBox("username", null, new { @class = "form-control", placeholder = "Tên đăng nhập" })
-    </div>
-    <div>
-        <label for="password">Mật khẩu</label>
-        @Html.Password("password", null, new { @class = "form-control", placeholder = "Mật khẩu" })
-    </div>
-    <div>
-        <input type="submit" value="Đăng nhập" class="btn btn-primary" />
-    </div>
-}
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-blue-600">
+    <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Đăng nhập</h2>
 
+        <!-- Hiển thị lỗi nếu có -->
+        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div class="mt-4 text-center text-red-500">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        <!-- Form đăng nhập -->
+        @using (Html.BeginForm("Login", "Account_64130299", FormMethod.Post, new { @class = "mt-6" }))
+        {
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 font-medium mb-1">Tên đăng nhập:</label>
+                @Html.TextBox("username", null, new { @class = "w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200", placeholder = "Nhập tên đăng nhập" })
+                @Html.ValidationMessage("username", null, new { @class = "text-red-500 text-sm mt-1" })
+            </div>
+
+            <div class="mb-6">
+                <label for="password" class="block text-gray-700 font-medium mb-1">Mật khẩu:</label>
+                @Html.Password("password", null, new { @class = "w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200", placeholder = "Nhập mật khẩu" })
+                @Html.ValidationMessage("password", null, new { @class = "text-red-500 text-sm mt-1" })
+            </div>
+
+            <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200">Đăng nhập</button>
+        }
+
+        <div class="mt-4 text-center">
+            <a href="#" class="text-blue-600 hover:underline">Quên mật khẩu?</a>
+        </div>
+    </div>
+</div>
