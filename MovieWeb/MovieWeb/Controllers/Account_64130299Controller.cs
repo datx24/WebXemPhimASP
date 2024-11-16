@@ -51,8 +51,17 @@ namespace MovieWeb.Controllers
         // Đăng xuất
         public ActionResult Logout()
         {
+            // Xóa toàn bộ session
             Session.Clear();
-            return RedirectToAction("Login");
+
+            // Thêm thông báo cho lần đăng nhập sau (nếu cần)
+            TempData["InfoMessage"] = "Bạn đã đăng xuất thành công.";
+
+            // Điều hướng về trang đăng nhập
+            return RedirectToAction("Login_64130299");
         }
+
     }
+
+
 }
