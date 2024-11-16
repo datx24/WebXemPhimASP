@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MovieWeb.Models.AdminUsers_64130299
+@{
     ViewBag.Title = "Đăng nhập";
 }
 
@@ -6,11 +7,17 @@
     <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Đăng nhập</h2>
 
-        <!-- Hiển thị lỗi nếu có -->
-        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        <!-- Hiển thị thông báo từ TempData -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="mt-4 text-center text-green-500">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
         {
             <div class="mt-4 text-center text-red-500">
-                @ViewBag.ErrorMessage
+                @TempData["ErrorMessage"]
             </div>
         }
 
@@ -18,13 +25,13 @@
         @using (Html.BeginForm("Login", "Account_64130299", FormMethod.Post, new { @class = "mt-6" }))
         {
             <div class="mb-4">
-                <label for="username" class="block text-gray-700 font-medium mb-1">Tên đăng nhập:</label>
+                <label for="username" class="block text-gray-700 font-medium mb-1">Tên đăng nhập</label>
                 @Html.TextBox("username", null, new { @class = "w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200", placeholder = "Nhập tên đăng nhập" })
                 @Html.ValidationMessage("username", null, new { @class = "text-red-500 text-sm mt-1" })
             </div>
 
             <div class="mb-6">
-                <label for="password" class="block text-gray-700 font-medium mb-1">Mật khẩu:</label>
+                <label for="password" class="block text-gray-700 font-medium mb-1">Mật khẩu</label>
                 @Html.Password("password", null, new { @class = "w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200", placeholder = "Nhập mật khẩu" })
                 @Html.ValidationMessage("password", null, new { @class = "text-red-500 text-sm mt-1" })
             </div>

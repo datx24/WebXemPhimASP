@@ -1,9 +1,8 @@
 ﻿using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;  // Thêm vào để sử dụng FormsAuthentication
+using System.Web.Security;
 using MovieWeb.Models;
 
 namespace MovieWeb.Controllers
@@ -30,42 +29,35 @@ namespace MovieWeb.Controllers
                     // Lưu thông tin đăng nhập vào session
                     Session["Username"] = user.Username;
 
-                    // Sử dụng   để tạo cookie đăng nhập
-                    FormsAuthentication.SetAuthCookie(user.Username, false); // Đăng nhập mà không cần nhớ
+                    // Tạo cookie đăng nhập
+                    FormsAuthentication.SetAuthCookie(user.Username, false);
 
-                    // Thêm thông báo vào TempData
+                    // Thêm thông báo thành công vào TempData
                     TempData["SuccessMessage"] = "Đăng nhập thành công!";
                     return RedirectToAction("Index", "User_64130299"); // Redirect đến trang quản trị
                 }
                 else
                 {
-                    // Thêm lỗi vào ModelState nếu tên đăng nhập hoặc mật khẩu không đúng
-                    ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng.");
+                    // Thêm thông báo lỗi vào TempData
+                    TempData["ErrorMessage"] = "Tên đăng nhập hoặc mật khẩu không đúng.";
                 }
             }
             return View();
         }
 
-
         // Phương thức xác thực người dùng
         private AdminUsers_64130299 AuthenticateUser(string username, string password)
         {
-            // Tìm người dùng trong cơ sở dữ liệu
             var user = db.AdminUsers_64130299.FirstOrDefault(u => u.Username == username);
-
             if (user != null)
             {
-                // Băm mật khẩu người dùng nhập vào
-                string hashedPassword = HashPassword(password);  // Hàm băm SHA-256
-
-                // So sánh giá trị băm của mật khẩu nhập vào với mật khẩu đã lưu trong cơ sở dữ liệu
+                string hashedPassword = HashPassword(password);
                 if (hashedPassword == user.PasswordHash)
                 {
-                    return user; // Mật khẩu đúng
+                    return user;
                 }
             }
-
-            return null; // Mật khẩu sai hoặc người dùng không tồn tại
+            return null;
         }
 
         // Hàm băm mật khẩu với SHA-256
@@ -73,10 +65,7 @@ namespace MovieWeb.Controllers
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                // Băm mật khẩu
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-                // Chuyển đổi byte array thành chuỗi hex
                 StringBuilder builder = new StringBuilder();
                 foreach (byte b in bytes)
                 {

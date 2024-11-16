@@ -11,7 +11,8 @@ using System.Web.Mvc;
 using MovieWeb.Models;
 
 namespace MovieWeb.Controllers
-{   
+{
+    [AuthorizeAttribute_64130299Controller]
     public class Movie_64130299Controller : Controller
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
