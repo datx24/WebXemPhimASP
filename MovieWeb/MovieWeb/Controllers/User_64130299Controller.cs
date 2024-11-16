@@ -10,6 +10,7 @@ using MovieWeb.Models;
 
 namespace MovieWeb.Controllers
 {
+
     public class User_64130299Controller : Controller
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
@@ -29,7 +30,7 @@ namespace MovieWeb.Controllers
 
             return userId;
         }
-
+        
         public ActionResult Index(string emailFilter = "", string passwordFilter = "", string usernameFilter = "", DateTime? createdAtFrom = null, DateTime? createdAtTo = null, DateTime? updatedAtFrom = null, DateTime? updatedAtTo = null)
         {
             // Cập nhật giá trị cho ViewBag để hiển thị trong form

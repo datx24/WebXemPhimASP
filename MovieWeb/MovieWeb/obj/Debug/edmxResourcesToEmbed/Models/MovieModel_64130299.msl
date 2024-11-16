@@ -84,5 +84,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AdminUsers_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.AdminUsers_64130299">
+        <MappingFragment StoreEntitySet="AdminUsers_64130299">
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

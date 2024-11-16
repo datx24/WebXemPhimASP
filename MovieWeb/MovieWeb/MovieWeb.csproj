@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Account_64130299Controller.cs" />
+    <Compile Include="Controllers\AuthorizeAttribute_64130299Controller.cs" />
     <Compile Include="Controllers\Comment_64130299Controller.cs" />
     <Compile Include="Controllers\Favorite_64130299Controller.cs" />
     <Compile Include="Controllers\Home_64130299Controller.cs" />
@@ -140,6 +141,9 @@
     <Compile Include="Controllers\WatchHistory_64130299Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminUsers_64130299.cs">
+      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comment_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
@@ -292,6 +296,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AuthorizeAttribute_64130299\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

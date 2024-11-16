@@ -80,6 +80,15 @@ CREATE TABLE Comment_64130299 (
     FOREIGN KEY (MovieId) REFERENCES Movie_64130299(MovieId)
 );
 
+CREATE TABLE AdminUsers_64130299 (
+    Id INT IDENTITY(1,1) PRIMARY KEY, -- Sử dụng IDENTITY để tự động tăng
+    Username NVARCHAR(255) NOT NULL, -- Sử dụng NVARCHAR để hỗ trợ Unicode
+    PasswordHash NVARCHAR(255) NOT NULL -- Sử dụng NVARCHAR cho mật khẩu mã hóa
+);
+
+INSERT INTO AdminUsers_64130299 (Username, PasswordHash)
+VALUES ('admin', '6088d7f1f66b1d3d311f8db7d9217dcef9e89e03c536adb5ae37e740fabf1a03');
+
 
 
 INSERT INTO User_64130299 (UserId,Email, Password, Username)

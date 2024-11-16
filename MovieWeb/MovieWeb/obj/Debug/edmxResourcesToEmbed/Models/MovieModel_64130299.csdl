@@ -246,5 +246,14 @@
       <End Role="User_64130299" EntitySet="User_64130299" />
       <End Role="WatchHistory_64130299" EntitySet="WatchHistory_64130299" />
     </AssociationSet>
+    <EntitySet Name="AdminUsers_64130299" EntityType="MovieDatabase_64130299Model.AdminUsers_64130299" />
   </EntityContainer>
+  <EntityType Name="AdminUsers_64130299">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

@@ -21,6 +21,7 @@
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__WatchHist__Movie__24927208" ManuallyRouted="false" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__Rating_64__UserI__29572725" ManuallyRouted="false" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__WatchHist__UserI__239E4DCF" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.AdminUsers_64130299" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
