@@ -26,9 +26,12 @@ namespace MovieWeb.Controllers
             var user = AuthenticateUser(username, password);
             if (user != null)
             {
-                // Lưu thông tin đăng nhập vào session hoặc cookie để xác thực người dùng
+                // Lưu thông tin đăng nhập vào session
                 Session["Username"] = user.Username;
-                return RedirectToAction("Index", "Admin"); // Redirect đến trang quản trị
+
+                // Thêm thông báo vào TempData
+                TempData["SuccessMessage"] = "Đăng nhập thành công!";
+                return RedirectToAction("Index", "User_64130299"); // Redirect đến trang quản trị
             }
             else
             {
@@ -36,6 +39,7 @@ namespace MovieWeb.Controllers
             }
             return View();
         }
+
 
         // Phương thức xác thực người dùng
         private User_64130299 AuthenticateUser(string username, string password)

@@ -1,24 +1,21 @@
 ﻿@{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Đăng Nhập</h2>
-
-@using (Html.BeginForm())
+<h2>Đăng nhập</h2>
+@using (Html.BeginForm("Login", "Account_64130299", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-
     <div>
-        @Html.Label("Username", "Tên đăng nhập")
-        @Html.TextBox("username", null, new { @class = "form-control" })
+        <label for="username">Tên đăng nhập</label>
+        @Html.TextBox("username", null, new { @class = "form-control", placeholder = "Tên đăng nhập" })
     </div>
     <div>
-        @Html.Label("Password", "Mật khẩu")
-        @Html.Password("password", null, new { @class = "form-control" })
+        <label for="password">Mật khẩu</label>
+        @Html.Password("password", null, new { @class = "form-control", placeholder = "Mật khẩu" })
     </div>
     <div>
-        <input type="submit" value="Đăng Nhập" class="btn btn-primary" />
+        <input type="submit" value="Đăng nhập" class="btn btn-primary" />
     </div>
-
-    @Html.ValidationSummary(true)
 }
+
