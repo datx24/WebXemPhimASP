@@ -33,7 +33,7 @@ namespace MovieWeb.Controllers
                     FormsAuthentication.SetAuthCookie(user.Username, false);
 
                     // Thêm thông báo thành công vào TempData
-                    TempData["SuccessMessage"] = "Đăng nhập thành công!";
+                    TempData["SuccessMessage"] = "Đăng nhập thành công";
                     return RedirectToAction("Index", "User_64130299"); // Redirect đến trang quản trị
                 }
                 else

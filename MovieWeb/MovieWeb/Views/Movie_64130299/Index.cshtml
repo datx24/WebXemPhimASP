@@ -139,6 +139,7 @@
             columns: grid.Columns(
                 grid.Column(header: "STT", format: (item) => { i++; return i; }, style: "text-center px-4 py-4 max-w-40"),
                 grid.Column("Title", "Tiêu đề", style: "text-center px-4 py-4 truncate max-w-40"),
+                grid.Column("AccessLevel", "Phân loại", style: "text-center px-4 py-4 truncate max-w-40"),
                 grid.Column("Description", "Mô tả", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
                 grid.Column("GenreId", "Định dạng", format: item => (item.GenreId ? "Phim bộ" : "Phim lẻ"), style: "text-center px-4 py-4 truncate max-w-40"),
                 grid.Column("GenreName", "Thể loại", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),

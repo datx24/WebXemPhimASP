@@ -29,6 +29,10 @@ CREATE TABLE Movie_64130299 (
     UpdatedAt DATETIME DEFAULT GETDATE()
 );
 
+-- Thêm AccessLevel vào bảng Movie
+ALTER TABLE Movie_64130299
+ADD AccessLevel NVARCHAR(50) NOT NULL DEFAULT 'Standard';
+
 -- Tạo bảng MovieUrls
 CREATE TABLE MovieUrls_64130299 (
     MovieUrlId VARCHAR(100) PRIMARY KEY,

@@ -1,25 +1,12 @@
 ﻿@model MovieWeb.Models.AdminUsers_64130299
 @{
     ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-blue-600">
     <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Đăng nhập</h2>
-
-        <!-- Hiển thị thông báo từ TempData -->
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="mt-4 text-center text-green-500">
-                @TempData["SuccessMessage"]
-            </div>
-        }
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="mt-4 text-center text-red-500">
-                @TempData["ErrorMessage"]
-            </div>
-        }
 
         <!-- Form đăng nhập -->
         @using (Html.BeginForm("Login", "Account_64130299", FormMethod.Post, new { @class = "mt-6" }))

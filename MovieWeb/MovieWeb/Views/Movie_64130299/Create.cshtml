@@ -35,6 +35,12 @@
         </div>
 
         <div>
+            @Html.LabelFor(model => model.AccessLevel, "Phân loại", new { @class = "block text-gray-700 font-medium mb-2" })
+            @Html.EditorFor(model => model.AccessLevel, new { htmlAttributes = new { @class = "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" } })
+            @Html.ValidationMessageFor(model => model.AccessLevel, "", new { @class = "text-red-500 text-sm mt-1" })
+        </div>
+
+        <div>
             @Html.LabelFor(model => model.Description, "Mô tả", new { @class = "block text-gray-700 font-medium mb-2" })
             @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" } })
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-red-500 text-sm mt-1" })

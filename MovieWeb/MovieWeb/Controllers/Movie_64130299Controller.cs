@@ -43,7 +43,8 @@ namespace MovieWeb.Controllers
     string countryFilter = "",
     string actorNameFilter = "",
     string descriptionFilter = "",
-    DateTime? releaseDateFilter = null
+    DateTime? releaseDateFilter = null,
+    string accessLevelFilter = ""
 )
         {
             // Start with the full movie list
@@ -85,6 +86,8 @@ namespace MovieWeb.Controllers
 
             if (releaseDateFilter.HasValue)
                 movies = movies.Where(m => m.ReleaseDate == releaseDateFilter);
+            if (!string.IsNullOrEmpty(accessLevelFilter))
+                movies = movies.Where(m => m.Description.Contains(accessLevelFilter));
 
             // Return the filtered result to the view
             return View("Index",movies.ToList());
@@ -123,7 +126,7 @@ namespace MovieWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Description,GenreId,GenreName,DirectorName,ActorName,Country,ReleaseDate,PosterUrl,TrailerUrl,CreatedAt,UpdatedAt")] Movie_64130299 movie_64130299)
+        public ActionResult Create([Bind(Include = "Title,Description,GenreId,GenreName,DirectorName,ActorName,Country,ReleaseDate,PosterUrl,TrailerUrl,CreatedAt,UpdatedAt,AccessLevel")] Movie_64130299 movie_64130299)
         {
             if (ModelState.IsValid)
             {
@@ -160,7 +163,7 @@ namespace MovieWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieId,Title,Description,GenreId,GenreName,DirectorName,ActorName,Country,ReleaseDate,PosterUrl,TrailerUrl,CreatedAt,UpdatedAt")] Movie_64130299 movie_64130299)
+        public ActionResult Edit([Bind(Include = "MovieId,Title,Description,GenreId,GenreName,DirectorName,ActorName,Country,ReleaseDate,PosterUrl,TrailerUrl,CreatedAt,UpdatedAt,AccessLevel")] Movie_64130299 movie_64130299)
         {
             if (ModelState.IsValid)
             {

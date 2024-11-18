@@ -23,10 +23,28 @@
 
         <div>
             <dt class="block text-gray-700 font-medium mb-2">
+                @Html.DisplayNameFor(model => model.AccessLevel)
+            </dt>
+            <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">
+                @Html.DisplayFor(model => model.AccessLevel)
+            </dd>
+        </div>
+
+        <div>
+            <dt class="block text-gray-700 font-medium mb-2">
                 @Html.DisplayNameFor(model => model.Description)
             </dt>
             <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">
                 @Html.DisplayFor(model => model.Description)
+            </dd>
+        </div>
+
+        <div>
+            <dt class="block text-gray-700 font-medium mb-2">
+                @Html.DisplayNameFor(model => model.GenreId)
+            </dt>
+            <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">
+                @((Model.GenreId == true) ? "Phim Bộ" : "Phim Lẻ")
             </dd>
         </div>
 

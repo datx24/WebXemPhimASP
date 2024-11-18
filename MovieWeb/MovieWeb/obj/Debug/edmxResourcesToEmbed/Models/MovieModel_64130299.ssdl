@@ -44,6 +44,7 @@
     <Property Name="TrailerUrl" Type="nvarchar" MaxLength="512" />
     <Property Name="CreatedAt" Type="datetime" />
     <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="AccessLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="MovieUrls_64130299">
     <Key>

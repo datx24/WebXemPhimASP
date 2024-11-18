@@ -49,6 +49,7 @@
           <Property Name="TrailerUrl" Type="nvarchar" MaxLength="512" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="AccessLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="MovieUrls_64130299">
           <Key>
@@ -292,6 +293,7 @@
           <NavigationProperty Name="MovieUrls_64130299" Relationship="Self.FK__MovieUrls__Movie__1A14E395" FromRole="Movie_64130299" ToRole="MovieUrls_64130299" />
           <NavigationProperty Name="Rating_64130299" Relationship="Self.FK__Rating_64__Movie__2A4B4B5E" FromRole="Movie_64130299" ToRole="Rating_64130299" />
           <NavigationProperty Name="WatchHistory_64130299" Relationship="Self.FK__WatchHist__Movie__24927208" FromRole="Movie_64130299" ToRole="WatchHistory_64130299" />
+          <Property Name="AccessLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MovieUrls_64130299">
           <Key>
@@ -533,6 +535,7 @@
           <EntitySetMapping Name="Movie_64130299">
             <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Movie_64130299">
               <MappingFragment StoreEntitySet="Movie_64130299">
+                <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
                 <ScalarProperty Name="MovieId" ColumnName="MovieId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

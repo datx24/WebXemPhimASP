@@ -34,6 +34,23 @@
 
         <div>
             <dt class="block text-gray-700 font-medium mb-2">
+                @Html.DisplayNameFor(model => model.GenreId)
+            </dt>
+            <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">
+                @{
+                    string genreDisplay = "Chưa có thông tin"; // Giá trị mặc định nếu chưa có thông tin
+                    if (Model.GenreId.HasValue)
+                    {
+                        genreDisplay = Model.GenreId.Value ? "Phim bộ" : "Phim lẻ";
+                    }
+                }
+                @genreDisplay
+            </dd>
+        </div>
+
+
+        <div>
+            <dt class="block text-gray-700 font-medium mb-2">
                 @Html.DisplayNameFor(model => model.GenreName)
             </dt>
             <dd class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed">

@@ -25,6 +25,7 @@
     <EntitySetMapping Name="Movie_64130299">
       <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Movie_64130299">
         <MappingFragment StoreEntitySet="Movie_64130299">
+          <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
           <ScalarProperty Name="MovieId" ColumnName="MovieId" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Description" ColumnName="Description" />
