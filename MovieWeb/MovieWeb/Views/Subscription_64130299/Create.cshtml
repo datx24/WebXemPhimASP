@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Thanh Toán Gói";
+    Layout = "~/Views/Shared/_Layout641302999.cshtml";
+}
+
+<h2>Thanh Toán Gói Thành Viên</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="userId">User ID</label>
+        <input type="text" class="form-control" name="userId" required />
+    </div>
+
+    <div class="form-group">
+        <label for="accessLevel">Chọn Gói Thành Viên</label>
+        <select class="form-control" name="accessLevel">
+            <option value="Premium">Premium</option>
+            <option value="Standard">Standard</option>
+            <option value="Free">Free</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="expiryDate">Ngày Hết Hạn</label>
+        <input type="date" class="form-control" name="expiryDate" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thanh Toán</button>
+}

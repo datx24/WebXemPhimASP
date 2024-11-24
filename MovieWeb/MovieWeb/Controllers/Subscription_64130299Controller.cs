@@ -11,7 +11,7 @@ namespace MovieWeb.Controllers
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
         // GET: Subscription_64130299
-        public ActionResult Index()
+        public ActionResult Create()
         {
             return View();
         }
