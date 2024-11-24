@@ -11,7 +11,7 @@ namespace MovieWeb.Controllers
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
         // GET: Subscription_64130299
-        public ActionResult Create()
+        public ActionResult Create_64130299()
         {
             return View();
         }
@@ -45,13 +45,13 @@ namespace MovieWeb.Controllers
         }
 
         // GET: Subscription/Confirmation (Trang xác nhận thành công)
-        public ActionResult Confirmation()
+        public ActionResult Confirmation_64130299()
         {
             return View();
         }
 
         // GET: Subscription/Failure (Trang thất bại nếu có lỗi thanh toán)
-        public ActionResult Failure()
+        public ActionResult Failure_64130299()
         {
             return View();
         }
