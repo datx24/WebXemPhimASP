@@ -42,7 +42,7 @@ namespace MovieWeb.Controllers
                     TempData["ErrorMessage"] = "Tên đăng nhập hoặc mật khẩu không đúng.";
                 }
             }
-            return View();
+            return View("LoginAdmin_64130299");
         }
 
         // Phương thức xác thực người dùng

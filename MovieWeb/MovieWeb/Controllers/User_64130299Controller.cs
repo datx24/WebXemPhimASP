@@ -236,7 +236,7 @@ namespace MovieWeb.Controllers
             base.Dispose(disposing);
         }
 
-        // Trang đăng nhập của người quản lý
+        // Trang đăng nhập của người dùng
         public ActionResult Login_64130299()
         {
             return View();
@@ -248,42 +248,55 @@ namespace MovieWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Gọi phương thức xác thực người dùng
                 var user = AuthenticateUser(email, password);
                 if (user != null)
                 {
-                    // Lưu thông tin đăng nhập vào session
+                    // Lưu thông tin người dùng vào session
+                    Session["UserId"] = user.UserId;
                     Session["Email"] = user.Email;
+                    Session["Username"] = user.Username;
 
-                    // Tạo cookie đăng nhập
+                    // Tạo cookie xác thực đăng nhập
                     FormsAuthentication.SetAuthCookie(user.Email, false);
 
-                    // Thêm thông báo thành công vào TempData
-                    TempData["SuccessMessage"] = "Đăng nhập thành công";
-                    return RedirectToAction("Home_64130299", "Home_64130299"); // Redirect đến trang quản trị
+                    // Thông báo đăng nhập thành công
+                    TempData["SuccessMessage"] = "Đăng nhập thành công!";
+
+                    // Điều hướng tới trang Home_64130299
+                    return RedirectToAction("Home_64130299", "Home_64130299");
                 }
                 else
                 {
-                    // Thêm thông báo lỗi vào TempData
-                    TempData["ErrorMessage"] = "Tên đăng nhập hoặc mật khẩu không đúng.";
+                    // Thông báo lỗi nếu đăng nhập thất bại
+                    TempData["ErrorMessage"] = "Email hoặc mật khẩu không đúng.";
                 }
             }
-            return View();
+            return View("Login_64130299");
         }
 
-        // Phương thức xác thực người dùng
         private User_64130299 AuthenticateUser(string email, string password)
         {
-            var user = db.User_64130299.FirstOrDefault(u => u.Email == email); ;
+            // Tìm kiếm người dùng trong cơ sở dữ liệu theo email
+            var user = db.User_64130299.FirstOrDefault(u => u.Email == email);
+
+            // Kiểm tra nếu người dùng tồn tại
             if (user != null)
             {
+                // Hash lại mật khẩu người dùng đã nhập
                 string hashedPassword = HashPassword(password);
+
+                // So sánh mật khẩu đã hash với mật khẩu trong cơ sở dữ liệu
                 if (hashedPassword == user.Password)
                 {
-                    return user;
+                    return user; // Trả về đối tượng User nếu xác thực thành công
                 }
             }
-            return null;
+
+            return null; // Trả về null nếu email hoặc mật khẩu không khớp
         }
+
+
 
         // Hàm băm mật khẩu với SHA-256
         public static string HashPassword(string password)
@@ -299,6 +312,7 @@ namespace MovieWeb.Controllers
                 return builder.ToString();
             }
         }
+
 
         // Đăng xuất
         public ActionResult Logout()

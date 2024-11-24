@@ -1,0 +1,32 @@
+﻿@model MovieWeb.Models.User_64130299
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout641302999.cshtml";
+}
+<h2 class="text-4xl font-semibold text-center text-gray-800 mb-8">Đăng nhập</h2>
+
+@TempData["ErrorMessage"]
+@TempData["SuccessMessage"]
+
+@using (Html.BeginForm("Login", "User_64130299", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="mb-6">
+        @Html.LabelFor(model => model.Email, "Email", new { @class = "block text-sm font-medium text-gray-700" })
+        @Html.TextBoxFor(model => model.Email, new { @class = "mt-2 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black", placeholder = "Nhập email của bạn" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-sm text-red-500" })
+    </div>
+
+    <div class="mb-6">
+        @Html.LabelFor(model => model.Password, "Mật khẩu", new { @class = "block text-sm font-medium text-gray-700" })
+        @Html.PasswordFor(model => model.Password, new { @class = "mt-2 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black", placeholder = "Nhập mật khẩu của bạn" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-sm text-red-500" })
+    </div>
+
+    <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Đăng nhập</button>
+
+    <div class="mt-4 text-center">
+        <p class="text-sm text-gray-600">Chưa có tài khoản? <a href="@Url.Action("Register_64130299", "User_64130299")" class="text-blue-500 hover:underline">Đăng ký ngay</a></p>
+    </div>
+}

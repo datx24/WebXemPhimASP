@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout641302999.cshtml";
+    var username = Session["Username"] as string;
 }
 
 <div class="relative bg-black">
@@ -12,7 +13,17 @@
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="relative flex flex-col justify-center items-center h-full text-center text-white">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">Chào mừng đến với Xem Phim</h1>
-            <p class="text-lg md:text-xl mb-6">Xem các bộ phim mới nhất và nổi bật ngay hôm nay!</p>
+
+            <!-- Personalized Greeting -->
+            @if (!string.IsNullOrEmpty(username))
+            {
+                <p class="text-lg md:text-xl mb-6">Chào mừng đến với bộ xem, @username!</p>
+            }
+            else
+            {
+                <p class="text-lg md:text-xl mb-6">Xem các bộ phim mới nhất và nổi bật ngay hôm nay!</p>
+            }
+
             <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md">Xem ngay</a>
         </div>
     </div>

@@ -306,6 +306,8 @@
     <Content Include="Views\Subscription_64130299\Create_64130299.cshtml" />
     <None Include="Views\Subscription_64130299\Confirmation._64130299cshtml" />
     <Content Include="Views\Subscription_64130299\Failure_64130299.cshtml" />
+    <Content Include="Views\User_64130299\Login_64130299.cshtml" />
+    <Content Include="Views\User_64130299\Register_64130299.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
