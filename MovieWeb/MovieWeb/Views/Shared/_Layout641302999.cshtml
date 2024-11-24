@@ -63,7 +63,17 @@
                 </form>
 
                 <button class="bg-orange-500 text-white font-medium rounded-lg px-4 py-2 hover:bg-orange-600">Mua gói</button>
-                <a class="text-white hover:text-orange-500" href="@Url.Action("Login_64130299", "User_64130299")">Đăng nhập</a>
+                @if (Session["Username"] != null)
+                {
+                    // Nếu người dùng đã đăng nhập, hiển thị liên kết "Đăng xuất"
+                    <a class="text-white hover:text-orange-500" href="@Url.Action("Logout_64130299", "User_64130299")">Đăng xuất</a>
+                }
+                else
+                {
+                    // Nếu người dùng chưa đăng nhập, hiển thị liên kết "Đăng nhập"
+                    <a class="text-white hover:text-orange-500" href="@Url.Action("Login_64130299", "User_64130299")">Đăng nhập</a>
+                }
+
 
             </div>
         </div>

@@ -315,7 +315,7 @@ namespace MovieWeb.Controllers
 
 
         // Đăng xuất
-        public ActionResult Logout()
+        public ActionResult Logout_64130299()
         {
             // Xóa toàn bộ session
             Session.Clear();
