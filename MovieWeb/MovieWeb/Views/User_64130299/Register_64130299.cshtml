@@ -1,8 +1,57 @@
-﻿
+﻿@model MovieWeb.Models.User_64130299
 @{
-    ViewBag.Title = "Register_64130299";
+    ViewBag.Title = "Đăng kí";
     Layout = "~/Views/Shared/_Layout641302999.cshtml";
 }
 
-<h2>Register_64130299</h2>
+<h2>Đăng ký tài khoản</h2>
 
+@* Hiển thị thông báo lỗi (nếu có) *@
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@* Hiển thị thông báo thành công (nếu có) *@
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@* Form đăng ký *@
+@using (Html.BeginForm("Register", "User_64130299", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Nhập email của bạn" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username)
+        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Nhập tên người dùng" })
+        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password)
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Đăng ký</button>
+    </div>
+}
+
+<p>Đã có tài khoản? <a href="@Url.Action("Login_64130299", "User_64130299")">Đăng nhập ngay</a></p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
