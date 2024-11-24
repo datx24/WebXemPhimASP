@@ -17,7 +17,7 @@ namespace MovieWeb.Controllers
                 filterContext.Controller.TempData["ErrorMessage"] = "Bạn cần đăng nhập để truy cập trang này.";
 
                 // Nếu không, chuyển hướng người dùng về trang đăng nhập
-                filterContext.Result = new RedirectResult("~/Account_64130299/Login_64130299");
+                filterContext.Result = new RedirectResult("~/Account_64130299/LoginAdmin_64130299");
             }
 
             base.OnActionExecuting(filterContext);

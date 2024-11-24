@@ -11,8 +11,8 @@ namespace MovieWeb.Controllers
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
 
-        // Trang đăng nhập
-        public ActionResult Login_64130299()
+        // Trang đăng nhập của người quản lý
+        public ActionResult LoginAdmin_64130299()
         {
             return View();
         }
@@ -88,7 +88,7 @@ namespace MovieWeb.Controllers
             TempData["InfoMessage"] = "Bạn đã đăng xuất thành công.";
 
             // Điều hướng về trang đăng nhập
-            return RedirectToAction("Login_64130299");
+            return RedirectToAction("LoginAdmin_64130299");
         }
     }
 }

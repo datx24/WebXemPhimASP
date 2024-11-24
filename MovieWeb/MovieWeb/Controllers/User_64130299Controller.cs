@@ -10,7 +10,6 @@ using MovieWeb.Models;
 
 namespace MovieWeb.Controllers
 {
-    [AuthorizeAttribute_64130299Controller]
     public class User_64130299Controller : Controller
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
@@ -30,7 +29,7 @@ namespace MovieWeb.Controllers
 
             return userId;
         }
-        
+        [AuthorizeAttribute_64130299Controller]
         public ActionResult Index(string emailFilter = "", string passwordFilter = "", string usernameFilter = "", DateTime? createdAtFrom = null, DateTime? createdAtTo = null, DateTime? updatedAtFrom = null, DateTime? updatedAtTo = null)
         {
             // Cập nhật giá trị cho ViewBag để hiển thị trong form
@@ -87,7 +86,7 @@ namespace MovieWeb.Controllers
 
 
 
-
+        [AuthorizeAttribute_64130299Controller]
         // GET: User_64130299/Details/5
         public ActionResult Details(string id)
         {
@@ -102,7 +101,7 @@ namespace MovieWeb.Controllers
             }
             return View(user_64130299);
         }
-
+        [AuthorizeAttribute_64130299Controller]
         // GET: User_64130299/Create
         public ActionResult Create()
         {
@@ -119,6 +118,7 @@ namespace MovieWeb.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         // POST: User_64130299/Create
+        [AuthorizeAttribute_64130299Controller]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserId,Email,Password,Username,CreatedAt,UpdatedAt")] User_64130299 user_64130299)
@@ -137,9 +137,10 @@ namespace MovieWeb.Controllers
 
 
         // GET: User_64130299/Edit/5
-        
+
 
         // GET: User_64130299/Edit/5
+        [AuthorizeAttribute_64130299Controller]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -161,6 +162,7 @@ namespace MovieWeb.Controllers
         }
 
         // POST: User_64130299/Edit/5
+        [AuthorizeAttribute_64130299Controller]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(User_64130299 model)
@@ -195,6 +197,7 @@ namespace MovieWeb.Controllers
 
 
         // GET: User_64130299/Delete/5
+        [AuthorizeAttribute_64130299Controller]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -208,6 +211,7 @@ namespace MovieWeb.Controllers
             }
             return View(user_64130299);
         }
+        [AuthorizeAttribute_64130299Controller]
 
         // POST: User_64130299/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -219,7 +223,7 @@ namespace MovieWeb.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [AuthorizeAttribute_64130299Controller]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
