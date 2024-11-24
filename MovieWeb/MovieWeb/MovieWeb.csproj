@@ -134,9 +134,11 @@
     <Compile Include="Controllers\Comment_64130299Controller.cs" />
     <Compile Include="Controllers\Favorite_64130299Controller.cs" />
     <Compile Include="Controllers\Home_64130299Controller.cs" />
+    <Compile Include="Controllers\MemberSubscription_64130299Controller.cs" />
     <Compile Include="Controllers\MovieUrls_64130299Controller.cs" />
     <Compile Include="Controllers\Movie_64130299Controller.cs" />
     <Compile Include="Controllers\Rating_64130299Controller.cs" />
+    <Compile Include="Controllers\Subscription_64130299Controller.cs" />
     <Compile Include="Controllers\User_64130299Controller.cs" />
     <Compile Include="Controllers\WatchHistory_64130299Controller.cs" />
     <Compile Include="Global.asax.cs">
@@ -149,6 +151,9 @@
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Favorite_64130299.cs">
+      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MemberSubscription_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MovieModel_64130299.Context.cs">
@@ -253,7 +258,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_Layout641302999.cshtml" />
-    <Content Include="Views\Home_64130299\Home64130299.cshtml" />
+    <Content Include="Views\Home_64130299\Home_64130299.cshtml" />
     <Content Include="Views\Home_64130299\Details_64130299.cshtml" />
     <Content Include="Views\Home_64130299\Trailer_64130299.cshtml" />
     <Content Include="Views\Home_64130299\WatchMovie_64130299.cshtml" />
@@ -293,10 +298,16 @@
     <Content Include="Views\WatchHistory_64130299\Edit.cshtml" />
     <Content Include="Views\WatchHistory_64130299\Index.cshtml" />
     <Content Include="Views\Account_64130299\Login_64130299.cshtml" />
+    <Content Include="Views\MemberSubscription_64130299\Create.cshtml" />
+    <Content Include="Views\MemberSubscription_64130299\Delete.cshtml" />
+    <Content Include="Views\MemberSubscription_64130299\Details.cshtml" />
+    <Content Include="Views\MemberSubscription_64130299\Edit.cshtml" />
+    <Content Include="Views\MemberSubscription_64130299\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AuthorizeAttribute_64130299\" />
+    <Folder Include="Views\Subscription_64130299\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -94,5 +94,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="MemberSubscription_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.MemberSubscription_64130299">
+        <MappingFragment StoreEntitySet="MemberSubscription_64130299">
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="RenewalDate" ColumnName="RenewalDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

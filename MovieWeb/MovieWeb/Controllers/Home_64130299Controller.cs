@@ -10,7 +10,7 @@ namespace MovieWeb.Controllers
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
 
         // GET: Home_64130299 - displays a list of movies
-        public ActionResult Home64130299()
+        public ActionResult Home_64130299()
         {
             var movies = db.Movie_64130299.ToList();
             return View(movies); // Returns the list of movies to the view

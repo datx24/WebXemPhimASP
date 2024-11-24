@@ -27,6 +27,20 @@
     <Property Name="MovieId" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="CreatedAt" Type="datetime" />
   </EntityType>
+  <EntityType Name="MemberSubscription_64130299">
+    <Key>
+      <PropertyRef Name="SubscriptionId" />
+    </Key>
+    <Property Name="SubscriptionId" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+    <Property Name="AccessLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RenewalDate" Type="datetime" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="UpdatedAt" Type="datetime" />
+  </EntityType>
   <EntityType Name="Movie_64130299">
     <Key>
       <PropertyRef Name="MovieId" />
@@ -133,6 +147,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__MemberSub__UserI__5070F446">
+    <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="1" />
+    <End Role="MemberSubscription_64130299" Type="Self.MemberSubscription_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_64130299">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="MemberSubscription_64130299">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__MovieUrls__Movie__1A14E395">
     <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="1" />
     <End Role="MovieUrls_64130299" Type="Self.MovieUrls_64130299" Multiplicity="*" />
@@ -197,6 +223,7 @@
     <EntitySet Name="AdminUsers_64130299" EntityType="Self.AdminUsers_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comment_64130299" EntityType="Self.Comment_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Favorite_64130299" EntityType="Self.Favorite_64130299" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberSubscription_64130299" EntityType="Self.MemberSubscription_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Movie_64130299" EntityType="Self.Movie_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MovieUrls_64130299" EntityType="Self.MovieUrls_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rating_64130299" EntityType="Self.Rating_64130299" Schema="dbo" store:Type="Tables" />
@@ -217,6 +244,10 @@
     <AssociationSet Name="FK__Favorite___UserI__1DE57479" Association="Self.FK__Favorite___UserI__1DE57479">
       <End Role="User_64130299" EntitySet="User_64130299" />
       <End Role="Favorite_64130299" EntitySet="Favorite_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MemberSub__UserI__5070F446" Association="Self.FK__MemberSub__UserI__5070F446">
+      <End Role="User_64130299" EntitySet="User_64130299" />
+      <End Role="MemberSubscription_64130299" EntitySet="MemberSubscription_64130299" />
     </AssociationSet>
     <AssociationSet Name="FK__MovieUrls__Movie__1A14E395" Association="Self.FK__MovieUrls__Movie__1A14E395">
       <End Role="Movie_64130299" EntitySet="Movie_64130299" />

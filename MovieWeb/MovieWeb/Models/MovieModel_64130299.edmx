@@ -32,6 +32,20 @@
           <Property Name="MovieId" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
+        <EntityType Name="MemberSubscription_64130299">
+          <Key>
+            <PropertyRef Name="SubscriptionId" />
+          </Key>
+          <Property Name="SubscriptionId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+          <Property Name="AccessLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RenewalDate" Type="datetime" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
         <EntityType Name="Movie_64130299">
           <Key>
             <PropertyRef Name="MovieId" />
@@ -138,6 +152,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__MemberSub__UserI__5070F446">
+          <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="1" />
+          <End Role="MemberSubscription_64130299" Type="Self.MemberSubscription_64130299" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_64130299">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="MemberSubscription_64130299">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__MovieUrls__Movie__1A14E395">
           <End Role="Movie_64130299" Type="Self.Movie_64130299" Multiplicity="1" />
           <End Role="MovieUrls_64130299" Type="Self.MovieUrls_64130299" Multiplicity="*" />
@@ -202,6 +228,7 @@
           <EntitySet Name="AdminUsers_64130299" EntityType="Self.AdminUsers_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment_64130299" EntityType="Self.Comment_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Favorite_64130299" EntityType="Self.Favorite_64130299" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberSubscription_64130299" EntityType="Self.MemberSubscription_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movie_64130299" EntityType="Self.Movie_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MovieUrls_64130299" EntityType="Self.MovieUrls_64130299" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rating_64130299" EntityType="Self.Rating_64130299" Schema="dbo" store:Type="Tables" />
@@ -222,6 +249,10 @@
           <AssociationSet Name="FK__Favorite___UserI__1DE57479" Association="Self.FK__Favorite___UserI__1DE57479">
             <End Role="User_64130299" EntitySet="User_64130299" />
             <End Role="Favorite_64130299" EntitySet="Favorite_64130299" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MemberSub__UserI__5070F446" Association="Self.FK__MemberSub__UserI__5070F446">
+            <End Role="User_64130299" EntitySet="User_64130299" />
+            <End Role="MemberSubscription_64130299" EntitySet="MemberSubscription_64130299" />
           </AssociationSet>
           <AssociationSet Name="FK__MovieUrls__Movie__1A14E395" Association="Self.FK__MovieUrls__Movie__1A14E395">
             <End Role="Movie_64130299" EntitySet="Movie_64130299" />
@@ -330,6 +361,7 @@
           <NavigationProperty Name="Favorite_64130299" Relationship="Self.FK__Favorite___UserI__1DE57479" FromRole="User_64130299" ToRole="Favorite_64130299" />
           <NavigationProperty Name="Rating_64130299" Relationship="Self.FK__Rating_64__UserI__29572725" FromRole="User_64130299" ToRole="Rating_64130299" />
           <NavigationProperty Name="WatchHistory_64130299" Relationship="Self.FK__WatchHist__UserI__239E4DCF" FromRole="User_64130299" ToRole="WatchHistory_64130299" />
+          <NavigationProperty Name="MemberSubscription_64130299" Relationship="MovieDatabase_64130299Model.FK__MemberSub__UserI__5070F446" FromRole="User_64130299" ToRole="MemberSubscription_64130299" />
         </EntityType>
         <EntityType Name="WatchHistory_64130299">
           <Key>
@@ -496,6 +528,11 @@
             <End Role="WatchHistory_64130299" EntitySet="WatchHistory_64130299" />
           </AssociationSet>
           <EntitySet Name="AdminUsers_64130299" EntityType="MovieDatabase_64130299Model.AdminUsers_64130299" />
+          <EntitySet Name="MemberSubscription_64130299" EntityType="MovieDatabase_64130299Model.MemberSubscription_64130299" />
+          <AssociationSet Name="FK__MemberSub__UserI__5070F446" Association="MovieDatabase_64130299Model.FK__MemberSub__UserI__5070F446">
+            <End Role="User_64130299" EntitySet="User_64130299" />
+            <End Role="MemberSubscription_64130299" EntitySet="MemberSubscription_64130299" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdminUsers_64130299">
           <Key>
@@ -505,6 +542,33 @@
           <Property Name="Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="MemberSubscription_64130299">
+          <Key>
+            <PropertyRef Name="SubscriptionId" />
+          </Key>
+          <Property Name="SubscriptionId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AccessLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RenewalDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User_64130299" Relationship="MovieDatabase_64130299Model.FK__MemberSub__UserI__5070F446" FromRole="MemberSubscription_64130299" ToRole="User_64130299" />
+        </EntityType>
+        <Association Name="FK__MemberSub__UserI__5070F446">
+          <End Type="MovieDatabase_64130299Model.User_64130299" Role="User_64130299" Multiplicity="1" />
+          <End Type="MovieDatabase_64130299Model.MemberSubscription_64130299" Role="MemberSubscription_64130299" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_64130299">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="MemberSubscription_64130299">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -601,6 +665,21 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberSubscription_64130299">
+            <EntityTypeMapping TypeName="MovieDatabase_64130299Model.MemberSubscription_64130299">
+              <MappingFragment StoreEntitySet="MemberSubscription_64130299">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="RenewalDate" ColumnName="RenewalDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

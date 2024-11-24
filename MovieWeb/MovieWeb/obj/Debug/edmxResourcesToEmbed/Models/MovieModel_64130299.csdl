@@ -82,6 +82,7 @@
     <NavigationProperty Name="Favorite_64130299" Relationship="Self.FK__Favorite___UserI__1DE57479" FromRole="User_64130299" ToRole="Favorite_64130299" />
     <NavigationProperty Name="Rating_64130299" Relationship="Self.FK__Rating_64__UserI__29572725" FromRole="User_64130299" ToRole="Rating_64130299" />
     <NavigationProperty Name="WatchHistory_64130299" Relationship="Self.FK__WatchHist__UserI__239E4DCF" FromRole="User_64130299" ToRole="WatchHistory_64130299" />
+    <NavigationProperty Name="MemberSubscription_64130299" Relationship="MovieDatabase_64130299Model.FK__MemberSub__UserI__5070F446" FromRole="User_64130299" ToRole="MemberSubscription_64130299" />
   </EntityType>
   <EntityType Name="WatchHistory_64130299">
     <Key>
@@ -248,6 +249,11 @@
       <End Role="WatchHistory_64130299" EntitySet="WatchHistory_64130299" />
     </AssociationSet>
     <EntitySet Name="AdminUsers_64130299" EntityType="MovieDatabase_64130299Model.AdminUsers_64130299" />
+    <EntitySet Name="MemberSubscription_64130299" EntityType="MovieDatabase_64130299Model.MemberSubscription_64130299" />
+    <AssociationSet Name="FK__MemberSub__UserI__5070F446" Association="MovieDatabase_64130299Model.FK__MemberSub__UserI__5070F446">
+      <End Role="User_64130299" EntitySet="User_64130299" />
+      <End Role="MemberSubscription_64130299" EntitySet="MemberSubscription_64130299" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AdminUsers_64130299">
     <Key>
@@ -257,4 +263,31 @@
     <Property Name="Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="MemberSubscription_64130299">
+    <Key>
+      <PropertyRef Name="SubscriptionId" />
+    </Key>
+    <Property Name="SubscriptionId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AccessLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RenewalDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User_64130299" Relationship="MovieDatabase_64130299Model.FK__MemberSub__UserI__5070F446" FromRole="MemberSubscription_64130299" ToRole="User_64130299" />
+  </EntityType>
+  <Association Name="FK__MemberSub__UserI__5070F446">
+    <End Type="MovieDatabase_64130299Model.User_64130299" Role="User_64130299" Multiplicity="1" />
+    <End Type="MovieDatabase_64130299Model.MemberSubscription_64130299" Role="MemberSubscription_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_64130299">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="MemberSubscription_64130299">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

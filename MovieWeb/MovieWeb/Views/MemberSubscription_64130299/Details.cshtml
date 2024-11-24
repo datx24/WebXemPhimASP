@@ -1,0 +1,83 @@
+﻿@model MovieWeb.Models.MemberSubscription_64130299
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MemberSubscription_64130299</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RenewalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RenewalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_64130299.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_64130299.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubscriptionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

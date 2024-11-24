@@ -21,6 +21,7 @@ namespace MovieWeb.Models
             this.Favorite_64130299 = new HashSet<Favorite_64130299>();
             this.Rating_64130299 = new HashSet<Rating_64130299>();
             this.WatchHistory_64130299 = new HashSet<WatchHistory_64130299>();
+            this.MemberSubscription_64130299 = new HashSet<MemberSubscription_64130299>();
         }
     
         public string UserId { get; set; }
@@ -38,5 +39,7 @@ namespace MovieWeb.Models
         public virtual ICollection<Rating_64130299> Rating_64130299 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WatchHistory_64130299> WatchHistory_64130299 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MemberSubscription_64130299> MemberSubscription_64130299 { get; set; }
     }
 }

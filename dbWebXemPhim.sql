@@ -28,7 +28,6 @@ CREATE TABLE Movie_64130299 (
     CreatedAt DATETIME DEFAULT GETDATE(),
     UpdatedAt DATETIME DEFAULT GETDATE()
 );
-
 -- Thêm AccessLevel vào bảng Movie
 ALTER TABLE Movie_64130299
 ADD AccessLevel NVARCHAR(50) NOT NULL DEFAULT 'Standard';
@@ -89,6 +88,21 @@ CREATE TABLE AdminUsers_64130299 (
     Username NVARCHAR(255) NOT NULL, -- Sử dụng NVARCHAR để hỗ trợ Unicode
     PasswordHash NVARCHAR(255) NOT NULL -- Sử dụng NVARCHAR cho mật khẩu mã hóa
 );
+
+-- Tạo bảng MemberSubscription để đăng ký thành viên
+CREATE TABLE MemberSubscription_64130299 (
+    SubscriptionId VARCHAR(100) PRIMARY KEY,  -- Mã đăng ký, có thể là GUID hoặc UUID
+    UserId VARCHAR(100) NOT NULL,             -- ID người dùng từ bảng User
+    StartDate DATETIME NOT NULL DEFAULT GETDATE(), -- Ngày bắt đầu đăng ký
+    ExpiryDate DATETIME NOT NULL,            -- Ngày hết hạn thẻ thành viên
+    AccessLevel NVARCHAR(50) NOT NULL DEFAULT 'Premium', -- Phân loại thẻ, "Premium" hoặc "Free"
+    Status NVARCHAR(50) NOT NULL DEFAULT 'Active',  -- Trạng thái thẻ ("Active", "Inactive", "Expired")
+    RenewalDate DATETIME NULL,                -- Ngày gia hạn (nếu có)
+    CreatedAt DATETIME DEFAULT GETDATE(),     -- Ngày tạo bản ghi
+    UpdatedAt DATETIME DEFAULT GETDATE(),     -- Ngày cập nhật bản ghi
+    FOREIGN KEY (UserId) REFERENCES User_64130299(UserId)  -- Liên kết với bảng User
+);
+
 
 INSERT INTO AdminUsers_64130299 (Username, PasswordHash)
 VALUES ('admin', '6088d7f1f66b1d3d311f8db7d9217dcef9e89e03c536adb5ae37e740fabf1a03');
