@@ -6,13 +6,14 @@
 
 <h2>Thanh Toán Gói Thành Viên</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Subscription_64130299", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-group">
         <label for="userId">User ID</label>
-        <input type="text" class="form-control" name="userId" required />
+        <input type="text" class="form-control text-black" name="userId"
+               value="@Session["UserId"]" readonly />
     </div>
 
     <div class="form-group">
@@ -26,7 +27,7 @@
 
     <div class="form-group">
         <label for="expiryDate">Ngày Hết Hạn</label>
-        <input type="date" class="form-control" name="expiryDate" required />
+        <input type="date" class="form-control text-black" name="expiryDate" required />
     </div>
 
     <button type="submit" class="btn btn-primary">Thanh Toán</button>
