@@ -108,6 +108,44 @@ namespace MovieWeb.Controllers
             string paymentUrl = vnpay.CreateRequestUrl(vnp_Url, vnp_HashSecret);
             return Redirect(paymentUrl);
         }
+        public ActionResult VNPayReturn()
+        {
+            VNPayLibrary vnpay = new VNPayLibrary();
+            string vnp_HashSecret = System.Configuration.ConfigurationManager.AppSettings["vnp_HashSecret"];
+
+            // Lấy toàn bộ query string từ URL
+            var requestData = Request.QueryString;
+            foreach (string key in requestData)
+            {
+                if (!string.IsNullOrEmpty(key) && key.StartsWith("vnp_"))
+                {
+                    vnpay.AddResponseData(key, requestData[key]);
+                }
+            }
+
+            string vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
+            string vnp_SecureHash = Request.QueryString["vnp_SecureHash"];
+            bool isValid = vnpay.ValidateSignature(vnp_SecureHash, vnp_HashSecret);
+
+            if (isValid && vnp_ResponseCode == "00")
+            {
+                string transactionId = vnpay.GetResponseData("vnp_TxnRef");
+
+                // Cập nhật trạng thái giao dịch trong DB
+                var subscription = db.MemberSubscription_64130299.FirstOrDefault(x => x.SubscriptionId == transactionId);
+                if (subscription != null)
+                {
+                    subscription.Status = "Paid";
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Confirmation_64130299");
+            }
+            else
+            {
+                return RedirectToAction("Failure_64130299");
+            }
+        }
 
     }
 }
