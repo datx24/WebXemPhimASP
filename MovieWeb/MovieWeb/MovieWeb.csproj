@@ -319,6 +319,7 @@
     <Content Include="Views\MemberSubscription_64130299\Edit.cshtml" />
     <Content Include="Views\MemberSubscription_64130299\Index.cshtml" />
     <Content Include="Views\Subscription_64130299\VNPayPayment.cshtml" />
+    <Content Include="Views\Subscription_64130299\VNPayReturn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "VNPay Return";
+    Layout = "~/Views/Shared/_Layout641302999.cshtml";
+}
+
+<h2>Kết quả thanh toán VNPay</h2>
+
+@if (Request.QueryString["vnp_ResponseCode"] != null)
+{
+    string responseCode = Request.QueryString["vnp_ResponseCode"];
+    string txnRef = Request.QueryString["vnp_TxnRef"];
+    string amount = Request.QueryString["vnp_Amount"];
+    string orderInfo = Request.QueryString["vnp_OrderInfo"];
+
+    if (responseCode == "00")
+    {
+        <div class="alert alert-success">
+            <strong>Thanh toán thành công!</strong>
+            <p>Thông tin giao dịch:</p>
+            <ul>
+                <li><strong>Mã giao dịch:</strong> @txnRef</li>
+                <li><strong>Số tiền:</strong> @amount VND</li>
+                <li><strong>Thông tin đơn hàng:</strong> @orderInfo</li>
+            </ul>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <strong>Thanh toán không thành công!</strong>
+            <p>Lý do: @responseCode</p>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning">
+        <strong>Lỗi</strong> - Không có thông tin giao dịch.
+    </div>
+}
+
+<p><a href="@Url.Action("Home_64130299", "Home_64130299")">Quay lại trang chủ</a></p>
