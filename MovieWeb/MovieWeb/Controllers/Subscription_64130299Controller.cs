@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace MovieWeb.Controllers
 {
     public class Subscription_64130299Controller : Controller
@@ -96,7 +97,7 @@ namespace MovieWeb.Controllers
             vnpay.AddRequestData("vnp_Version", "2.1.0");
             vnpay.AddRequestData("vnp_Command", "pay");
             vnpay.AddRequestData("vnp_TmnCode", vnp_TmnCode);
-            vnpay.AddRequestData("vnp_Amount", (subscription.Amount * 100).ToString());
+            vnpay.AddRequestData("vnp_Amount", (subscription.AmountPaid * 100).ToString());
             vnpay.AddRequestData("vnp_CurrCode", "VND");
             vnpay.AddRequestData("vnp_TxnRef", subscription.SubscriptionId);
             vnpay.AddRequestData("vnp_OrderInfo", $"Thanh toán gói {subscription.PlanId} cho User {subscription.UserId}");

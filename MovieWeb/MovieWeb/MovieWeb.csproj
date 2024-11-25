@@ -141,6 +141,7 @@
     <Compile Include="Controllers\SubscriptionPlans_64130299Controller.cs" />
     <Compile Include="Controllers\Subscription_64130299Controller.cs" />
     <Compile Include="Controllers\User_64130299Controller.cs" />
+    <Compile Include="Controllers\VNPayLibrary.cs" />
     <Compile Include="Controllers\WatchHistory_64130299Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
