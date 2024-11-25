@@ -254,6 +254,11 @@
       <End Role="User_64130299" EntitySet="User_64130299" />
       <End Role="MemberSubscription_64130299" EntitySet="MemberSubscription_64130299" />
     </AssociationSet>
+    <EntitySet Name="SubscriptionPlans_64130299" EntityType="MovieDatabase_64130299Model.SubscriptionPlans_64130299" />
+    <AssociationSet Name="FK__MemberSub__PlanI__6754599E" Association="MovieDatabase_64130299Model.FK__MemberSub__PlanI__6754599E">
+      <End Role="SubscriptionPlans_64130299" EntitySet="SubscriptionPlans_64130299" />
+      <End Role="MemberSubscription_64130299" EntitySet="MemberSubscription_64130299" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AdminUsers_64130299">
     <Key>
@@ -277,6 +282,10 @@
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
     <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
     <NavigationProperty Name="User_64130299" Relationship="MovieDatabase_64130299Model.FK__MemberSub__UserI__5070F446" FromRole="MemberSubscription_64130299" ToRole="User_64130299" />
+    <Property Name="PlanId" Type="Int32" Nullable="false" />
+    <Property Name="PaymentMethod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <NavigationProperty Name="SubscriptionPlans_64130299" Relationship="MovieDatabase_64130299Model.FK__MemberSub__PlanI__6754599E" FromRole="MemberSubscription_64130299" ToRole="SubscriptionPlans_64130299" />
   </EntityType>
   <Association Name="FK__MemberSub__UserI__5070F446">
     <End Type="MovieDatabase_64130299Model.User_64130299" Role="User_64130299" Multiplicity="1" />
@@ -287,6 +296,30 @@
       </Principal>
       <Dependent Role="MemberSubscription_64130299">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SubscriptionPlans_64130299">
+    <Key>
+      <PropertyRef Name="PlanId" />
+    </Key>
+    <Property Name="PlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlanName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DurationMonths" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="MemberSubscription_64130299" Relationship="MovieDatabase_64130299Model.FK__MemberSub__PlanI__6754599E" FromRole="SubscriptionPlans_64130299" ToRole="MemberSubscription_64130299" />
+  </EntityType>
+  <Association Name="FK__MemberSub__PlanI__6754599E">
+    <End Type="MovieDatabase_64130299Model.SubscriptionPlans_64130299" Role="SubscriptionPlans_64130299" Multiplicity="1" />
+    <End Type="MovieDatabase_64130299Model.MemberSubscription_64130299" Role="MemberSubscription_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubscriptionPlans_64130299">
+        <PropertyRef Name="PlanId" />
+      </Principal>
+      <Dependent Role="MemberSubscription_64130299">
+        <PropertyRef Name="PlanId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

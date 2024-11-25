@@ -1,34 +1,41 @@
-﻿
-@{
-    ViewBag.Title = "Thanh Toán Gói";
+﻿@{
+    ViewBag.Title = "Thanh Toán Gói Thành Viên";
     Layout = "~/Views/Shared/_Layout641302999.cshtml";
+
+    // Lấy giá trị từ ViewBag (nếu có) hoặc sử dụng giá trị mặc định
+    var userId = ViewBag.UserId as string ?? string.Empty;
+    var selectedPlan = ViewBag.SelectedPlan as string ?? "1"; // Gói mặc định là 1 tháng
+    var expiryDate = ViewBag.ExpiryDate as DateTime? ?? DateTime.Now.AddMonths(1);
 }
 
 <h2>Thanh Toán Gói Thành Viên</h2>
 
-@using (Html.BeginForm("Create", "Subscription_64130299", FormMethod.Post))
+@using (Html.BeginForm("Create_64130299", "Subscription_64130299", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-group">
         <label for="userId">User ID</label>
-        <input type="text" class="form-control text-black" name="userId"
-               value="@Session["UserId"]" readonly />
+        <input type="text" class="form-control text-black" name="UserId"
+               value="@userId" readonly />
     </div>
 
     <div class="form-group">
         <label for="accessLevel">Chọn Gói Thành Viên</label>
-        <select class="form-control" name="accessLevel">
-            <option value="Premium">Premium</option>
-            <option value="Standard">Standard</option>
-            <option value="Free">Free</option>
+        <select class="form-control" id="PlanId" name="PlanId" onchange="this.form.submit()">
+            <option value="1" @(selectedPlan == "1" ? "selected" : "")>Gói 1 Tháng</option>
+            <option value="2" @(selectedPlan == "2" ? "selected" : "")>Gói 1 Năm</option>
         </select>
     </div>
 
     <div class="form-group">
         <label for="expiryDate">Ngày Hết Hạn</label>
-        <input type="date" class="form-control text-black" name="expiryDate" required />
+        <input type="text" class="form-control text-black" id="ExpiryDate" name="ExpiryDate"
+               value="@expiryDate.ToString("yyyy-MM-dd")" readonly />
     </div>
 
-    <button type="submit" class="btn btn-primary">Thanh Toán</button>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" name="PaymentMethod" value="VNPay">Thanh Toán qua VNPay</button>
+        <button type="submit" class="btn btn-primary" name="PaymentMethod" value="MoMo">Thanh Toán qua MoMo</button>
+    </div>
 }

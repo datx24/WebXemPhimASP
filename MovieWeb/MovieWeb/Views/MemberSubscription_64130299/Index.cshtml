@@ -34,7 +34,16 @@
             @Html.DisplayNameFor(model => model.UpdatedAt)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.PaymentMethod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountPaid)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.User_64130299.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubscriptionPlans_64130299.PlanName)
         </th>
         <th></th>
     </tr>
@@ -63,7 +72,16 @@
             @Html.DisplayFor(modelItem => item.UpdatedAt)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.PaymentMethod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountPaid)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.User_64130299.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubscriptionPlans_64130299.PlanName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SubscriptionId }) |

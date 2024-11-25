@@ -89,19 +89,34 @@ CREATE TABLE AdminUsers_64130299 (
     PasswordHash NVARCHAR(255) NOT NULL -- Sử dụng NVARCHAR cho mật khẩu mã hóa
 );
 
+--Lưu thông tin các gói thành viên
+CREATE TABLE SubscriptionPlans_64130299 (
+    PlanId INT PRIMARY KEY IDENTITY(1,1),  -- Mã gói thành viên
+    PlanName NVARCHAR(50) NOT NULL,         -- Tên gói (ví dụ: "1 tháng", "1 năm")
+    DurationMonths INT NOT NULL,            -- Số tháng của gói (1 tháng, 12 tháng)
+    Price DECIMAL(10, 2) NOT NULL,          -- Giá tiền của gói
+    CreatedAt DATETIME DEFAULT GETDATE(),   -- Ngày tạo gói
+    UpdatedAt DATETIME DEFAULT GETDATE()    -- Ngày cập nhật gói
+);
+
 -- Tạo bảng MemberSubscription để đăng ký thành viên
 CREATE TABLE MemberSubscription_64130299 (
     SubscriptionId VARCHAR(100) PRIMARY KEY,  -- Mã đăng ký, có thể là GUID hoặc UUID
     UserId VARCHAR(100) NOT NULL,             -- ID người dùng từ bảng User
+    PlanId INT NOT NULL,                      -- Mã gói từ bảng SubscriptionPlans
     StartDate DATETIME NOT NULL DEFAULT GETDATE(), -- Ngày bắt đầu đăng ký
     ExpiryDate DATETIME NOT NULL,            -- Ngày hết hạn thẻ thành viên
     AccessLevel NVARCHAR(50) NOT NULL DEFAULT 'Premium', -- Phân loại thẻ, "Premium" hoặc "Free"
     Status NVARCHAR(50) NOT NULL DEFAULT 'Active',  -- Trạng thái thẻ ("Active", "Inactive", "Expired")
+    PaymentMethod NVARCHAR(50) NOT NULL,      -- Phương thức thanh toán (VNPay, MoMo, ...)
+    AmountPaid DECIMAL(10, 2) NOT NULL,       -- Số tiền đã thanh toán
     RenewalDate DATETIME NULL,                -- Ngày gia hạn (nếu có)
     CreatedAt DATETIME DEFAULT GETDATE(),     -- Ngày tạo bản ghi
     UpdatedAt DATETIME DEFAULT GETDATE(),     -- Ngày cập nhật bản ghi
-    FOREIGN KEY (UserId) REFERENCES User_64130299(UserId)  -- Liên kết với bảng User
+    FOREIGN KEY (UserId) REFERENCES User_64130299(UserId),  -- Liên kết với bảng User
+    FOREIGN KEY (PlanId) REFERENCES SubscriptionPlans_64130299(PlanId)  -- Liên kết với bảng SubscriptionPlans
 );
+
 
 
 INSERT INTO AdminUsers_64130299 (Username, PasswordHash)

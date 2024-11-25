@@ -34,5 +34,6 @@ namespace MovieWeb.Models
         public virtual DbSet<WatchHistory_64130299> WatchHistory_64130299 { get; set; }
         public virtual DbSet<AdminUsers_64130299> AdminUsers_64130299 { get; set; }
         public virtual DbSet<MemberSubscription_64130299> MemberSubscription_64130299 { get; set; }
+        public virtual DbSet<SubscriptionPlans_64130299> SubscriptionPlans_64130299 { get; set; }
     }
 }

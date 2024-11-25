@@ -33,10 +33,13 @@
     </Key>
     <Property Name="SubscriptionId" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PlanId" Type="int" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
     <Property Name="AccessLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AmountPaid" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="RenewalDate" Type="datetime" />
     <Property Name="CreatedAt" Type="datetime" />
     <Property Name="UpdatedAt" Type="datetime" />
@@ -77,6 +80,17 @@
     <Property Name="MovieId" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Rating" Type="int" />
     <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SubscriptionPlans_64130299">
+    <Key>
+      <PropertyRef Name="PlanId" />
+    </Key>
+    <Property Name="PlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlanName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DurationMonths" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="UpdatedAt" Type="datetime" />
   </EntityType>
   <EntityType Name="User_64130299">
     <Key>
@@ -147,7 +161,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__MemberSub__UserI__5070F446">
+  <Association Name="FK__MemberSub__PlanI__6754599E">
+    <End Role="SubscriptionPlans_64130299" Type="Self.SubscriptionPlans_64130299" Multiplicity="1" />
+    <End Role="MemberSubscription_64130299" Type="Self.MemberSubscription_64130299" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubscriptionPlans_64130299">
+        <PropertyRef Name="PlanId" />
+      </Principal>
+      <Dependent Role="MemberSubscription_64130299">
+        <PropertyRef Name="PlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MemberSub__UserI__66603565">
     <End Role="User_64130299" Type="Self.User_64130299" Multiplicity="1" />
     <End Role="MemberSubscription_64130299" Type="Self.MemberSubscription_64130299" Multiplicity="*" />
     <ReferentialConstraint>
@@ -227,6 +253,7 @@
     <EntitySet Name="Movie_64130299" EntityType="Self.Movie_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MovieUrls_64130299" EntityType="Self.MovieUrls_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rating_64130299" EntityType="Self.Rating_64130299" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubscriptionPlans_64130299" EntityType="Self.SubscriptionPlans_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User_64130299" EntityType="Self.User_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WatchHistory_64130299" EntityType="Self.WatchHistory_64130299" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Comment_6__Movie__2F10007B" Association="Self.FK__Comment_6__Movie__2F10007B">
@@ -245,7 +272,11 @@
       <End Role="User_64130299" EntitySet="User_64130299" />
       <End Role="Favorite_64130299" EntitySet="Favorite_64130299" />
     </AssociationSet>
-    <AssociationSet Name="FK__MemberSub__UserI__5070F446" Association="Self.FK__MemberSub__UserI__5070F446">
+    <AssociationSet Name="FK__MemberSub__PlanI__6754599E" Association="Self.FK__MemberSub__PlanI__6754599E">
+      <End Role="SubscriptionPlans_64130299" EntitySet="SubscriptionPlans_64130299" />
+      <End Role="MemberSubscription_64130299" EntitySet="MemberSubscription_64130299" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MemberSub__UserI__66603565" Association="Self.FK__MemberSub__UserI__66603565">
       <End Role="User_64130299" EntitySet="User_64130299" />
       <End Role="MemberSubscription_64130299" EntitySet="MemberSubscription_64130299" />
     </AssociationSet>

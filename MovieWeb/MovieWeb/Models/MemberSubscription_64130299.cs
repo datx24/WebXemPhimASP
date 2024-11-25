@@ -23,7 +23,11 @@ namespace MovieWeb.Models
         public Nullable<System.DateTime> RenewalDate { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
+        public int PlanId { get; set; }
+        public string PaymentMethod { get; set; }
+        public decimal AmountPaid { get; set; }
     
         public virtual User_64130299 User_64130299 { get; set; }
+        public virtual SubscriptionPlans_64130299 SubscriptionPlans_64130299 { get; set; }
     }
 }

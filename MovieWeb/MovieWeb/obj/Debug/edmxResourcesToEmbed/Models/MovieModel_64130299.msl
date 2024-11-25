@@ -97,6 +97,9 @@
     <EntitySetMapping Name="MemberSubscription_64130299">
       <EntityTypeMapping TypeName="MovieDatabase_64130299Model.MemberSubscription_64130299">
         <MappingFragment StoreEntitySet="MemberSubscription_64130299">
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="PlanId" ColumnName="PlanId" />
           <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           <ScalarProperty Name="RenewalDate" ColumnName="RenewalDate" />
@@ -106,6 +109,18 @@
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubscriptionPlans_64130299">
+      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.SubscriptionPlans_64130299">
+        <MappingFragment StoreEntitySet="SubscriptionPlans_64130299">
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="DurationMonths" ColumnName="DurationMonths" />
+          <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+          <ScalarProperty Name="PlanId" ColumnName="PlanId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

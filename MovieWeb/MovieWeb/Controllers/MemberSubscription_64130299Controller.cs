@@ -17,7 +17,7 @@ namespace MovieWeb.Controllers
         // GET: MemberSubscription_64130299
         public ActionResult Index()
         {
-            var memberSubscription_64130299 = db.MemberSubscription_64130299.Include(m => m.User_64130299);
+            var memberSubscription_64130299 = db.MemberSubscription_64130299.Include(m => m.User_64130299).Include(m => m.SubscriptionPlans_64130299);
             return View(memberSubscription_64130299.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace MovieWeb.Controllers
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.User_64130299, "UserId", "Email");
+            ViewBag.PlanId = new SelectList(db.SubscriptionPlans_64130299, "PlanId", "PlanName");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace MovieWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SubscriptionId,UserId,StartDate,ExpiryDate,AccessLevel,Status,RenewalDate,CreatedAt,UpdatedAt")] MemberSubscription_64130299 memberSubscription_64130299)
+        public ActionResult Create([Bind(Include = "SubscriptionId,UserId,StartDate,ExpiryDate,AccessLevel,Status,RenewalDate,CreatedAt,UpdatedAt,PlanId,PaymentMethod,AmountPaid")] MemberSubscription_64130299 memberSubscription_64130299)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace MovieWeb.Controllers
             }
 
             ViewBag.UserId = new SelectList(db.User_64130299, "UserId", "Email", memberSubscription_64130299.UserId);
+            ViewBag.PlanId = new SelectList(db.SubscriptionPlans_64130299, "PlanId", "PlanName", memberSubscription_64130299.PlanId);
             return View(memberSubscription_64130299);
         }
 
@@ -74,6 +76,7 @@ namespace MovieWeb.Controllers
                 return HttpNotFound();
             }
             ViewBag.UserId = new SelectList(db.User_64130299, "UserId", "Email", memberSubscription_64130299.UserId);
+            ViewBag.PlanId = new SelectList(db.SubscriptionPlans_64130299, "PlanId", "PlanName", memberSubscription_64130299.PlanId);
             return View(memberSubscription_64130299);
         }
 
@@ -82,7 +85,7 @@ namespace MovieWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SubscriptionId,UserId,StartDate,ExpiryDate,AccessLevel,Status,RenewalDate,CreatedAt,UpdatedAt")] MemberSubscription_64130299 memberSubscription_64130299)
+        public ActionResult Edit([Bind(Include = "SubscriptionId,UserId,StartDate,ExpiryDate,AccessLevel,Status,RenewalDate,CreatedAt,UpdatedAt,PlanId,PaymentMethod,AmountPaid")] MemberSubscription_64130299 memberSubscription_64130299)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +94,7 @@ namespace MovieWeb.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.UserId = new SelectList(db.User_64130299, "UserId", "Email", memberSubscription_64130299.UserId);
+            ViewBag.PlanId = new SelectList(db.SubscriptionPlans_64130299, "PlanId", "PlanName", memberSubscription_64130299.PlanId);
             return View(memberSubscription_64130299);
         }
 

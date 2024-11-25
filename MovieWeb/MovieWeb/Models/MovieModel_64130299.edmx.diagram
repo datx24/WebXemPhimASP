@@ -24,6 +24,8 @@
         <EntityTypeShape EntityType="MovieDatabase_64130299Model.AdminUsers_64130299" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="MovieDatabase_64130299Model.MemberSubscription_64130299" Width="1.5" PointX="6" PointY="0.75" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__MemberSub__UserI__5070F446" />
+        <EntityTypeShape EntityType="MovieDatabase_64130299Model.SubscriptionPlans_64130299" Width="1.5" PointX="8.375" PointY="1" />
+        <AssociationConnector Association="MovieDatabase_64130299Model.FK__MemberSub__PlanI__6754599E" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
