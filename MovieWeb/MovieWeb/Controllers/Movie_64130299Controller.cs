@@ -151,6 +151,7 @@ namespace MovieWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Movie_64130299 movie_64130299 = db.Movie_64130299.Find(id);
+            movie_64130299.UpdatedAt = DateTime.Now;
             if (movie_64130299 == null)
             {
                 return HttpNotFound();
