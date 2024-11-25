@@ -107,8 +107,20 @@ namespace MovieWeb.Controllers
             vnpay.AddRequestData("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss"));
 
             string paymentUrl = vnpay.CreateRequestUrl(vnp_Url, vnp_HashSecret);
-            return Redirect(paymentUrl);
+
+            // Pass the necessary data to the view (including the payment URL)
+            var viewModel = new
+            {
+                SubscriptionId = subscription.SubscriptionId,
+                AmountPaid = subscription.AmountPaid,
+                PlanId = subscription.PlanId,
+                UserId = subscription.UserId,
+                PaymentUrl = paymentUrl
+            };
+
+            return View(viewModel);
         }
+
         public ActionResult VNPayReturn()
         {
             VNPayLibrary vnpay = new VNPayLibrary();
