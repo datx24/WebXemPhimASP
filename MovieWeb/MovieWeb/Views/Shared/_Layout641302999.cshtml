@@ -62,7 +62,10 @@
                     </div>
                 </form>
 
-                <button class="bg-orange-500 text-white font-medium rounded-lg px-4 py-2 hover:bg-orange-600">Mua gói</button>
+                <button class="bg-orange-500 text-white font-medium rounded-lg px-4 py-2 hover:bg-orange-600"
+                        onclick="location.href='@Url.Action("Create_64130299", "Subscription_64130299")'">
+                    Mua gói
+                </button>
                 @if (Session["Username"] != null)
                 {
                     // Nếu người dùng đã đăng nhập, hiển thị liên kết "Đăng xuất"
