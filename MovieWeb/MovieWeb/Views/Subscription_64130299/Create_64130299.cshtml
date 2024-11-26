@@ -10,7 +10,7 @@
 
 <h2>Thanh Toán Gói Thành Viên</h2>
 
-@using (Html.BeginForm("Create_64130299", "Subscription_64130299", FormMethod.Post))
+@using (Html.BeginForm("Create", "Subscription_64130299", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -22,7 +22,7 @@
 
     <div class="form-group">
         <label for="accessLevel">Chọn Gói Thành Viên</label>
-        <select class="form-control" id="PlanId" name="PlanId" onchange="this.form.submit()">
+        <select class="form-control" id="PlanId" name="PlanId">
             <option value="1" @(selectedPlan == "1" ? "selected" : "")>Gói 1 Tháng</option>
             <option value="2" @(selectedPlan == "2" ? "selected" : "")>Gói 1 Năm</option>
         </select>

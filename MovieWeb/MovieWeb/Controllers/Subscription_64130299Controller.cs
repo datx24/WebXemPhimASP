@@ -57,16 +57,23 @@ namespace MovieWeb.Controllers
                     PaymentMethod = model.PaymentMethod,
                 };
 
+                if (model.PaymentMethod == "VNPay")
+                {
+                    return RedirectToAction("VNPayPayment", new { subscriptionId = subscription.SubscriptionId });
+                }
+                else if (model.PaymentMethod == "MoMo")
+                {
+                    return RedirectToAction("MoMoPayment", new { subscriptionId = subscription.SubscriptionId });
+                }
+
                 db.MemberSubscription_64130299.Add(subscription);
                 db.SaveChanges();
 
-                return model.PaymentMethod == "VNPay"
-                    ? RedirectToAction("VNPayPayment", new { subscriptionId = subscription.SubscriptionId })
-                    : RedirectToAction("MoMoPayment", new { subscriptionId = subscription.SubscriptionId });
             }
 
             return View(model);
         }
+
 
         // GET: Subscription/Confirmation (Trang xác nhận thành công)
         public ActionResult Confirmation_64130299()
@@ -107,19 +114,9 @@ namespace MovieWeb.Controllers
             vnpay.AddRequestData("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss"));
 
             string paymentUrl = vnpay.CreateRequestUrl(vnp_Url, vnp_HashSecret);
-
-            // Pass the necessary data to the view (including the payment URL)
-            var viewModel = new
-            {
-                SubscriptionId = subscription.SubscriptionId,
-                AmountPaid = subscription.AmountPaid,
-                PlanId = subscription.PlanId,
-                UserId = subscription.UserId,
-                PaymentUrl = paymentUrl
-            };
-
-            return View(viewModel);
+            return Redirect(paymentUrl); // Redirect the user to VNPay's payment page
         }
+
 
         public ActionResult VNPayReturn()
         {
@@ -128,6 +125,7 @@ namespace MovieWeb.Controllers
 
             // Lấy toàn bộ query string từ URL
             var requestData = Request.QueryString;
+
             foreach (string key in requestData)
             {
                 if (!string.IsNullOrEmpty(key) && key.StartsWith("vnp_"))
@@ -136,29 +134,57 @@ namespace MovieWeb.Controllers
                 }
             }
 
+            // Log the response code from VNPay
             string vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
-            string vnp_SecureHash = Request.QueryString["vnp_SecureHash"];
-            bool isValid = vnpay.ValidateSignature(vnp_SecureHash, vnp_HashSecret);
+            System.Diagnostics.Debug.WriteLine($"VNPay Response Code: {vnp_ResponseCode}");
 
+            // Log the secure hash
+            string vnp_SecureHash = Request.QueryString["vnp_SecureHash"];
+            System.Diagnostics.Debug.WriteLine($"VNPay Secure Hash: {vnp_SecureHash}");
+
+            // Validate the signature
+            bool isValid = vnpay.ValidateSignature(vnp_SecureHash, vnp_HashSecret);
+            System.Diagnostics.Debug.WriteLine($"Signature Valid: {isValid}");
+
+            // Check response code and signature validity
             if (isValid && vnp_ResponseCode == "00")
             {
                 string transactionId = vnpay.GetResponseData("vnp_TxnRef");
+                System.Diagnostics.Debug.WriteLine($"Transaction ID: {transactionId}");
 
-                // Cập nhật trạng thái giao dịch trong DB
+                // Log subscription lookup
                 var subscription = db.MemberSubscription_64130299.FirstOrDefault(x => x.SubscriptionId == transactionId);
                 if (subscription != null)
                 {
-                    subscription.Status = "Paid";
-                    db.SaveChanges();
-                }
+                    System.Diagnostics.Debug.WriteLine($"Found Subscription: {transactionId}, Current Status: {subscription.Status}");
 
-                return RedirectToAction("Confirmation_64130299");
+                    // Update subscription status
+                    subscription.Status = "Paid";
+                    try
+                    {
+                        db.SaveChanges();
+                        System.Diagnostics.Debug.WriteLine($"Subscription updated: {subscription.Status}");
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Error saving changes: {ex.Message}");
+                    }
+
+                    return RedirectToAction("Confirmation_64130299");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"Transaction not found: {transactionId}");
+                }
             }
             else
             {
-                return RedirectToAction("Failure_64130299");
+                System.Diagnostics.Debug.WriteLine("Invalid signature or response code not '00'");
             }
+
+            return RedirectToAction("Failure_64130299");
         }
+
 
     }
 }
