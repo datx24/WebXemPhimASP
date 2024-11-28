@@ -135,6 +135,7 @@
     <Compile Include="Controllers\Favorite_64130299Controller.cs" />
     <Compile Include="Controllers\Home_64130299Controller.cs" />
     <Compile Include="Controllers\MemberSubscription_64130299Controller.cs" />
+    <Compile Include="Controllers\MomoPaymentcs.cs" />
     <Compile Include="Controllers\MovieUrls_64130299Controller.cs" />
     <Compile Include="Controllers\Movie_64130299Controller.cs" />
     <Compile Include="Controllers\Rating_64130299Controller.cs" />
