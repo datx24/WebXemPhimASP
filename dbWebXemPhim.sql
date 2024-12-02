@@ -193,7 +193,12 @@ VALUES
 ('1-history', '1-nguyen1', '1-ttzkndd', '2024-11-06 14:30:00'),
 ('2-history', '2-nguyen2', '2-vqat', '2024-11-06 15:00:00');
 
-
+--Thống kê tống số người dùng
+CREATE PROCEDURE GetTotalUsers
+AS
+BEGIN
+    SELECT COUNT(*) AS TotalUsers FROM User_64130299;
+END
 
 
 
