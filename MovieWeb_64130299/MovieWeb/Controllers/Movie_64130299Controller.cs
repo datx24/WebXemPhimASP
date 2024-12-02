@@ -16,19 +16,18 @@ namespace MovieWeb.Controllers
     public class Movie_64130299Controller : Controller
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
-        // Utility method to generate MovieId
-        private string GenerateMovieId(string title)
+        // Phương thức để tính tổng số lượng phim
+        public int GetTotalMovies()
         {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(title));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2"));
-                }
-                return builder.ToString().Substring(0, 10); // Use first 10 characters of the hash
-            }
+            return db.Movie_64130299.Count();
+        }
+
+        // Phương thức để cài đặt số lượng phim được cập nhật hôm nay
+        public int GetUpdatedMoviesToday()
+        {
+            // Lọc các phim được cập nhật hôm nay
+            var updatedMoviesToday = db.Movie_64130299.Where(m => m.UpdatedAt == DateTime.Today).ToList();
+            return updatedMoviesToday.Count();
         }
         // GET: Movie_64130299
         public ActionResult Index(
@@ -47,6 +46,8 @@ namespace MovieWeb.Controllers
     string accessLevelFilter = ""
 )
         {
+            ViewBag.TotalMovies = GetTotalMovies();
+            ViewBag.UpdatedMoviesToday = GetUpdatedMoviesToday();
             // Start with the full movie list
             var movies = db.Movie_64130299.AsQueryable();
 

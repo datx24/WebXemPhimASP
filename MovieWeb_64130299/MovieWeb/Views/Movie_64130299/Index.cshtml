@@ -17,6 +17,25 @@
 
 <div class="container mx-auto my-8 p-6 bg-gray-100 rounded-lg shadow-md">
     <h2 class="text-3xl font-bold text-center mb-3 text-gray-800">DANH SÁCH PHIM</h2>
+    @{
+        ViewBag.Title = "Statistics";
+    }
+
+    <div class="flex justify-center mt-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6">
+            <!-- Card for Total Movies -->
+            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-800">Tổng số lượng phim</h3>
+                <p class="text-2xl font-bold text-gray-900 mt-4">@ViewBag.TotalMovies</p>
+            </div>
+
+            <!-- Card for Movies Updated Today -->
+            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-800">Số lượng phim được cập nhật hôm nay</h3>
+                <p class="text-2xl font-bold text-gray-900 mt-4">@ViewBag.TotalUpdatedToday</p>
+            </div>
+        </div>
+    </div>
 
     <div class="flex justify-between mb-6">
         @Html.ActionLink("Tạo mới", "Create", null, new { @class = "bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-md shadow transition-transform transform hover:scale-105" })
