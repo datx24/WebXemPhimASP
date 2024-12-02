@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
@@ -373,5 +374,22 @@ namespace MovieWeb.Controllers
             return View(user_64130299);
         }
 
+        public int GetTotalUsers()
+        {
+            int totalUsers = 0;
+
+            using (var connection = new SqlConnection("MovieDatabase_64130299Entities"))
+            {
+                using (var command = new SqlCommand("GetTotalUsers", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    connection.Open();
+                    totalUsers = (int)command.ExecuteScalar();
+                }
+            }
+
+            return totalUsers;
+        }
     }
 }
