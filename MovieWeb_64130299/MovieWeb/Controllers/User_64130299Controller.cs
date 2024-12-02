@@ -33,9 +33,18 @@ namespace MovieWeb.Controllers
 
             return userId;
         }
+
+        // Phương thức để tính tổng số người dùng
+        public int GetTotalUsers()
+        {
+            return db.User_64130299.Count();
+        }
+
         [AuthorizeAttribute_64130299Controller]
         public ActionResult Index(string emailFilter = "", string passwordFilter = "", string usernameFilter = "", DateTime? createdAtFrom = null, DateTime? createdAtTo = null, DateTime? updatedAtFrom = null, DateTime? updatedAtTo = null)
         {
+            // Gọi phương thức GetTotalUsers để lấy tổng số người dùng
+            ViewBag.TotalUsers = GetTotalUsers();
             // Cập nhật giá trị cho ViewBag để hiển thị trong form
             ViewBag.EmailFilter = emailFilter;
             ViewBag.PasswordFilter = passwordFilter;
@@ -372,24 +381,6 @@ namespace MovieWeb.Controllers
 
             // Nếu có lỗi, trả lại view với thông báo lỗi
             return View(user_64130299);
-        }
-
-        public int GetTotalUsers()
-        {
-            int totalUsers = 0;
-
-            using (var connection = new SqlConnection("MovieDatabase_64130299Entities"))
-            {
-                using (var command = new SqlCommand("GetTotalUsers", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    connection.Open();
-                    totalUsers = (int)command.ExecuteScalar();
-                }
-            }
-
-            return totalUsers;
         }
     }
 }
