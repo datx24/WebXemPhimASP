@@ -183,6 +183,12 @@
     <Compile Include="Models\Rating_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SubscriptionPlans_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>

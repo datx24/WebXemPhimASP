@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\64CNTT_CLC2\WebXemPhimASP\MovieWeb\MovieWeb\Models\MovieModel_64130299.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\64CNTT_CLC2\WebXemPhimASP\MovieWeb_64130299\MovieWeb\Models\MovieModel_64130299.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
