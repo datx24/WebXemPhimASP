@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
@@ -25,8 +26,10 @@ namespace MovieWeb.Controllers
         // Phương thức để cài đặt số lượng phim được cập nhật hôm nay
         public int GetUpdatedMoviesToday()
         {
-            // Lọc các phim được cập nhật hôm nay
-            var updatedMoviesToday = db.Movie_64130299.Where(m => m.UpdatedAt == DateTime.Today).ToList();
+            // Lọc các phim có UpdatedAt không phải null và được cập nhật hôm nay
+            var updatedMoviesToday = db.Movie_64130299
+                .Where(m => m.UpdatedAt.HasValue && DbFunctions.TruncateTime(m.UpdatedAt.Value) == DbFunctions.TruncateTime(DateTime.Today))
+                .ToList();
             return updatedMoviesToday.Count();
         }
         // GET: Movie_64130299
@@ -117,7 +120,8 @@ namespace MovieWeb.Controllers
             {
                 MovieId = Guid.NewGuid().ToString(),
                 CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now
+                UpdatedAt = DateTime.Now,
+                AccessLevel = "Free"
             };
             return View(movie);
         }
@@ -131,14 +135,26 @@ namespace MovieWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Generate a unique MovieId based on the Title
-                movie_64130299.MovieId = Guid.NewGuid().ToString();
-                movie_64130299.CreatedAt = DateTime.Now;
-                movie_64130299.UpdatedAt = DateTime.Now;
+                try
+                {
+                    movie_64130299.MovieId = Guid.NewGuid().ToString();
+                    movie_64130299.CreatedAt = DateTime.Now;
+                    movie_64130299.UpdatedAt = DateTime.Now;
 
-                db.Movie_64130299.Add(movie_64130299);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    db.Movie_64130299.Add(movie_64130299);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            ModelState.AddModelError(validationError.PropertyName, validationError.ErrorMessage);
+                        }
+                    }
+                }
             }
 
             return View(movie_64130299);

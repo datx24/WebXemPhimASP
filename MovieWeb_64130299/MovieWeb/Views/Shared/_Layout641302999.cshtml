@@ -12,7 +12,7 @@
 </head>
 <body class="bg-black text-white">
     <!-- Header -->
-    <header class="bg-black shadow">
+    <header class="bg-black shadow mx-20">
         <div class="container mx-auto px-34 py-4 flex items-center justify-between">
             <div class="logo">
                 <a href="@Url.Action("Home_64130299", "Home_64130299")">
@@ -21,7 +21,7 @@
             </div>
             <nav>
                 <ul class="flex space-x-6">
-                    <li>@Html.ActionLink("Trang chủ", "home64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
+                    <li>@Html.ActionLink("Trang chủ", "Home_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
                     <li>@Html.ActionLink("Phim bộ", "tvseries_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
                     <li>@Html.ActionLink("Phim lẻ", "film_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
                     <li>@Html.ActionLink("Anime", "anime_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
@@ -61,18 +61,10 @@
                         <input type="search" id="default-search" class="block w-48 p-2 pl-10 text-sm border border-gray-500 rounded-lg bg-slate-800 text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 ease-in-out transform hover:scale-105" placeholder="Nhập tên phim..." required />
                     </div>
                 </form>
-
-                @if (Session["UserId"] != null)
-                {
                     <button class="bg-orange-500 text-white font-medium rounded-lg px-4 py-2 hover:bg-orange-600"
                             onclick="location.href='@Url.Action("Create_64130299", "Subscription_64130299")'">
                         Mua gói
                     </button>
-                }
-                else
-                {
-                    <p class="text-red-500">Vui lòng <a href="@Url.Action("Login_64130299", "User_64130299")" class="text-blue-500 underline">đăng nhập</a> để mua gói.</p>
-                }
 
                 @if (Session["Username"] != null)
                 {
@@ -91,7 +83,7 @@
     </header>
 
     <!-- Main Content Area -->
-    <div class="content py-6">
+    <div class="content py-6 mx-20">
         <div class="container mx-auto px-34">
             @RenderBody()
         </div>
@@ -104,7 +96,6 @@
             <p>&copy; 2024 FPT Play Clone - All rights reserved</p>
         </div>
     </footer>
-
 
     <script>
         const dropdowns = document.querySelectorAll('.relative.group'); // Tìm tất cả các dropdown
@@ -121,7 +112,7 @@
             dropdown.addEventListener('mouseleave', () => {
                 timeoutId = setTimeout(() => {
                     menu.classList.add('hidden'); // Ẩn menu
-                }, 30); // Thời gian chờ trước khi ẩn (300ms)
+                }, 3000); // Thời gian chờ trước khi ẩn (300ms)
             });
 
             menu.addEventListener('mouseenter', () => {
@@ -131,7 +122,7 @@
             menu.addEventListener('mouseleave', () => {
                 timeoutId = setTimeout(() => {
                     menu.classList.add('hidden'); // Ẩn menu
-                }, 300); // Thời gian chờ trước khi ẩn (300ms)
+                }, 30000); // Thời gian chờ trước khi ẩn (300ms)
             });
         });
     </script>

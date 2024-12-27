@@ -1,51 +1,37 @@
 ﻿@model MovieWeb.Models.Rating_64130299
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi Tiết Đánh Giá";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container mx-auto my-8 p-6 bg-gray-100 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Chi Tiết Đánh Giá</h2>
+    <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
+        <!-- Centering the inner content -->
+        <h4 class="text-xl text-center font-semibold text-gray-800 mb-4">Thông Tin Đánh Giá</h4>
+        <hr class="mb-4" />
+        <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700">@Html.DisplayNameFor(model => model.Rating)</p>
+                <p class="text-xl font-semibold text-gray-900">@Html.DisplayFor(model => model.Rating)</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700">@Html.DisplayNameFor(model => model.CreatedAt)</p>
+                <p class="text-xl font-semibold text-gray-900">@Html.DisplayFor(model => model.CreatedAt)</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700">@Html.DisplayNameFor(model => model.Movie_64130299.Title)</p>
+                <p class="text-xl font-semibold text-gray-900">@Html.DisplayFor(model => model.Movie_64130299.Title)</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700">@Html.DisplayNameFor(model => model.User_64130299.Email)</p>
+                <p class="text-xl font-semibold text-gray-900">@Html.DisplayFor(model => model.User_64130299.Email)</p>
+            </div>
+        </dl>
 
-<div>
-    <h4>Rating_64130299</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Movie_64130299.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Movie_64130299.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User_64130299.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User_64130299.Email)
-        </dd>
-
-    </dl>
+        <div class="mt-6 flex justify-between">
+            @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "text-blue-600 hover:text-blue-700 text-lg font-medium" })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RatingId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

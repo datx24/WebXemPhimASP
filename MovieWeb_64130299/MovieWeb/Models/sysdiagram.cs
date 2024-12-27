@@ -12,13 +12,12 @@ namespace MovieWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MovieUrls_64130299
+    public partial class sysdiagram
     {
-        public string MovieUrlId { get; set; }
-        public string MovieId { get; set; }
-        public string Url { get; set; }
-        public int EpisodeNumber { get; set; }
-    
-        public virtual Movie_64130299 Movie_64130299 { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

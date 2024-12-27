@@ -3,30 +3,56 @@
     ViewBag.Title = "Đăng nhập";
     Layout = "~/Views/Shared/_Layout641302999.cshtml";
 }
-<h2 class="text-4xl font-semibold text-center text-gray-800 mb-8">Đăng nhập</h2>
 
-@TempData["ErrorMessage"]
-@TempData["SuccessMessage"]
+<div class="flex items-center justify-center min-h-screen bg-black">
+    <div class="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold text-center text-white">Đăng nhập</h2>
+        <p class="mt-2 text-sm text-center text-gray-400">Nhập thông tin của bạn để đăng nhập vào hệ thống.</p>
 
-@using (Html.BeginForm("Login", "User_64130299", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+        @* Hiển thị thông báo lỗi (nếu có) *@
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="mt-4 p-4 bg-red-600 text-white text-sm rounded">
+                @TempData["ErrorMessage"]
+            </div>
+        }
 
-    <div class="mb-6">
-        @Html.LabelFor(model => model.Email, "Email", new { @class = "block text-sm font-medium text-gray-700" })
-        @Html.TextBoxFor(model => model.Email, new { @class = "mt-2 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black", placeholder = "Nhập email của bạn" })
-        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-sm text-red-500" })
+        @* Hiển thị thông báo thành công (nếu có) *@
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="mt-4 p-4 bg-green-600 text-white text-sm rounded">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @using (Html.BeginForm("Login", "User_64130299", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="mt-4">
+                @Html.LabelFor(model => model.Email, "Email", new { @class = "block text-sm font-medium text-gray-300" })
+                @Html.TextBoxFor(model => model.Email, new { @class = "mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white shadow-sm focus:ring-blue-500 focus:border-blue-500", placeholder = "Nhập email của bạn" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-red-400 text-sm mt-1" })
+            </div>
+
+            <div class="mt-4">
+                @Html.LabelFor(model => model.Password, "Mật khẩu", new { @class = "block text-sm font-medium text-gray-300" })
+                @Html.PasswordFor(model => model.Password, new { @class = "mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white shadow-sm focus:ring-blue-500 focus:border-blue-500", placeholder = "Nhập mật khẩu của bạn" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-red-400 text-sm mt-1" })
+            </div>
+
+            <div class="mt-6">
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800">
+                    Đăng nhập
+                </button>
+            </div>
+        }
+
+        <div class="mt-6 text-center">
+            <p class="text-sm text-gray-400">
+                Chưa có tài khoản?
+                <a href="@Url.Action("Register_64130299", "User_64130299")" class="text-blue-400 hover:underline">Đăng ký ngay</a>
+            </p>
+        </div>
     </div>
-
-    <div class="mb-6">
-        @Html.LabelFor(model => model.Password, "Mật khẩu", new { @class = "block text-sm font-medium text-gray-700" })
-        @Html.PasswordFor(model => model.Password, new { @class = "mt-2 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black", placeholder = "Nhập mật khẩu của bạn" })
-        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-sm text-red-500" })
-    </div>
-
-    <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Đăng nhập</button>
-
-    <div class="mt-4 text-center">
-        <p class="text-sm text-gray-600">Chưa có tài khoản? <a href="@Url.Action("Register_64130299", "User_64130299")" class="text-blue-500 hover:underline">Đăng ký ngay</a></p>
-    </div>
-}
+</div>

@@ -23,16 +23,16 @@
 
     <div class="flex justify-center mt-10">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6">
-            <!-- Card for Total Movies -->
-            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6">
-                <h3 class="text-xl font-semibold text-gray-800">Tổng số lượng phim</h3>
+            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center h-auto">
+                <i class="fas fa-film text-4xl text-blue-500"></i>
+                <h3 class="text-xl font-semibold text-gray-800 mt-4">Tổng số lượng phim</h3>
                 <p class="text-2xl font-bold text-gray-900 mt-4">@ViewBag.TotalMovies</p>
             </div>
 
-            <!-- Card for Movies Updated Today -->
-            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6">
-                <h3 class="text-xl font-semibold text-gray-800">Số lượng phim được cập nhật hôm nay</h3>
-                <p class="text-2xl font-bold text-gray-900 mt-4">@ViewBag.TotalUpdatedToday</p>
+            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center h-auto">
+                <i class="fas fa-sync-alt text-4xl text-green-500"></i>
+                <h3 class="text-xl font-semibold text-gray-800 mt-4">Số lượng phim được cập nhật hôm nay</h3>
+                <p class="text-2xl font-bold text-gray-900 mt-4">@ViewBag.UpdatedMoviesToday</p>
             </div>
         </div>
     </div>
@@ -159,13 +159,10 @@
                 grid.Column(header: "STT", format: (item) => { i++; return i; }, style: "text-center px-4 py-4 max-w-40"),
                 grid.Column("Title", "Tiêu đề", style: "text-center px-4 py-4 truncate max-w-40"),
                 grid.Column("AccessLevel", "Phân loại", style: "text-center px-4 py-4 truncate max-w-40"),
-                grid.Column("Description", "Mô tả", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
-                grid.Column("GenreId", "Định dạng", format: item => (item.GenreId ? "Phim bộ" : "Phim lẻ"), style: "text-center px-4 py-4 truncate max-w-40"),
-                grid.Column("GenreName", "Thể loại", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
-                grid.Column("DirectorName", "Đạo diễn", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
-                grid.Column("ActorName", "Diễn viên", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
-                grid.Column("Country", "Quốc gia", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
-                grid.Column("ReleaseDate", "Ngày sản xuất", style: "text-center px-4 py-4 truncate max-w-40 max-w-40"),
+                grid.Column("PosterUrl", "Ảnh phim",
+                    format: item => MvcHtmlString.Create($"<div class='flex justify-center'><img src='{item.PosterUrl}' alt='Poster' class='w-16 h-auto rounded-lg' /></div>"),
+                    style: "text-center px-4 py-4"),
+                grid.Column("CreatedAt", "Thời điểm tạo", style: "text-center px-4 py-4 truncate max-w-40"),
                 grid.Column(header: "Chức năng", format: item => MvcHtmlString.Create(
                     $"<div class='flex justify-center space-x-6'>" +
                     $"<a href='{Url.Action("Edit", new { id = item.MovieId })}' class='text-blue-600 hover:text-blue-800 text-xl' title='Chỉnh sửa'><i class='fas fa-edit'></i></a>" +

@@ -55,6 +55,7 @@
     <Property Name="MovieId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Url" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Movie_64130299" Relationship="Self.FK__MovieUrls__Movie__1A14E395" FromRole="MovieUrls_64130299" ToRole="Movie_64130299" />
+    <Property Name="EpisodeNumber" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Rating_64130299">
     <Key>
@@ -289,6 +290,7 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="sysdiagrams" EntityType="MovieDatabase_64130299Model.sysdiagram" />
   </EntityContainer>
   <EntityType Name="AdminUsers_64130299">
     <Key>
@@ -364,4 +366,14 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

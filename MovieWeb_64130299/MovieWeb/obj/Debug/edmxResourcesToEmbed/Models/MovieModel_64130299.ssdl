@@ -70,6 +70,7 @@
     <Property Name="MovieUrlId" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="MovieId" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Url" Type="nvarchar" MaxLength="512" />
+    <Property Name="EpisodeNumber" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Rating_64130299">
     <Key>
@@ -91,6 +92,16 @@
     <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="CreatedAt" Type="datetime" />
     <Property Name="UpdatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="User_64130299">
     <Key>
@@ -285,6 +296,7 @@
     <EntitySet Name="MovieUrls_64130299" EntityType="Self.MovieUrls_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rating_64130299" EntityType="Self.Rating_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubscriptionPlans_64130299" EntityType="Self.SubscriptionPlans_64130299" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User_64130299" EntityType="Self.User_64130299" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WatchHistory_64130299" EntityType="Self.WatchHistory_64130299" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Comment_6__Movie__2F10007B" Association="Self.FK__Comment_6__Movie__2F10007B">

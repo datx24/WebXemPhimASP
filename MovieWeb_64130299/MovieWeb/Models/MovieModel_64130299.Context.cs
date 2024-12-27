@@ -37,6 +37,7 @@ namespace MovieWeb.Models
         public virtual DbSet<AdminUsers_64130299> AdminUsers_64130299 { get; set; }
         public virtual DbSet<MemberSubscription_64130299> MemberSubscription_64130299 { get; set; }
         public virtual DbSet<SubscriptionPlans_64130299> SubscriptionPlans_64130299 { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

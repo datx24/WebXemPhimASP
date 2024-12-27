@@ -74,26 +74,34 @@ namespace MovieWeb.Controllers
             {
                 return HttpNotFound();
             }
+
+            // Truyền thông tin movieId và EpisodeNumber vào View
             ViewBag.MovieId = new SelectList(db.Movie_64130299, "MovieId", "Title", movieUrls_64130299.MovieId);
+            ViewBag.EpisodeNumber = movieUrls_64130299.EpisodeNumber;  // Truyền số tập phim vào view
+
             return View(movieUrls_64130299);
         }
 
         // POST: MovieUrls_64130299/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieUrlId,MovieId,Url")] MovieUrls_64130299 movieUrls_64130299)
+        public ActionResult Edit([Bind(Include = "MovieUrlId,MovieId,Url,EpisodeNumber")] MovieUrls_64130299 movieUrls_64130299)
         {
             if (ModelState.IsValid)
             {
+                // Cập nhật trạng thái của đối tượng MovieUrls_64130299 và lưu vào cơ sở dữ liệu
                 db.Entry(movieUrls_64130299).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            // Nếu có lỗi, truyền lại giá trị MovieId và EpisodeNumber vào View
             ViewBag.MovieId = new SelectList(db.Movie_64130299, "MovieId", "Title", movieUrls_64130299.MovieId);
+            ViewBag.EpisodeNumber = movieUrls_64130299.EpisodeNumber;  // Truyền lại số tập phim vào view
+
             return View(movieUrls_64130299);
         }
+
 
         // GET: MovieUrls_64130299/Delete/5
         public ActionResult Delete(string id)

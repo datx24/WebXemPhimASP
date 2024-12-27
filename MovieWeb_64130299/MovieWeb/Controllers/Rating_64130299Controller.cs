@@ -18,9 +18,39 @@ namespace MovieWeb.Controllers
         // GET: Rating_64130299
         public ActionResult Index()
         {
+            // Tính trung bình đánh giá cho mỗi phim
+            var movieRatings = db.Rating_64130299
+                .GroupBy(r => r.MovieId)
+                .Select(g => new
+                {
+                    MovieId = g.Key,
+                    AverageRating = g.Average(r => r.Rating)
+                })
+                .ToList();
+
+            // Lấy phim có điểm trung bình cao nhất
+            var highestRatedMovie = movieRatings.OrderByDescending(m => m.AverageRating).FirstOrDefault();
+            if (highestRatedMovie != null)
+            {
+                var movieHigh = db.Movie_64130299.FirstOrDefault(m => m.MovieId == highestRatedMovie.MovieId);
+                ViewBag.HighestRatedMovie = movieHigh;
+                ViewBag.HighestRating = highestRatedMovie.AverageRating;
+            }
+
+            // Lấy phim có điểm trung bình thấp nhất
+            var lowestRatedMovie = movieRatings.OrderBy(m => m.AverageRating).FirstOrDefault();
+            if (lowestRatedMovie != null)
+            {
+                var movieLow = db.Movie_64130299.FirstOrDefault(m => m.MovieId == lowestRatedMovie.MovieId);
+                ViewBag.LowestRatedMovie = movieLow;
+                ViewBag.LowestRating = lowestRatedMovie.AverageRating;
+            }
+
+            // Truyền tất cả các đánh giá vào View
             var rating_64130299 = db.Rating_64130299.Include(r => r.Movie_64130299).Include(r => r.User_64130299);
             return View(rating_64130299.ToList());
         }
+
 
         // GET: Rating_64130299/Details/5
         public ActionResult Details(string id)
@@ -40,9 +70,14 @@ namespace MovieWeb.Controllers
         // GET: Rating_64130299/Create
         public ActionResult Create()
         {
+            var rating = new Rating_64130299
+            {
+                RatingId = Guid.NewGuid().ToString(),
+                CreatedAt = DateTime.Now,
+            };
             ViewBag.MovieId = new SelectList(db.Movie_64130299, "MovieId", "Title");
             ViewBag.UserId = new SelectList(db.User_64130299, "UserId", "Email");
-            return View();
+            return View(rating);
         }
 
         // POST: Rating_64130299/Create
@@ -54,6 +89,7 @@ namespace MovieWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                rating_64130299.RatingId = Guid.NewGuid().ToString();
                 db.Rating_64130299.Add(rating_64130299);
                 db.SaveChanges();
                 return RedirectToAction("Index");

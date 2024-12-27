@@ -30,7 +30,7 @@ CREATE TABLE Movie_64130299 (
 );
 -- Thêm AccessLevel vào bảng Movie
 ALTER TABLE Movie_64130299
-ADD AccessLevel NVARCHAR(50) NOT NULL DEFAULT 'Standard';
+ADD AccessLevel NVARCHAR(50) NOT NULL DEFAULT 'Free';
 
 -- Tạo bảng MovieUrls
 CREATE TABLE MovieUrls_64130299 (
@@ -39,6 +39,9 @@ CREATE TABLE MovieUrls_64130299 (
     Url NVARCHAR(512),
     FOREIGN KEY (MovieId) REFERENCES Movie_64130299(MovieId)
 );
+
+ALTER TABLE MovieUrls_64130299
+ADD EpisodeNumber INT NOT NULL DEFAULT 1;
 
 -- Tạo bảng Favorites
 CREATE TABLE Favorite_64130299 (

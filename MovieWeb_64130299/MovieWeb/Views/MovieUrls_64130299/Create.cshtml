@@ -5,48 +5,46 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
+<h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Tạo URL Phim</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>MovieUrls_64130299</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.MovieUrlId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MovieUrlId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MovieUrlId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MovieId, "MovieId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MovieId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MovieId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="bg-white p-8 rounded-lg shadow-md w-full max-w-xl mx-auto">
+    <h4 class="text-xl text-center font-semibold text-gray-800 mb-6">Thông tin URL Phim</h4>
+    <hr class="border-gray-300 mb-6" />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="mb-4">
+        @Html.LabelFor(model => model.MovieUrlId, htmlAttributes: new { @class = "block text-sm font-medium text-gray-700" })
+        <div class="mt-1">
+            @Html.EditorFor(model => model.MovieUrlId, new { htmlAttributes = new { @class = "form-control w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" } })
+            @Html.ValidationMessageFor(model => model.MovieUrlId, "", new { @class = "text-danger" })
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <div class="mb-4">
+        @Html.LabelFor(model => model.MovieId, "MovieId", htmlAttributes: new { @class = "block text-sm font-medium text-gray-700" })
+        <div class="mt-1">
+            @Html.DropDownList("MovieId", null, htmlAttributes: new { @class = "form-control w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" })
+            @Html.ValidationMessageFor(model => model.MovieId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="mb-4">
+        @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "block text-sm font-medium text-gray-700" })
+        <div class="mt-1">
+            @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" } })
+            @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="flex justify-between items-center mb-6">
+        <input type="submit" value="Tạo" class="bg-blue-600 text-white hover:bg-blue-700 py-2 px-6 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <div>
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "text-blue-600 hover:text-blue-700 text-lg font-medium" })
+        </div>
+    </div>
 </div>
+}

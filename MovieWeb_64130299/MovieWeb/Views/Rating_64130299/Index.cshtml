@@ -1,52 +1,128 @@
 ﻿@model IEnumerable<MovieWeb.Models.Rating_64130299>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách Đánh giá";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 5);
+    int i = 0;
+    int currentPage = grid.PageIndex + 1; // Trang hiện tại
+    int totalPages = grid.PageCount; // Tổng số trang
 }
 
-<h2>Index</h2>
+<style>
+    table tfoot {
+        display: none;
+    }
+</style>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Movie_64130299.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User_64130299.Email)
-        </th>
-        <th></th>
-    </tr>
+<div class="container mx-auto my-8 p-6 bg-gray-100 rounded-lg shadow-md">
+    <h2 class="text-3xl font-bold text-center mb-3 text-gray-800">DANH SÁCH ĐÁNH GIÁ</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Movie_64130299.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User_64130299.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RatingId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RatingId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RatingId })
-        </td>
-    </tr>
-}
+    <!-- Nút tạo mới -->
+    <div class="mb-6 flex justify-end">
+        @Html.ActionLink("Tạo mới", "Create", null, new { @class = "bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-md shadow transition-transform transform hover:scale-105" })
+    </div>
 
-</table>
+    <div class="flex flex-wrap justify-between bg-gray-100 p-6 rounded-lg shadow-lg mb-8">
+        <!-- Card: Phim có điểm đánh giá cao nhất -->
+        <div class="bg-white rounded-lg shadow-md p-4 w-full md:w-[48%] mb-4">
+            <h2 class="text-xl font-semibold">Phim có điểm đánh giá cao nhất</h2>
+            @if (ViewBag.HighestRatedMovie != null)
+            {
+                <div class="flex items-center mt-4">
+                    <img src="@ViewBag.HighestRatedMovie.PosterUrl" alt="@ViewBag.HighestRatedMovie.Title" class="w-24 h-36 object-cover rounded-lg shadow-md mr-4">
+                    <div>
+                        <h3 class="text-lg font-bold">@ViewBag.HighestRatedMovie.Title</h3>
+                        <p class="text-gray-600 mt-1">Điểm trung bình: <span class="font-bold">@ViewBag.HighestRating</span></p>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p class="text-gray-600">Không có dữ liệu đánh giá.</p>
+            }
+        </div>
+
+        <!-- Card: Phim có điểm đánh giá thấp nhất -->
+        <div class="bg-white rounded-lg shadow-md p-4 w-full md:w-[48%] mb-4">
+            <h2 class="text-xl font-semibold">Phim có điểm đánh giá thấp nhất</h2>
+            @if (ViewBag.LowestRatedMovie != null)
+            {
+                <div class="flex items-center mt-4">
+                    <img src="@ViewBag.LowestRatedMovie.PosterUrl" alt="@ViewBag.LowestRatedMovie.Title" class="w-24 h-36 object-cover rounded-lg shadow-md mr-4">
+                    <div>
+                        <h3 class="text-lg font-bold">@ViewBag.LowestRatedMovie.Title</h3>
+                        <p class="text-gray-600 mt-1">Điểm trung bình: <span class="font-bold">@ViewBag.LowestRating</span></p>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p class="text-gray-600">Không có dữ liệu đánh giá.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Bảng hiển thị dữ liệu -->
+    <div class="overflow-x-auto">
+        @grid.GetHtml(
+                           tableStyle: "min-w-full bg-white border border-gray-300 rounded-lg mx-auto",
+                           headerStyle: "bg-blue-600 text-white text-center uppercase text-lg tracking-wide no-underline py-2 px-4 h-12",
+                           alternatingRowStyle: "table-secondary",
+                           rowStyle: "border-t border-gray-200 hover:bg-blue-50 transition-colors duration-200",
+                           footerStyle: "",
+                           columns: grid.Columns(
+                               grid.Column(header: "STT", format: (item) => { i++; return i; }, style: "text-center px-4 py-4 max-w-40"),
+                               grid.Column("Rating", "Đánh giá", style: "text-center px-4 py-4"),
+                               grid.Column("CreatedAt", "Ngày tạo", style: "text-center px-4 py-4"),
+                               grid.Column(header: "Tên phim", format: item => MvcHtmlString.Create(item.Movie_64130299.Title), style: "text-center px-4 py-4"),
+                               grid.Column(header: "Người dùng", format: item => MvcHtmlString.Create(item.User_64130299.Email), style: "text-center px-4 py-4"),
+                               grid.Column(header: "Chức năng", format: item => MvcHtmlString.Create(
+                                   $"<div class='flex justify-center space-x-6'>" +
+                                   $"<a href='{Url.Action("Details", new { id = item.RatingId })}' class='text-green-600 hover:text-green-800 text-xl' title='Xem chi tiết'><i class='fas fa-info-circle'></i></a>" +
+                                   $"<a href='{Url.Action("Delete", new { id = item.RatingId })}' class='text-red-600 hover:text-red-800 text-xl' title='Xóa'><i class='fas fa-trash-alt'></i></a>" +
+                                   $"</div>"
+                               ), style: "text-center px-4 py-4")
+                           )
+                       )
+    </div>
+
+    <!-- Phân trang -->
+    <div class="flex justify-center mt-4">
+        <div class="flex items-center space-x-2">
+            @if (currentPage > 1)
+            {
+                <a href="@Url.Action("Index", new { page = currentPage - 1 })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </span>
+            }
+
+            <!-- Số trang -->
+            @for (var page = 1; page <= totalPages; page++)
+            {
+                <a href="@Url.Action("Index", new { page = page })" class="@((currentPage == page) ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-blue-200 hover:text-blue-700") py-2 px-4 rounded-lg transition duration-300">
+                    @page
+                </a>
+            }
+
+            @if (currentPage < totalPages)
+            {
+                <a href="@Url.Action("Index", new { page = currentPage + 1 })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </span>
+            }
+        </div>
+    </div>
+</div>

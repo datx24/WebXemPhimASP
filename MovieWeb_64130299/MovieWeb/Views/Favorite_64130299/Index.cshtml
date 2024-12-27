@@ -1,46 +1,107 @@
 ﻿@model IEnumerable<MovieWeb.Models.Favorite_64130299>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Danh sách Yêu Thích"; // Tiêu đề trang
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; // Layout sử dụng cho trang này
+    var grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 4); // Khởi tạo WebGrid để hiển thị dữ liệu
+    int i = 0; // Biến đếm cho số thứ tự
+    int currentPage = grid.PageIndex + 1; // Trang hiện tại
+    int totalPages = grid.PageCount; // Tổng số trang
 }
 
-<h2>Index</h2>
+<style>
+    table tfoot {
+        display: none;
+        // Ẩn footer của bảng
+    }
+</style>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Movie_64130299.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User_64130299.Email)
-        </th>
-        <th></th>
-    </tr>
+<div class="container mx-auto my-8 p-6 bg-gray-100 rounded-lg shadow-md">
+    <h2 class="text-4xl font-bold text-center mb-6 text-gray-800">DANH SÁCH YÊU THÍCH</h2> <!-- Tiêu đề chính -->
+    <!-- Card Hiển Thị Phim -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        @if (ViewBag.MostFavoritedMovie != null) // Kiểm tra nếu có phim yêu thích
+        {
+            <div class="flex items-center">
+                <img src="@ViewBag.MostFavoritedMovie.PosterUrl" alt="@ViewBag.MostFavoritedMovie.Title" class="w-32 h-48 object-cover rounded-lg shadow-md mr-6"> <!-- Hình ảnh phim -->
+                <div class="flex flex-col">
+                    <h2 class="text-2xl font-semibold">Phim được yêu thích nhất</h2> <!-- Tiêu đề phim yêu thích -->
+                    <h3 class="text-xl font-bold mt-2">@ViewBag.MostFavoritedMovie.Title</h3> <!-- Tên phim -->
+                    <p class="text-gray-600 mt-1">Số lượt yêu thích: <span class="font-bold">@ViewBag.MostFavoritedMovie.LikeCount</span></p> <!-- Số lượt yêu thích -->
+                    <p class="text-gray-600 mt-1">Khám phá thêm về bộ phim này!</p> <!-- Mô tả thêm -->
+                </div>
+            </div>
+        }
+        else
+        {
+            <p class="text-gray-600">Không có phim nào được yêu thích nhất.</p> <!-- Thông báo nếu không có phim yêu thích -->
+        }
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Movie_64130299.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User_64130299.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FavoriteId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FavoriteId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FavoriteId })
-        </td>
-    </tr>
-}
+    <div class="flex justify-between mb-6">
+        @Html.ActionLink("Tạo mới", "Create", null, new { @class = "bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-md shadow transition-transform transform hover:scale-105" }) <!-- Nút tạo mới -->
+    </div>
 
-</table>
+    <!-- Bảng hiển thị dữ liệu -->
+    <div class="overflow-x-auto">
+        @grid.GetHtml(
+            tableStyle: "min-w-full bg-white border border-gray-300 rounded-lg mx-auto shadow-md", // Style cho bảng
+            headerStyle: "bg-blue-600 text-white text-center uppercase text-lg tracking-wide no-underline py-3 px-4 h-12", // Style cho header
+            alternatingRowStyle: "bg-gray-50", // Style cho hàng chẵn
+            rowStyle: "border-t border-gray-200 hover:bg-blue-50 transition-colors duration-200", // Style cho hàng lẻ
+            footerStyle: "",
+            columns: grid.Columns(
+                grid.Column(header: "STT", format: (item) => { i++; return i; }, style: "text-center px-4 py-4 max-w-40"), // Cột số thứ tự
+                grid.Column("CreatedAt", "Ngày tạo", style: "text-center px-4 py-4 truncate max-w-40"), // Cột ngày tạo
+                grid.Column("Movie_64130299.Title", "Tiêu đề Phim", style: "text-center px-4 py-4 truncate max-w-40"), // Cột tiêu đề phim
+                grid.Column("User_64130299.Username", "Tên người dùng", style: "text-center px-4 py-4 truncate max-w-40"), // Cột tên người dùng
+                grid.Column("User_64130299.Email", "Email Người dùng", style: "text-center px-4 py-4 truncate max-w-40"), // Cột email người dùng
+                grid.Column(header: "Chức năng", format: item => MvcHtmlString.Create(
+ $"<div class='flex justify-center space-x-4'>" +
+                    $"<a href='{Url.Action("Details", new { id = item.FavoriteId })}' class='text-green-600 hover:text-green-800 text-xl' title='Xem chi tiết'><i class='fas fa-info-circle'></i></a>" + // Nút xem chi tiết
+                    $"<a href='{Url.Action("Delete", new { id = item.FavoriteId })}' class='text-red-600 hover:text-red-800 text-xl' title='Xóa'><i class='fas fa-trash-alt'></i></a>" + // Nút xóa
+                    $"</div>"
+                ), style: "text-center px-4 py-4") // Style cho cột chức năng
+            )
+        )
+    </div>
+
+    <!-- Điều khiển phân trang -->
+    <div class="flex justify-center mt-4">
+        <div class="flex items-center space-x-2">
+            @if (currentPage > 1) // Kiểm tra nếu không phải trang đầu
+            {
+                <a href="@Url.Action("Index", new { page = currentPage - 1 })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </span>
+            }
+
+            <!-- Số trang -->
+            @for (var page = 1; page <= totalPages; page++)
+            {
+                <a href="@Url.Action("Index", new { page = page })" class="@((currentPage == page) ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-blue-200 hover:text-blue-700") py-2 px-4 rounded-lg transition duration-300">
+                    @page
+                </a>
+            }
+
+            @if (currentPage < totalPages) // Kiểm tra nếu không phải trang cuối
+            {
+                <a href="@Url.Action("Index", new { page = currentPage + 1 })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </span>
+            }
+        </div>
+    </div>
+</div>

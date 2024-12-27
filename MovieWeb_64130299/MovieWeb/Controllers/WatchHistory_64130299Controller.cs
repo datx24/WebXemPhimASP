@@ -53,6 +53,7 @@ namespace MovieWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                watchHistory_64130299.HistoryId = Guid.NewGuid().ToString();
                 db.WatchHistory_64130299.Add(watchHistory_64130299);
                 db.SaveChanges();
                 return RedirectToAction("Index");
