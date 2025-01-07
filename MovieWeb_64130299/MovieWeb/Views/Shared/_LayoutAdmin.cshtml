@@ -69,10 +69,6 @@
             padding: 0;
         }
 
-        .sidebar li {
-            margin-bottom: 20px;
-        }
-
         .sidebar a {
             color: white;
             text-decoration: none;
@@ -189,38 +185,38 @@
             </div>
             <h2 class="logo-text">Admin</h2>
         </div>
-        <ul class="navbar-nav flex-column">
-            <li class="nav-item d-flex align-items-center mb-3">
-                <i class="fas fa-users me-2"></i>
-                @Html.ActionLink("Quản lý người dùng", "Index", "User_64130299", new { area = "" }, new { @class = "nav-link" })
+        <ul class="flex flex-col space-y-5 text-lg">
+            <li class="flex items-center space-x-4">
+                <i class="fas fa-user text-xl"></i>
+                @Html.ActionLink("Quản lý người dùng", "Index", "User_64130299", new { area = "" }, new { @class = "text-blue-700 hover:text-blue-900 font-semibold" })
             </li>
-            <li class="nav-item d-flex align-items-center mb-3">
-                <i class="fas fa-film me-2"></i>
-                @Html.ActionLink("Quản lý nội dung phim", "Index", "Movie_64130299", new { area = "" }, new { @class = "nav-link" })
+            <li class="flex items-center space-x-4">
+                <i class="fas fa-video text-xl"></i>
+                @Html.ActionLink("Quản lý nội dung phim", "Index", "Movie_64130299", new { area = "" }, new { @class = "text-blue-700 hover:text-blue-900 font-semibold" })
             </li>
-            <li class="nav-item d-flex align-items-center mb-3">
-                <i class="fas fa-film me-2"></i>
-                @Html.ActionLink("Quản lý nguồn phim", "Index", "MovieUrls_64130299", new { area = "" }, new { @class = "nav-link" })
+            <li class="flex items-center space-x-4">
+                <i class="fas fa-link text-xl"></i>
+                @Html.ActionLink("Quản lý nguồn phim", "Index", "MovieUrls_64130299", new { area = "" }, new { @class = "text-blue-700 hover:text-blue-900 font-semibold" })
             </li>
-            <li class="nav-item d-flex align-items-center mb-3">
-                <i class="fas fa-heart me-2"></i>
-                @Html.ActionLink("Quản lý yêu thích", "Index", "Favorite_64130299", new { area = "" }, new { @class = "nav-link" })
+            <li class="flex items-center space-x-4">
+                <i class="fas fa-heart text-xl"></i>
+                @Html.ActionLink("Quản lý yêu thích", "Index", "Favorite_64130299", new { area = "" }, new { @class = "text-blue-700 hover:text-blue-900 font-semibold" })
             </li>
-            <li class="nav-item d-flex align-items-center mb-3">
-                <i class="fas fa-comment me-2"></i>
-                @Html.ActionLink("Quản lý bình luận", "Index", "Comment_64130299", new { area = "" }, new { @class = "nav-link" })
+            <li class="flex items-center space-x-4">
+                <i class="fas fa-star text-xl"></i>
+                @Html.ActionLink("Quản lý đánh giá", "Index", "Rating_64130299", new { area = "" }, new { @class = "text-blue-700 hover:text-blue-900 font-semibold" })
             </li>
-            <li class="nav-item d-flex align-items-center mb-3">
-                <i class="fas fa-star me-2"></i>
-                @Html.ActionLink("Quản lý đánh giá", "Index", "Rating_64130299", new { area = "" }, new { @class = "nav-link" })
+            <li class="flex items-center space-x-4">
+                <i class="fas fa-gift text-xl"></i>
+                @Html.ActionLink("Quản lý gói thành viên", "Index", "SubscriptionPlans_64130299", new { area = "" }, new { @class = "text-blue-700 hover:text-blue-900 font-semibold" })
             </li>
-            <li class="nav-item d-flex align-items-center mb-3">
-                <i class="fas fa-star me-2"></i>
-                @Html.ActionLink("Quản lý lịch sử", "Index", "WatchHistory_64130299", new { area = "" }, new { @class = "nav-link" })
+            <li class="flex items-center space-x-4">
+                <i class="fas fa-user-check text-xl"></i>
+                @Html.ActionLink("Quản lý đăng kí thành viên", "Index", "MemberSubscription_64130299", new { area = "" }, new { @class = "text-blue-700 hover:text-blue-900 font-semibold" })
             </li>
-            <li class="nav-item d-flex align-items-center mb-3">
-                <i class="fas fa-sign-out-alt me-2"></i>
-                @Html.ActionLink("Đăng xuất", "Logout", "Account_64130299", new { area = "" }, new { @class = "nav-link" })
+            <li class="flex items-center space-x-4">
+                <i class="fas fa-sign-out-alt text-xl"></i>
+                @Html.ActionLink("Đăng xuất", "Logout", "Account_64130299", new { area = "" }, new { @class = "text-blue-700 hover:text-blue-900 font-semibold" })
             </li>
         </ul>
     </div>

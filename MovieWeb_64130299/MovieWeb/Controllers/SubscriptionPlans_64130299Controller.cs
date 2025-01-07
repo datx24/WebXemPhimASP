@@ -13,6 +13,16 @@ namespace MovieWeb.Controllers
     public class SubscriptionPlans_64130299Controller : Controller
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
+        public ActionResult GetPlanDuration(int planId)
+        {
+            var plan = db.SubscriptionPlans_64130299.FirstOrDefault(p => p.PlanId == planId);
+            if (plan != null)
+            {
+                return Json(new { duration = plan.DurationMonths }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { duration = 0 }, JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: SubscriptionPlans_64130299
         public ActionResult Index()
@@ -35,10 +45,17 @@ namespace MovieWeb.Controllers
             return View(subscriptionPlans_64130299);
         }
 
-        // GET: SubscriptionPlans_64130299/Create
+        // Trong phương thức GET của Create
         public ActionResult Create()
         {
-            return View();
+            var model = new SubscriptionPlans_64130299
+            {
+                // Khởi tạo CreatedAt và UpdatedAt bằng thời điểm hiện tại
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+
+            return View(model);
         }
 
         // POST: SubscriptionPlans_64130299/Create
@@ -51,6 +68,10 @@ namespace MovieWeb.Controllers
             if (ModelState.IsValid)
             {
                 db.SubscriptionPlans_64130299.Add(subscriptionPlans_64130299);
+                // Gán thời gian tạo và cập nhật
+                subscriptionPlans_64130299.CreatedAt = DateTime.Now;
+                subscriptionPlans_64130299.UpdatedAt = DateTime.Now;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -83,6 +104,8 @@ namespace MovieWeb.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(subscriptionPlans_64130299).State = EntityState.Modified;
+                // Cập nhật UpdatedAt với thời gian hiện tại
+                subscriptionPlans_64130299.UpdatedAt = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

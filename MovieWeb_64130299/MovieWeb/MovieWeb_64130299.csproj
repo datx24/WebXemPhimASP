@@ -131,26 +131,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Account_64130299Controller.cs" />
     <Compile Include="Controllers\AuthorizeAttribute_64130299Controller.cs" />
-    <Compile Include="Controllers\Comment_64130299Controller.cs" />
     <Compile Include="Controllers\Favorite_64130299Controller.cs" />
     <Compile Include="Controllers\Home_64130299Controller.cs" />
     <Compile Include="Controllers\MemberSubscription_64130299Controller.cs" />
-    <Compile Include="Controllers\MomoPaymentcs.cs" />
     <Compile Include="Controllers\MovieUrls_64130299Controller.cs" />
     <Compile Include="Controllers\Movie_64130299Controller.cs" />
     <Compile Include="Controllers\Rating_64130299Controller.cs" />
     <Compile Include="Controllers\SubscriptionPlans_64130299Controller.cs" />
-    <Compile Include="Controllers\Subscription_64130299Controller.cs" />
     <Compile Include="Controllers\User_64130299Controller.cs" />
-    <Compile Include="Controllers\VNPayLibrary.cs" />
-    <Compile Include="Controllers\WatchHistory_64130299Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminUsers_64130299.cs">
-      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Comment_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Favorite_64130299.cs">
@@ -198,9 +190,6 @@
     <Compile Include="Models\User_64130299.cs">
       <DependentUpon>MovieModel_64130299.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WatchHistory_64130299.cs">
-      <DependentUpon>MovieModel_64130299.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +216,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\logo_fpt_clone_transparent_v2.png" />
+    <Content Include="Images\multimedia.png" />
+    <Content Include="Images\ticket_5225448.png" />
     <Content Include="Models\MovieModel_64130299.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MovieModel_64130299.edmx</DependentUpon>
@@ -300,20 +291,9 @@
     <Content Include="Views\Rating_64130299\Delete.cshtml" />
     <Content Include="Views\Rating_64130299\Details.cshtml" />
     <Content Include="Views\Rating_64130299\Index.cshtml" />
-    <Content Include="Views\Comment_64130299\Create.cshtml" />
-    <Content Include="Views\Comment_64130299\Delete.cshtml" />
-    <Content Include="Views\Comment_64130299\Details.cshtml" />
-    <Content Include="Views\Comment_64130299\Index.cshtml" />
-    <Content Include="Views\WatchHistory_64130299\Create.cshtml" />
-    <Content Include="Views\WatchHistory_64130299\Delete.cshtml" />
-    <Content Include="Views\WatchHistory_64130299\Details.cshtml" />
-    <Content Include="Views\WatchHistory_64130299\Index.cshtml" />
     <Content Include="Views\Account_64130299\LoginAdmin_64130299.cshtml" />
-    <Content Include="Views\Subscription_64130299\Create_64130299.cshtml" />
-    <Content Include="Views\Subscription_64130299\Failure_64130299.cshtml" />
     <Content Include="Views\User_64130299\Login_64130299.cshtml" />
     <Content Include="Views\User_64130299\Register_64130299.cshtml" />
-    <Content Include="Views\Subscription_64130299\Confirmation_64130299.cshtml" />
     <Content Include="Views\SubscriptionPlans_64130299\Create.cshtml" />
     <Content Include="Views\SubscriptionPlans_64130299\Delete.cshtml" />
     <Content Include="Views\SubscriptionPlans_64130299\Details.cshtml" />
@@ -324,12 +304,11 @@
     <Content Include="Views\MemberSubscription_64130299\Details.cshtml" />
     <Content Include="Views\MemberSubscription_64130299\Edit.cshtml" />
     <Content Include="Views\MemberSubscription_64130299\Index.cshtml" />
-    <Content Include="Views\Subscription_64130299\VNPayPayment.cshtml" />
-    <Content Include="Views\Subscription_64130299\VNPayReturn.cshtml" />
+    <Content Include="Views\Home_64130299\FilterMovies_64130299.cshtml" />
+    <Content Include="Views\MemberSubscription_64130299\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AuthorizeAttribute_64130299\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -126,38 +126,79 @@ namespace MovieWeb.Controllers
             return View(movie);
         }
 
+        // Hàm tạo ID cho Member
+        private string GenerateSubscriptionId()
+        {
+            // Quy tắc tạo ID: MEM + số tự động tăng
+            var lastMember = db.MemberSubscription_64130299
+                .OrderByDescending(m => m.SubscriptionId)
+                .FirstOrDefault();
+
+            int nextId = 1;
+
+            if (lastMember != null && !string.IsNullOrEmpty(lastMember.SubscriptionId))
+            {
+                // Giả sử ID có dạng MEM0001, MEM0002, ...
+                string lastIdNumber = lastMember.SubscriptionId.Substring(3); // Lấy phần số
+                if (int.TryParse(lastIdNumber, out int parsedId))
+                {
+                    nextId = parsedId + 1;
+                }
+            }
+
+            return $"MEM{nextId:0000}"; // Format: MEM0001, MEM0002, ...
+        }
+
         // POST: Movie_64130299/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Description,GenreId,GenreName,DirectorName,ActorName,Country,ReleaseDate,PosterUrl,TrailerUrl,CreatedAt,UpdatedAt,AccessLevel")] Movie_64130299 movie_64130299)
+        public ActionResult Create(MemberSubscription_64130299 memberSubscription_64130299)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
+                if (ModelState.IsValid)
                 {
-                    movie_64130299.MovieId = Guid.NewGuid().ToString();
-                    movie_64130299.CreatedAt = DateTime.Now;
-                    movie_64130299.UpdatedAt = DateTime.Now;
+                    // Tạo ID cho Member nếu cần
+                    memberSubscription_64130299.SubscriptionId = GenerateSubscriptionId();
 
-                    db.Movie_64130299.Add(movie_64130299);
+                    // Gán giá trị mặc định nếu cần
+                    if (string.IsNullOrEmpty(memberSubscription_64130299.Status))
+                    {
+                        memberSubscription_64130299.Status = "Active";
+                    }
+
+                    // Gán thời gian tạo và cập nhật
+                    memberSubscription_64130299.CreatedAt = DateTime.Now;
+                    memberSubscription_64130299.UpdatedAt = DateTime.Now;
+
+                    // Thêm bản ghi vào bảng MemberSubscription
+                    db.MemberSubscription_64130299.Add(memberSubscription_64130299);
                     db.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var validationErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            ModelState.AddModelError(validationError.PropertyName, validationError.ErrorMessage);
-                        }
-                    }
-                }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var errorMessages = ex.EntityValidationErrors
+                    .SelectMany(x => x.ValidationErrors)
+                    .Select(x => $"Property: {x.PropertyName}, Error: {x.ErrorMessage}")
+                    .ToList();
+
+                ViewBag.ErrorMessages = errorMessages;
+                ModelState.AddModelError("", "Validation failed: " + string.Join("; ", errorMessages));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "An unexpected error occurred: " + ex.Message);
             }
 
-            return View(movie_64130299);
+            // Nếu có lỗi, truyền lại các giá trị ViewBag cho form
+            ViewBag.UserId = new SelectList(db.User_64130299, "UserId", "Email", memberSubscription_64130299.UserId);
+            ViewBag.PlanId = new SelectList(db.SubscriptionPlans_64130299, "PlanId", "PlanName", memberSubscription_64130299.PlanId);
+            return View(memberSubscription_64130299);
         }
 
         // GET: Movie_64130299/Edit/5
@@ -168,7 +209,6 @@ namespace MovieWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Movie_64130299 movie_64130299 = db.Movie_64130299.Find(id);
-            movie_64130299.UpdatedAt = DateTime.Now;
             if (movie_64130299 == null)
             {
                 return HttpNotFound();
@@ -176,19 +216,39 @@ namespace MovieWeb.Controllers
             return View(movie_64130299);
         }
 
-        // POST: Movie_64130299/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieId,Title,Description,GenreId,GenreName,DirectorName,ActorName,Country,ReleaseDate,PosterUrl,TrailerUrl,CreatedAt,UpdatedAt,AccessLevel")] Movie_64130299 movie_64130299)
+        public ActionResult Edit([Bind(Include = "MovieId,Title,Description,GenreId,GenreName,DirectorName,ActorName,Country,ReleaseDate,PosterUrl,TrailerUrl,AccessLevel")] Movie_64130299 movie_64130299)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(movie_64130299).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // Lấy thông tin phim hiện tại từ cơ sở dữ liệu
+                var existingMovie = db.Movie_64130299.AsNoTracking().FirstOrDefault(m => m.MovieId == movie_64130299.MovieId);
+
+                if (existingMovie != null)
+                {
+                    // Giữ nguyên giá trị CreatedAt
+                    movie_64130299.CreatedAt = existingMovie.CreatedAt;
+
+                    // Cập nhật UpdatedAt với thời gian hiện tại
+                    movie_64130299.UpdatedAt = DateTime.Now;
+
+                    // Đánh dấu entity là đã được sửa đổi
+                    db.Entry(movie_64130299).State = EntityState.Modified;
+
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    // Nếu không tìm thấy phim, trả về lỗi
+                    return HttpNotFound();
+                }
             }
+
+            // Nếu có lỗi trong ModelState, trả về view với dữ liệu nhập vào
             return View(movie_64130299);
         }
 

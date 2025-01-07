@@ -1,6 +1,6 @@
-﻿/*CREATE DATABASE MovieDatabase_64130299;
+﻿CREATE DATABASE MovieDatabase_64130299;
 USE MovieDatabase_64130299;
-DROP DATABASE MovieDatabase_64130299;*/
+DROP DATABASE MovieDatabase_64130299;
 
 -- Tạo bảng User
 CREATE TABLE User_64130299 (
@@ -25,12 +25,10 @@ CREATE TABLE Movie_64130299 (
     ReleaseDate DATE,
     PosterUrl NVARCHAR(512),
     TrailerUrl NVARCHAR(512),
+	AccessLevel NVARCHAR(50) NOT NULL DEFAULT 'Free',
     CreatedAt DATETIME DEFAULT GETDATE(),
     UpdatedAt DATETIME DEFAULT GETDATE()
 );
--- Thêm AccessLevel vào bảng Movie
-ALTER TABLE Movie_64130299
-ADD AccessLevel NVARCHAR(50) NOT NULL DEFAULT 'Free';
 
 -- Tạo bảng MovieUrls
 CREATE TABLE MovieUrls_64130299 (
@@ -75,17 +73,6 @@ CREATE TABLE Rating_64130299 (
     FOREIGN KEY (MovieId) REFERENCES Movie_64130299(MovieId)
 );
 
--- Tạo bảng Comments
-CREATE TABLE Comment_64130299 (
-    CommentId VARCHAR(100) PRIMARY KEY,
-    UserId VARCHAR(100) NOT NULL,
-    MovieId VARCHAR(100) NOT NULL,
-    Content NVARCHAR(MAX),
-    CreatedAt DATETIME DEFAULT GETDATE(),
-    FOREIGN KEY (UserId) REFERENCES User_64130299(UserId),
-    FOREIGN KEY (MovieId) REFERENCES Movie_64130299(MovieId)
-);
-
 CREATE TABLE AdminUsers_64130299 (
     Id INT IDENTITY(1,1) PRIMARY KEY, -- Sử dụng IDENTITY để tự động tăng
     Username NVARCHAR(255) NOT NULL, -- Sử dụng NVARCHAR để hỗ trợ Unicode
@@ -112,7 +99,7 @@ CREATE TABLE MemberSubscription_64130299 (
     AccessLevel NVARCHAR(50) NOT NULL DEFAULT 'Premium', -- Phân loại thẻ, "Premium" hoặc "Free"
     Status NVARCHAR(50) NOT NULL DEFAULT 'Active',  -- Trạng thái thẻ ("Active", "Inactive", "Expired")
     PaymentMethod NVARCHAR(50) NOT NULL,      -- Phương thức thanh toán (VNPay, MoMo, ...)
-    AmountPaid DECIMAL(10, 2) NOT NULL,       -- Số tiền đã thanh toán
+    AmountPaid DECIMAL(10, 0) NOT NULL,       -- Số tiền đã thanh toán
     RenewalDate DATETIME NULL,                -- Ngày gia hạn (nếu có)
     CreatedAt DATETIME DEFAULT GETDATE(),     -- Ngày tạo bản ghi
     UpdatedAt DATETIME DEFAULT GETDATE(),     -- Ngày cập nhật bản ghi
@@ -120,12 +107,23 @@ CREATE TABLE MemberSubscription_64130299 (
     FOREIGN KEY (PlanId) REFERENCES SubscriptionPlans_64130299(PlanId)  -- Liên kết với bảng SubscriptionPlans
 );
 
-
+INSERT INTO MemberSubscription_64130299 (
+    SubscriptionId, UserId, PlanId, StartDate, ExpiryDate, AccessLevel, Status, PaymentMethod, AmountPaid, RenewalDate, CreatedAt, UpdatedAt
+)
+VALUES
+    (NEWID(), '1-nguyen1', 1, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Premium', 'Active', 'VNPay', 100.00, NULL, GETDATE(), GETDATE()),
+    (NEWID(), '2-nguyen2', 2, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Free', 'Active', 'MoMo', 0.00, NULL, GETDATE(), GETDATE()),
+    (NEWID(), '3-nguyen3', 1, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Premium', 'Active', 'VNPay', 100.00, NULL, GETDATE(), GETDATE()),
+    (NEWID(), '4-nguyen4', 2, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Free', 'Active', 'Cash', 0.00, NULL, GETDATE(), GETDATE()),
+    (NEWID(), '5-nguyen5', 1, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Premium', 'Active', 'VNPay', 150.00, NULL, GETDATE(), GETDATE()),
+    (NEWID(), '6-nguyen6', 1, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Premium', 'Active', 'MoMo', 100.00, NULL, GETDATE(), GETDATE()),
+    (NEWID(), '7-nguyen7', 2, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Free', 'Active', 'VNPay', 0.00, NULL, GETDATE(), GETDATE()),
+    (NEWID(), '8-nguyen8', 1, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Premium', 'Active', 'Cash', 100.00, NULL, GETDATE(), GETDATE()),
+    (NEWID(), '9-nguyen9', 1, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Premium', 'Active', 'MoMo', 150.00, NULL, GETDATE(), GETDATE()),
+    (NEWID(), '10-nguyen10', 1, GETDATE(), DATEADD(MONTH, 1, GETDATE()), 'Premium', 'Active', 'VNPay', 100.00, NULL, GETDATE(), GETDATE());
 
 INSERT INTO AdminUsers_64130299 (Username, PasswordHash)
 VALUES ('admin', '6088d7f1f66b1d3d311f8db7d9217dcef9e89e03c536adb5ae37e740fabf1a03');
-
-
 
 INSERT INTO User_64130299 (UserId,Email, Password, Username)
 VALUES
@@ -178,30 +176,13 @@ VALUES
 ('2-rating', '2-nguyen2', '2-vqat', 4),
 ('3-rating', '3-nguyen3', '3-tkxx', 3);
 
--- Thêm dữ liệu vào bảng Comments
-INSERT INTO Comment_64130299 (CommentId, UserId, MovieId, Content)
-VALUES
-('1-comment', '1-nguyen1', '1-ttzkndd', N'Phim rất hấp dẫn và đầy bất ngờ!'),
-('2-comment', '2-nguyen2', '2-vqat', N'Phim đáng xem cho những người thích hành động.');
-
 -- Thêm dữ liệu vào bảng Favorites
 INSERT INTO Favorite_64130299 (FavoriteId, UserId, MovieId)
 VALUES
 ('1-favorite', '1-nguyen1', '1-ttzkndd'),
 ('2-favorite', '2-nguyen2', '2-vqat');
 
--- Thêm dữ liệu vào bảng WatchHistory
-INSERT INTO WatchHistory_64130299 (HistoryId, UserId, MovieId, LastWatchedTime)
-VALUES
-('1-history', '1-nguyen1', '1-ttzkndd', '2024-11-06 14:30:00'),
-('2-history', '2-nguyen2', '2-vqat', '2024-11-06 15:00:00');
 
---Thống kê tống số người dùng
-CREATE PROCEDURE GetTotalUsers
-AS
-BEGIN
-    SELECT COUNT(*) AS TotalUsers FROM User_64130299;
-END
 
 
 

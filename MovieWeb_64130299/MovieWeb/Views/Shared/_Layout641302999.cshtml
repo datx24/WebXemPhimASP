@@ -1,10 +1,9 @@
-﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewBag.Title - FPTPlay Clone</title>
+    <title>FPTPlay Clone</title>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -13,71 +12,118 @@
 <body class="bg-black text-white">
     <!-- Header -->
     <header class="bg-black shadow mx-20">
-        <div class="container mx-auto px-34 py-4 flex items-center justify-between">
-            <div class="logo">
-                <a href="@Url.Action("Home_64130299", "Home_64130299")">
-                    <img src="~/Images/logo_fpt_clone_transparent_v2.png" alt="FPT Play Logo" height="60" width="200" />
+        <div class="container mx-auto px-30 py-4 flex items-center justify-between">
+            <div class="flex items-center ">
+                <a class="flex justify-content-md-start space-x-2" href="@Url.Action("Home_64130299", "Home_64130299")">
+                    <img src="~/Images/multimedia.png" alt="FPT Play Logo" height="36" width="36" />
+                    <span class="text-2xl font-bold text-orange-500">FPT CLONE</span>
                 </a>
             </div>
+
             <nav>
                 <ul class="flex space-x-6">
                     <li>@Html.ActionLink("Trang chủ", "Home_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
-                    <li>@Html.ActionLink("Phim bộ", "tvseries_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
-                    <li>@Html.ActionLink("Phim lẻ", "film_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
-                    <li>@Html.ActionLink("Anime", "anime_64130299", "Home_64130299", null, new { @class = "text-gray-300 hover:text-orange-500" })</li>
+                    <li>
+                        @Html.ActionLink("Phim bộ", "FilterMovies_64130299", "Home_64130299", new { GenreId = "True", page = 1 }, new { @class = "text-gray-300 hover:text-orange-500" })
+                    </li>
+                    <li>@Html.ActionLink("Phim lẻ", "FilterMovies_64130299", "Home_64130299", new { GenreId = "False", page = 1 }, new { @class = "text-gray-300 hover:text-orange-500" })</li>
+                    <!-- Dropdown for Quốc Gia -->
+                    <li class="relative group">
+                        <span class="text-gray-300 cursor-pointer">Quốc Gia</span>
+                        <ul class="dropdown-menu absolute left-1/2 mt-2 w-96 bg-gray-800 rounded-md shadow-lg hidden flex flex-wrap transform -translate-x-1/2">
+                            <li class="w-1/3">
+                                @Html.ActionLink("Mỹ", "FilterMovies_64130299", "Home_64130299", new { Country = "Mỹ", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("Hàn Quốc", "FilterMovies_64130299", "Home_64130299", new { Country = "Hàn Quốc", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("Nhật Bản", "FilterMovies_64130299", "Home_64130299", new { Country = "Nhật Bản", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("Việt Nam", "FilterMovies_64130299", "Home_64130299", new { Country = "Việt Nam", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("Trung Quốc", "FilterMovies_64130299", "Home_64130299", new { Country = "Trung Quốc", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                        </ul>
+                    </li>
 
                     <!-- Dropdown for Thể loại -->
                     <li class="relative group">
                         <span class="text-gray-300 cursor-pointer">Thể loại</span>
                         <ul class="dropdown-menu absolute left-1/2 mt-2 w-96 bg-gray-800 rounded-md shadow-lg hidden flex flex-wrap transform -translate-x-1/2">
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Hài hước</a></li>
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Tình cảm</a></li>
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Hành động</a></li>
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Kinh dị</a></li>
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">Khoa học viễn tưởng</a></li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("Hành động", "FilterMovies_64130299", "Home_64130299", new { GenreName = "Hành động", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("Hài", "FilterMovies_64130299", "Home_64130299", new { GenreName = "Hài", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("Tâm lý", "FilterMovies_64130299", "Home_64130299", new { GenreName = "Tâm lý", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("Kinh dị", "FilterMovies_64130299", "Home_64130299", new { GenreName = "Kinh dị", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("Lãng mạn", "FilterMovies_64130299", "Home_64130299", new { GenreName = "Lãng mạn", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
                         </ul>
-
                     </li>
+
                     <!-- Dropdown for Năm sản xuất -->
                     <li class="relative group">
                         <span class="text-gray-300 cursor-pointer">Năm sản xuất</span>
                         <ul class="dropdown-menu absolute left-1/2 mt-2 w-96 bg-gray-800 rounded-md shadow-lg hidden flex flex-wrap transform -translate-x-1/2">
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2024</a></li>
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2023</a></li>
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2022</a></li>
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2021</a></li>
-                            <li class="w-1/3"><a href="#" class="block px-4 py-2 text-gray-300 hover:text-orange-500">2020</a></li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("2024", "FilterMovies_64130299", "Home_64130299", new { ReleaseYear = "2024", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("2023", "FilterMovies_64130299", "Home_64130299", new { ReleaseYear = "2023", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
+                            <li class="w-1/3">
+                                @Html.ActionLink("2022", "FilterMovies_64130299", "Home_64130299", new { ReleaseYear = "2022", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </nav>
             <div class="flex items-center space-x-4">
-                <form class="max-w-xs">
+                <form class="max-w-xs" method="get" action="@Url.Action("FilterMovies_64130299", "Home_64130299")">
                     <div class="relative">
                         <!-- Icon tìm kiếm -->
                         <div class="absolute inset-y-0 left-4 top-1.5 flex items-center pointer-events-none">
                             <i class="fas fa-search text-white w-4 h-4 z-10"></i> <!-- Giảm kích thước icon -->
                         </div>
-                        <input type="search" id="default-search" class="block w-48 p-2 pl-10 text-sm border border-gray-500 rounded-lg bg-slate-800 text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 ease-in-out transform hover:scale-105" placeholder="Nhập tên phim..." required />
+                        <!-- Input tìm kiếm -->
+                        <input type="search"
+                               id="default-search"
+                               name="Title"
+                               class="block w-48 p-2 pl-10 text-sm border border-gray-500 rounded-lg bg-slate-800 text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 ease-in-out transform hover:scale-105"
+                               placeholder="Nhập tên phim..."
+                               value="@ViewBag.Title" />
+
+                        <!-- Trường ẩn để duy trì các tiêu chí tìm kiếm hiện tại -->
+                        <input type="hidden" name="GenreId" value="@Request.QueryString["GenreId"]">
+                        <input type="hidden" name="GenreName" value="@ViewBag.GenreName" />
+                        <input type="hidden" name="Country" value="@ViewBag.Country" />
+                        <input type="hidden" name="ReleaseYear" value="@ViewBag.ReleaseYear" />
                     </div>
                 </form>
-                    <button class="bg-orange-500 text-white font-medium rounded-lg px-4 py-2 hover:bg-orange-600"
-                            onclick="location.href='@Url.Action("Create_64130299", "Subscription_64130299")'">
-                        Mua gói
-                    </button>
+
+                <button class="bg-orange-500 text-white font-medium rounded-lg px-4 py-2 hover:bg-orange-600"
+                        onclick="location.href='@Url.Action("Create", "MemberSubscription_64130299")'">
+                    Mua gói
+                </button>
 
                 @if (Session["Username"] != null)
                 {
-                    // Nếu người dùng đã đăng nhập, hiển thị liên kết "Đăng xuất"
                     <a class="text-white hover:text-orange-500" href="@Url.Action("Logout_64130299", "User_64130299")">Đăng xuất</a>
                 }
                 else
                 {
-                    // Nếu người dùng chưa đăng nhập, hiển thị liên kết "Đăng nhập"
                     <a class="text-white hover:text-orange-500" href="@Url.Action("Login_64130299", "User_64130299")">Đăng nhập</a>
                 }
-
-
             </div>
         </div>
     </header>
@@ -98,31 +144,21 @@
     </footer>
 
     <script>
-        const dropdowns = document.querySelectorAll('.relative.group'); // Tìm tất cả các dropdown
-
-        dropdowns.forEach(dropdown => {
+        // Thêm sự kiện click để mở dropdown
+        document.querySelectorAll('.relative.group').forEach(dropdown => {
             const menu = dropdown.querySelector('.dropdown-menu');
-            let timeoutId;
 
-            dropdown.addEventListener('mouseenter', () => {
-                clearTimeout(timeoutId);
-                menu.classList.remove('hidden'); // Hiện menu
+            dropdown.addEventListener('click', (event) => {
+                // Ngừng hành động mặc định (tránh tự động đóng nếu click vào trong dropdown)
+                event.stopPropagation();
+                menu.classList.toggle('hidden'); // Hiển thị hoặc ẩn menu
             });
+        });
 
-            dropdown.addEventListener('mouseleave', () => {
-                timeoutId = setTimeout(() => {
-                    menu.classList.add('hidden'); // Ẩn menu
-                }, 3000); // Thời gian chờ trước khi ẩn (300ms)
-            });
-
-            menu.addEventListener('mouseenter', () => {
-                clearTimeout(timeoutId); // Giữ menu khi hover vào menu
-            });
-
-            menu.addEventListener('mouseleave', () => {
-                timeoutId = setTimeout(() => {
-                    menu.classList.add('hidden'); // Ẩn menu
-                }, 30000); // Thời gian chờ trước khi ẩn (300ms)
+        // Đóng tất cả dropdown nếu click vào bất kỳ đâu ngoài vùng dropdown
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.add('hidden'); // Ẩn menu khi click ra ngoài
             });
         });
     </script>

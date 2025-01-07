@@ -323,7 +323,6 @@ namespace MovieWeb.Controllers
             }
         }
 
-
         // Đăng xuất
         public ActionResult Logout_64130299()
         {

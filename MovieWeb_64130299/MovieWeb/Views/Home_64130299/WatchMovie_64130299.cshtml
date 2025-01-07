@@ -1,16 +1,57 @@
 ﻿@model MovieWeb.Models.MovieUrls_64130299
 
 @{
-    ViewBag.Title = "Xem Phim - " + Model.Movie_64130299.Title;
+    ViewBag.Title = "Xem Phim - " + Model.Movie_64130299?.Title ?? "Phim không xác định";
     Layout = "~/Views/Shared/_Layout641302999.cshtml";
+    var movieUrls = ViewBag.MovieUrls as List<MovieWeb.Models.MovieUrls_64130299>;
+    var currentEpisode = Model;
 }
 
-<div class="container mx-auto py-8 text-center">
-    <h1 class="text-4xl font-bold text-white mb-6">Phim: @Model.Movie_64130299.Title</h1>
-    <div class="flex justify-center">
-        <iframe src="@Model.Url" class="w-full md:w-3/4 h-screen rounded-lg shadow-lg" allowfullscreen></iframe>
+<div class="container mx-auto py-8">
+    <h1 class="text-5xl font-bold text-center text-white mb-6">@Model.Movie_64130299.Title</h1>
+
+    <div class="flex justify-center mb-6">
+        <iframe src="@Model.Url" class="w-full md:w-3/4 h-96 rounded-lg shadow-lg" allowfullscreen></iframe>
     </div>
-    <a href="@Url.Action("Home_64130299", "Home_64130299")" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-6 inline-block">
-        Quay lại
-    </a>
+
+    <!-- Kiểm tra nếu danh sách tập phim không bị null và có nội dung -->
+    @if (movieUrls != null && movieUrls.Count == 1)
+    {
+        <!-- Hiển thị nút với tập duy nhất -->
+        <div class="flex justify-center mb-4">
+            <a href="@Url.Action("WatchMovie_64130299", new { id = currentEpisode.MovieId, episodeNumber = currentEpisode.EpisodeNumber })" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mx-2 transition duration-300 ease-in-out">
+                Xem Tập @currentEpisode.EpisodeNumber
+            </a>
+        </div>
+    }
+    else if (movieUrls != null && movieUrls.Count > 1)
+    {
+        <!-- Nếu có nhiều tập, hiển thị danh sách các tập -->
+        <div class="flex justify-center flex-wrap mb-4">
+            @foreach (var movieUrl in movieUrls)
+            {
+                <a href="@Url.Action("WatchMovie_64130299", new { id = movieUrl.MovieId, episodeNumber = movieUrl.EpisodeNumber })" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mx-2 transition duration-300 ease-in-out">
+                    Tập @movieUrl.EpisodeNumber
+                </a>
+            }
+        </div>
+    }
+
+    <div class="text-center">
+        <a href="@Url.Action("Details_64130299", "Home_64130299", new { id = currentEpisode.MovieId })" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition duration-300 ease-in-out">
+            Quay lại
+        </a>
+    </div>
+
 </div>
+
+<style>
+    /* Tùy chỉnh thêm nếu cần */
+    h1 {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Tạo hiệu ứng đổ bóng cho tiêu đề */
+    }
+
+    iframe {
+        border: none; /* Bỏ viền cho iframe */
+    }
+</style>

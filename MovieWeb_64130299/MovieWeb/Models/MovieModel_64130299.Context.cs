@@ -27,13 +27,11 @@ namespace MovieWeb.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Comment_64130299> Comment_64130299 { get; set; }
         public virtual DbSet<Favorite_64130299> Favorite_64130299 { get; set; }
         public virtual DbSet<Movie_64130299> Movie_64130299 { get; set; }
         public virtual DbSet<MovieUrls_64130299> MovieUrls_64130299 { get; set; }
         public virtual DbSet<Rating_64130299> Rating_64130299 { get; set; }
         public virtual DbSet<User_64130299> User_64130299 { get; set; }
-        public virtual DbSet<WatchHistory_64130299> WatchHistory_64130299 { get; set; }
         public virtual DbSet<AdminUsers_64130299> AdminUsers_64130299 { get; set; }
         public virtual DbSet<MemberSubscription_64130299> MemberSubscription_64130299 { get; set; }
         public virtual DbSet<SubscriptionPlans_64130299> SubscriptionPlans_64130299 { get; set; }

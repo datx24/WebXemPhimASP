@@ -17,11 +17,9 @@ namespace MovieWeb.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Movie_64130299()
         {
-            this.Comment_64130299 = new HashSet<Comment_64130299>();
             this.Favorite_64130299 = new HashSet<Favorite_64130299>();
             this.MovieUrls_64130299 = new HashSet<MovieUrls_64130299>();
             this.Rating_64130299 = new HashSet<Rating_64130299>();
-            this.WatchHistory_64130299 = new HashSet<WatchHistory_64130299>();
         }
     
         public string MovieId { get; set; }
@@ -40,14 +38,10 @@ namespace MovieWeb.Models
         public string AccessLevel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment_64130299> Comment_64130299 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite_64130299> Favorite_64130299 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MovieUrls_64130299> MovieUrls_64130299 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating_64130299> Rating_64130299 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WatchHistory_64130299> WatchHistory_64130299 { get; set; }
     }
 }

@@ -1,107 +1,71 @@
 ﻿@model MovieWeb.Models.MemberSubscription_64130299
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_Layout641302999.cshtml";
 }
 
-<h2>Details</h2>
+<div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
+    <h2 class="text-3xl font-semibold text-gray-800 text-center mb-6">Xác Nhận Thông Tin Đăng Ký</h2>
 
-<div>
-    <h4>MemberSubscription_64130299</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+    <table class="min-w-full bg-white shadow-md rounded-lg">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-600">Thông tin</th>
+                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-600">Chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b">
+                <td class="py-2 px-4 text-sm text-gray-600">Mã đăng ký</td>
+                <td class="py-2 px-4 text-sm text-gray-800">@Model.SubscriptionId</td>
+            </tr>
+            <tr class="border-b">
+                <td class="py-2 px-4 text-sm text-gray-600">Tên người dùng</td>
+                <td class="py-2 px-4 text-sm text-gray-800">@Session["UserName"]</td>
+            </tr>
+            <tr class="border-b">
+                <td class="py-2 px-4 text-sm text-gray-600">Ngày bắt đầu</td>
+                <td class="py-2 px-4 text-sm text-gray-800">@Model.StartDate.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            </tr>
+            <tr class="border-b">
+                <td class="py-2 px-4 text-sm text-gray-600">Ngày hết hạn</td>
+                <td class="py-2 px-4 text-sm text-gray-800">@Model.ExpiryDate.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            </tr>
+            <tr class="border-b">
+                <td class="py-2 px-4 text-sm text-gray-600">Cấp độ quyền</td>
+                <td class="py-2 px-4 text-sm text-gray-800">@Model.AccessLevel</td>
+            </tr>
+            <tr class="border-b">
+                <td class="py-2 px-4 text-sm text-gray-600">Phương thức thanh toán</td>
+                <td class="py-2 px-4 text-sm text-gray-800">@Model.PaymentMethod</td>
+            </tr>
+            <tr class="border-b">
+                <td class="py-2 px-4 text-sm text-gray-600">Số tiền thanh toán</td>
+                <td class="py-2 px-4 text-sm text-gray-800">@string.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", Model.AmountPaid)</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+    <div class="mt-6 flex justify-center space-x-4">
+        @using (Html.BeginForm("ConfirmSubscription", "MemberSubscription_64130299", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.SubscriptionId)
+            @Html.Hidden("UserId", Session["UserId"]) <!-- Lấy UserId từ session và ẩn trong form -->
+            @Html.HiddenFor(model => model.PlanId)
+            @Html.HiddenFor(model => model.StartDate)
+            @Html.HiddenFor(model => model.ExpiryDate)
+            @Html.HiddenFor(model => model.AccessLevel)
+            @Html.HiddenFor(model => model.PaymentMethod)
+            @Html.HiddenFor(model => model.AmountPaid)
+            @Html.HiddenFor(model => model.Status)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExpiryDate)
-        </dt>
+            <button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                Xác nhận
+            </button>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.ExpiryDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AccessLevel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AccessLevel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RenewalDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RenewalDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentMethod)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PaymentMethod)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AmountPaid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AmountPaid)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User_64130299.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User_64130299.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SubscriptionPlans_64130299.PlanName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SubscriptionPlans_64130299.PlanName)
-        </dd>
-
-    </dl>
+        <a href="@Url.Action("Create")" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">
+            Hủy
+        </a>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SubscriptionId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

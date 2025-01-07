@@ -1,0 +1,130 @@
+﻿@model IEnumerable<MovieWeb.Models.Movie_64130299>
+
+@{
+    Layout = "~/Views/Shared/_Layout641302999.cshtml";
+}
+
+<div class="container mx-auto mt-4">
+    <h2 class="text-center text-3xl font-bold text-orange-500 mb-4">Tìm kiếm phim: @ViewBag.Title</h2>
+    <!-- Bộ lọc phim -->
+    <form method="get" class="mb-4">
+        <div class="flex flex-wrap justify-between w-3/4 mx-auto">
+            <div class="w-full sm:w-1/6 mb-4">
+                <label for="GenreId" class="block text-gray-300">Định dạng:</label>
+                <select class="p-2 form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 text-black" name="GenreId">
+                    <option value="">Tất cả định dạng</option>
+                    <option value="False" @(Request.QueryString["GenreId"] == "False" ? "selected" : "")>Phim lẻ</option>
+                    <option value="True" @(Request.QueryString["GenreId"] == "True" ? "selected" : "")>Phim bộ</option>
+                </select>
+            </div>
+
+            <div class="w-full sm:w-1/6 mb-4">
+                <label for="GenreName" class="block text-gray-300">Thể loại:</label>
+                <select class="p-2 form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 text-black" name="GenreName">
+                    <option value="">Tất cả thể loại</option>
+                    <option value="Hành động" @(Request.QueryString["GenreName"] == "Hành động" ? "selected" : "")>Hành động</option>
+                    <option value="Hài" @(Request.QueryString["GenreName"] == "Hài" ? "selected" : "")>Hài</option>
+                    <option value="Tâm lý" @(Request.QueryString["GenreName"] == "Tâm lý" ? "selected" : "")>Tâm lý</option>
+                    <option value="Kinh dị" @(Request.QueryString["GenreName"] == "Kinh dị" ? "selected" : "")>Kinh dị</option>
+                    <option value="Lãng mạn" @(Request.QueryString["GenreName"] == "Lãng mạn" ? "selected" : "")>Lãng mạn</option>
+                </select>
+            </div>
+
+            <div class="w-full sm:w-1/6 mb-4">
+                <label for="Country" class="block text-gray-300">Quốc gia:</label>
+                <select class="p-2 form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 text-black" name="Country">
+                    <option value="">Tất cả quốc gia</option>
+                    <option value="Mỹ" @(Request.QueryString["Country"] == "Mỹ" ? "selected" : "")>Mỹ</option>
+                    <option value="Hàn Quốc" @(Request.QueryString["Country"] == "Hàn Quốc" ? "selected" : "")>Hàn Quốc</option>
+                    <option value="Nhật Bản" @(Request.QueryString["Country"] == "Nhật Bản" ? "selected" : "")>Nhật Bản</option>
+                    <option value="Việt Nam" @(Request.QueryString["Country"] == "Việt Nam" ? "selected" : "")>Việt Nam</option>
+                    <option value="Trung Quốc" @(Request.QueryString["Country"] == "Trung Quốc" ? "selected" : "")>Trung Quốc</option>
+                </select>
+            </div>
+
+            <div class="w-full sm:w-1/6 mb-4">
+                <label for="ReleaseYear" class="block text-gray-300">Năm phát hành:</label>
+                <select class="p-2 form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 text-black" name="ReleaseYear">
+                    <option value="">Tất cả năm</option>
+                    <option value="2024" @(Request.QueryString["ReleaseYear"] == "2024" ? "selected" : "")>2024</option>
+                    <option value="2023" @(Request.QueryString["ReleaseYear"] == "2023" ? "selected" : "")>2023</option>
+                    <option value="2022" @(Request.QueryString["ReleaseYear"] == "2022" ? "selected" : "")>2022</option>
+                </select>
+            </div>
+
+            <!-- Trường ẩn để duy trì giá trị tên phim từ ViewBag.Title -->
+            <input type="hidden" name="Title" value="@ViewBag.Title" />
+
+            <div class="w-full sm:w-auto mb-4 flex items-end">
+                <button type="submit" class="btn bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded w-full sm:w-auto">
+                    Lọc phim
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="flex-1 h-0.5 bg-orange-500 mb-8"></div>
+
+    <!-- Danh sách phim -->
+    @if (Model != null && Model.Any())
+    {
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            @foreach (var movie in Model)
+            {
+                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer" onclick="location.href='@Url.Action("Details_64130299", "Home_64130299", new { id = movie.MovieId })'">
+                    <img src="@movie.PosterUrl" class="w-full h-52 object-cover" alt="@movie.Title">
+                    <div class="p-4">
+                        <h5 class="text-lg font-bold text-orange-500">@movie.Title</h5>
+                        <p class="text-gray-300 mt-2 text-sm">
+                            <strong>Thể loại:</strong> @movie.GenreName <br>
+                            <strong>Quốc gia:</strong> @movie.Country <br>
+                            <strong>Phát hành:</strong> @(movie.ReleaseDate?.ToString("yyyy") ?? "Chưa rõ")
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="flex items-center justify-center p-8">
+            <p class="text-center text-red-500">Không tìm thấy phim nào phù hợp với bộ lọc.</p>
+        </div>
+    }
+
+    <div class="flex-1 h-0.5 bg-orange-500 mb-2 mt-8"></div>
+
+    <!-- Phân trang -->
+    @if (ViewBag.TotalPages != null && ViewBag.Page != null)
+    {
+        int currentPage = ViewBag.Page;
+        int totalPages = ViewBag.TotalPages;
+
+        <nav aria-label="Page navigation example" class="mt-6">
+            <ul class="flex items-center justify-center space-x-2">
+                <li>
+                    <a href="@Url.Action("FilterMovies_64130299", "Home_64130299", new { GenreName = Request.QueryString["GenreName"], Country = Request.QueryString["Country"], ReleaseYear = Request.QueryString["ReleaseYear"], page = currentPage - 1 })"
+                       class="flex items-center justify-center px-4 py-3 text-white bg-orange-600 rounded-md hover:bg-orange-700 transition duration-200 @(currentPage <= 1 ? "opacity-50 cursor-not-allowed pointer-events-none" : "")">
+                        <i class="fas fa-arrow-left"></i> <!-- Biểu tượng mũi tên trái -->
+                    </a>
+                </li>
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li>
+                        <a href="@Url.Action("FilterMovies_64130299", "Home_64130299", new { GenreName = Request.QueryString["GenreName"], Country = Request.QueryString["Country"], ReleaseYear = Request.QueryString["ReleaseYear"], page = i })"
+                           class="flex items-center justify-center px-4 py-2 text-white @(currentPage == i ? "bg-orange-600" : "bg-black") rounded-md hover:bg-gray-800 transition duration-200">
+                            @i
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a href="@Url.Action("FilterMovies_64130299", "Home_64130299", new { GenreName = Request.QueryString["GenreName"], Country = Request.QueryString["Country"], ReleaseYear = Request.QueryString["ReleaseYear"], page = currentPage + 1 })"
+                       class="flex items-center justify-center px-4 py-3 text-white bg-orange-600 rounded-md hover:bg-orange-700 transition duration-200 @(currentPage >= totalPages ? "opacity-50 cursor-not-allowed pointer-events-none" : "")">
+                        <i class="fas fa-arrow-right"></i> <!-- Biểu tượng mũi tên phải -->
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
+
+

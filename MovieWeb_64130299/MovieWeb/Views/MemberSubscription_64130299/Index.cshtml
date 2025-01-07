@@ -1,94 +1,95 @@
 ﻿@model IEnumerable<MovieWeb.Models.MemberSubscription_64130299>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách Đăng Ký Thành Viên";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 5);
+    int i = 0;
 }
 
-<h2>Index</h2>
+<div class="container mx-auto my-8 p-6 bg-gray-100 rounded-lg shadow-md">
+    <h2 class="text-3xl font-bold text-center mb-3 text-gray-800">DANH SÁCH ĐĂNG KÝ THÀNH VIÊN</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExpiryDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AccessLevel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RenewalDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaymentMethod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AmountPaid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User_64130299.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubscriptionPlans_64130299.PlanName)
-        </th>
-        <th></th>
-    </tr>
+    <!-- Thống kê -->
+    <div class="grid grid-cols-2 gap-4 mb-6">
+        <!-- Card 1: Lượt đăng ký hôm nay -->
+        <div class="bg-blue-100 p-6 rounded-lg shadow-lg flex items-center hover:shadow-xl transition-shadow duration-300">
+            <img src="~/Images/atm-card.png" alt="Subscription Icon" class="w-16 h-16 mr-4">
+            <div>
+                <h3 class="text-lg font-bold text-blue-800">Lượt đăng ký hôm nay</h3>
+                <p class="text-2xl font-semibold text-blue-600 mt-2">@ViewBag.CountToday</p>
+            </div>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpiryDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccessLevel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RenewalDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaymentMethod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AmountPaid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User_64130299.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubscriptionPlans_64130299.PlanName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SubscriptionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SubscriptionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SubscriptionId })
-        </td>
-    </tr>
-}
+        <!-- Card 2: Tổng doanh thu -->
+        <div class="bg-green-100 p-6 rounded-lg shadow-lg flex items-center hover:shadow-xl transition-shadow duration-300">
+            <img src="~/Images/money-received.png" alt="Revenue Icon" class="w-16 h-16 mr-4">
+            <div>
+                <h3 class="text-lg font-bold text-green-800">Tổng doanh thu</h3>
+                <p class="text-2xl font-semibold text-green-600 mt-2">@ViewBag.TotalRevenue.ToString("N0") ₫</p>
+            </div>
+        </div>
+    </div>
 
-</table>
+    <!-- Danh sách Đăng Ký -->
+    <div class="overflow-x-auto">
+        @grid.GetHtml(
+            tableStyle: "min-w-full bg-white border border-gray-300 rounded-lg mx-auto",
+            headerStyle: "bg-blue-600 text-white text-center uppercase text-lg tracking-wide no-underline py-2 px-4 h-12",
+            alternatingRowStyle: "table-secondary",
+            rowStyle: "border-t border-gray-200 hover:bg-blue-50 transition-colors duration-200",
+            columns: grid.Columns(
+                grid.Column(header: "STT", format: (item) => { i++; return i; }, style: "text-center px-4 py-4 max-w-40"),
+                grid.Column("SubscriptionId", "Mã thẻ", style: "text-center px-4 py-4"),
+                grid.Column("StartDate", "Ngày bắt đầu", format: item => item.StartDate.ToShortDateString(), style: "text-center px-4 py-4"),
+                grid.Column("ExpiryDate", "Ngày hết hạn", format: item => item.ExpiryDate.ToShortDateString(), style: "text-center px-4 py-4"),
+                grid.Column("AccessLevel", "Loại thẻ", style: "text-center px-4 py-4"),
+                grid.Column("Status", "Trạng thái", style: "text-center px-4 py-4"),
+                grid.Column("AmountPaid", "Số tiền thanh toán", format: item => item.AmountPaid.ToString("N0") + " ₫", style: "text-center px-4 py-4"),
+                grid.Column(header: "Chức năng", format: item => MvcHtmlString.Create(
+                $"<div class='flex justify-center space-x-6'>" +
+                $"<a href='{Url.Action("Delete", new { id = item.SubscriptionId })}' class='text-red-600 hover:text-red-800 text-xl' title='Xóa'><i class='fas fa-trash-alt'></i></a>" +
+                $"</div>"
+            ), style: "text-center px-4 py-4")
+            )
+        )
+    </div>
+
+    <!-- Phân trang -->
+    <div class="flex justify-center mt-6">
+        <div class="flex items-center space-x-2">
+            @if (grid.PageIndex > 0)
+            {
+                <a href="@Url.Action("Index", new { page = grid.PageIndex })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </span>
+            }
+
+            @for (var page = 1; page <= grid.PageCount; page++)
+            {
+                <a href="@Url.Action("Index", new { page = page })" class="@((grid.PageIndex + 1 == page) ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-blue-200 hover:text-blue-700") py-2 px-4 rounded-lg transition duration-300">
+                    @page
+                </a>
+            }
+
+            @if (grid.PageIndex < grid.PageCount - 1)
+            {
+                <a href="@Url.Action("Index", new { page = grid.PageIndex + 2 })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </span>
+            }
+        </div>
+    </div>
+</div>

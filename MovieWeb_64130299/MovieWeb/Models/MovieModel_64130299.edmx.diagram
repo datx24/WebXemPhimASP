@@ -5,22 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="595713366633468781133400512451e1" Name="Diagram1">
-        <EntityTypeShape EntityType="MovieDatabase_64130299Model.Comment_64130299" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieDatabase_64130299Model.Favorite_64130299" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieDatabase_64130299Model.Movie_64130299" Width="1.5" PointX="0.875" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieDatabase_64130299Model.MovieUrls_64130299" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieDatabase_64130299Model.Rating_64130299" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieDatabase_64130299Model.User_64130299" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieDatabase_64130299Model.WatchHistory_64130299" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
-        <AssociationConnector Association="MovieDatabase_64130299Model.FK__Comment_6__Movie__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieDatabase_64130299Model.FK__Comment_6__UserI__2E1BDC42" ManuallyRouted="false" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__Favorite___Movie__1ED998B2" ManuallyRouted="false" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__Favorite___UserI__1DE57479" ManuallyRouted="false" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__MovieUrls__Movie__1A14E395" ManuallyRouted="false" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__Rating_64__Movie__2A4B4B5E" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieDatabase_64130299Model.FK__WatchHist__Movie__24927208" ManuallyRouted="false" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__Rating_64__UserI__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieDatabase_64130299Model.FK__WatchHist__UserI__239E4DCF" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MovieDatabase_64130299Model.AdminUsers_64130299" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="MovieDatabase_64130299Model.MemberSubscription_64130299" Width="1.5" PointX="6" PointY="0.75" />
         <AssociationConnector Association="MovieDatabase_64130299Model.FK__MemberSub__UserI__5070F446" />

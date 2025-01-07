@@ -1,70 +1,68 @@
 ﻿@model MovieWeb.Models.SubscriptionPlans_64130299
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Chỉnh Sửa";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Chỉnh Sửa Kế Hoạch Đăng Ký</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>SubscriptionPlans_64130299</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.PlanId)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PlanName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PlanName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PlanName, "", new { @class = "text-danger" })
+        <div class="space-y-6">
+            <!-- Tóm tắt xác nhận -->
+            @Html.ValidationSummary(true, "", new { @class = "text-red-600 text-center mb-4" })
+
+            @Html.HiddenFor(model => model.PlanId)
+
+            <!-- Tên Kế Hoạch -->
+            <div class="flex flex-col">
+                @Html.LabelFor(model => model.PlanName,"Tên loại thẻ", new { @class = "text-lg font-medium text-gray-700 mb-2" })
+                @Html.EditorFor(model => model.PlanName, new { htmlAttributes = new { @class = "form-input px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" } })
+                @Html.ValidationMessageFor(model => model.PlanName, "", new { @class = "text-red-600 mt-1" })
+            </div>
+
+            <!-- Thời Gian (Tháng) -->
+            <div class="flex flex-col">
+                @Html.LabelFor(model => model.DurationMonths,"Số tháng", new { @class = "text-lg font-medium text-gray-700 mb-2" })
+                @Html.EditorFor(model => model.DurationMonths, new { htmlAttributes = new { @class = "form-input px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" } })
+                @Html.ValidationMessageFor(model => model.DurationMonths, "", new { @class = "text-red-600 mt-1" })
+            </div>
+
+            <!-- Giá -->
+            <div class="flex flex-col">
+                @Html.LabelFor(model => model.Price,"Giá", new { @class = "text-lg font-medium text-gray-700 mb-2" })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-input px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-red-600 mt-1" })
+            </div>
+
+            <!-- Ngày Tạo -->
+            <div class="flex flex-col">
+                @Html.LabelFor(model => model.CreatedAt,"Thời điểm tạo", new { @class = "text-lg font-medium text-gray-700 mb-2" })
+                @Html.EditorFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-input px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-red-600 mt-1" })
+            </div>
+
+            <!-- Ngày Cập Nhật -->
+            <div class="flex flex-col">
+                @Html.LabelFor(model => model.UpdatedAt,"Thời điểm cập nhật", new { @class = "text-lg font-medium text-gray-700 mb-2" })
+                @Html.EditorFor(model => model.UpdatedAt, new { htmlAttributes = new { @class = "form-input px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.UpdatedAt, "", new { @class = "text-red-600 mt-1" })
+            </div>
+
+            <!-- Nút Lưu -->
+            <div class="flex justify-end">
+                <input type="submit" value="Lưu" class="px-6 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DurationMonths, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DurationMonths, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DurationMonths, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UpdatedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+    <!-- Liên kết quay lại danh sách -->
+    <div class="mt-6 text-center">
+        @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "text-blue-600 hover:text-blue-800 font-medium text-lg" })
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+s

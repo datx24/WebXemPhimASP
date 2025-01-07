@@ -1,58 +1,82 @@
 ﻿@model IEnumerable<MovieWeb.Models.SubscriptionPlans_64130299>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách Gói Đăng Ký";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 5);
+    int i = 0;
+    int currentPage = grid.PageIndex + 1; // Trang hiện tại
+    int totalPages = grid.PageCount; // Tổng số trang
 }
 
-<h2>Index</h2>
+<div class="container mx-auto my-8 p-6 bg-gray-100 rounded-lg shadow-md">
+    <h2 class="text-3xl font-bold text-center mb-3 text-gray-800">DANH SÁCH GÓI ĐĂNG KÝ</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PlanName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DurationMonths)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </th>
-        <th></th>
-    </tr>
+    <!-- Nút tạo mới -->
+    <div class="mb-6 flex justify-end">
+        @Html.ActionLink("Tạo mới", "Create", null, new { @class = "bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-md shadow transition-transform transform hover:scale-105" })
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlanName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DurationMonths)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PlanId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PlanId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PlanId })
-        </td>
-    </tr>
-}
+    <!-- Danh sách Gói Đăng Ký -->
+    <div class="overflow-x-auto">
+        @grid.GetHtml(
+            tableStyle: "min-w-full bg-white border border-gray-300 rounded-lg mx-auto",
+            headerStyle: "bg-blue-600 text-white text-center uppercase text-lg tracking-wide no-underline py-2 px-4 h-12",
+            alternatingRowStyle: "table-secondary",
+            rowStyle: "border-t border-gray-200 hover:bg-blue-50 transition-colors duration-200",
+            footerStyle: "",
+            columns: grid.Columns(
+                grid.Column(header: "STT", format: (item) => { i++; return i; }, style: "text-center px-4 py-4 max-w-40"),
+                grid.Column("PlanName", "Tên gói", style: "text-center px-4 py-4"),
+                grid.Column("DurationMonths", "Thời gian (tháng)", style: "text-center px-4 py-4"),
+               grid.Column("Price", "Giá", format: item => item.Price.ToString("N0") + " ₫", style: "text-center px-4 py-4"),
+                grid.Column(header: "Chức năng", format: item => MvcHtmlString.Create(
+                $"<div class='flex justify-center space-x-6'>" +
+                $"<a href='{Url.Action("Edit", new { id = item.PlanId })}' class='text-blue-600 hover:text-blue-800 text-xl' title='Chỉnh sửa'><i class='fas fa-edit'></i></a>" +
+                $"<a href='{Url.Action("Details", new { id = item.PlanId })}' class='text-green-600 hover:text-green-800 text-xl' title='Xem chi tiết'><i class='fas fa-info-circle'></i></a>" +
+                $"<a href='{Url.Action("Delete", new { id = item.PlanId })}' class='text-red-600 hover:text-red-800 text-xl' title='Xóa'><i class='fas fa-trash-alt'></i></a>" +
+                $"</div>"
+            ), style: "text-center px-4 py-4")
+            )
+        )
+    </div>
 
-</table>
+    <!-- Phân trang -->
+    <div class="flex justify-center mt-6">
+        <div class="flex items-center space-x-2">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    <i class="fas fa-chevron-left"></i> Trước
+                </span>
+            }
+
+            <!-- Số trang -->
+            @for (var page = 1; page <= ViewBag.TotalPages; page++)
+            {
+                <a href="@Url.Action("Index", new { page = page })" class="@((ViewBag.CurrentPage == page) ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-blue-200 hover:text-blue-700") py-2 px-4 rounded-lg transition duration-300">
+                    @page
+                </a>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </a>
+            }
+            else
+            {
+                <span class="bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                    Sau <i class="fas fa-chevron-right"></i>
+                </span>
+            }
+        </div>
+    </div>
+</div>

@@ -1,17 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MovieDatabase_64130299ModelStoreContainer" CdmEntityContainer="MovieDatabase_64130299Entities">
-    <EntitySetMapping Name="Comment_64130299">
-      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Comment_64130299">
-        <MappingFragment StoreEntitySet="Comment_64130299">
-          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Favorite_64130299">
       <EntityTypeMapping TypeName="MovieDatabase_64130299Model.Favorite_64130299">
         <MappingFragment StoreEntitySet="Favorite_64130299">
@@ -72,17 +61,6 @@
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="WatchHistory_64130299">
-      <EntityTypeMapping TypeName="MovieDatabase_64130299Model.WatchHistory_64130299">
-        <MappingFragment StoreEntitySet="WatchHistory_64130299">
-          <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
-          <ScalarProperty Name="LastWatchedTime" ColumnName="LastWatchedTime" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
