@@ -215,7 +215,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\atm-card.png" />
     <Content Include="Images\logo_fpt_clone_transparent_v2.png" />
+    <Content Include="Images\money-received.png" />
     <Content Include="Images\multimedia.png" />
     <Content Include="Images\ticket_5225448.png" />
     <Content Include="Models\MovieModel_64130299.Context.tt">
