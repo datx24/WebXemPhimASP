@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<MovieWeb.Models.MemberSubscription_64130299>
 
 @{
-    ViewBag.Title = "Danh sách Đăng Ký Thành Viên";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     var grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 5);
     int i = 0;
@@ -23,12 +22,20 @@
 
         <!-- Card 2: Tổng doanh thu -->
         <div class="bg-green-100 p-6 rounded-lg shadow-lg flex items-center hover:shadow-xl transition-shadow duration-300">
-            <img src="~/Images/money-received.png" alt="Revenue Icon" class="w-16 h-16 mr-4">
+            <img src="~/Images/money-received.png" alt="Revenue Icon" class="w-24 h-24 mr-4">
             <div>
                 <h3 class="text-lg font-bold text-green-800">Tổng doanh thu</h3>
                 <p class="text-2xl font-semibold text-green-600 mt-2">@ViewBag.TotalRevenue.ToString("N0") ₫</p>
             </div>
         </div>
+    </div>
+
+    <div class="flex justify-center mb-6">
+        <a href="@Url.Action("ExportToExcel", "MemberSubscription_64130299")"
+           class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 flex items-center">
+            <img src="~/Images/excel-file.png" alt="Excel Icon" class="w-6 h-6 mr-2">
+            Xuất báo cáo
+        </a>
     </div>
 
     <!-- Danh sách Đăng Ký -->

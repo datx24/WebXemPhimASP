@@ -30,7 +30,7 @@
                     <!-- Dropdown for Quốc Gia -->
                     <li class="relative group">
                         <span class="text-gray-300 cursor-pointer">Quốc Gia</span>
-                        <ul class="dropdown-menu absolute left-1/2 mt-2 w-96 bg-gray-800 rounded-md shadow-lg hidden flex flex-wrap transform -translate-x-1/2">
+                        <ul class="z-50 dropdown-menu absolute left-1/2 mt-2 w-96 bg-gray-800 rounded-md shadow-lg hidden flex flex-wrap transform -translate-x-1/2">
                             <li class="w-1/3">
                                 @Html.ActionLink("Mỹ", "FilterMovies_64130299", "Home_64130299", new { Country = "Mỹ", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
                             </li>
@@ -52,7 +52,7 @@
                     <!-- Dropdown for Thể loại -->
                     <li class="relative group">
                         <span class="text-gray-300 cursor-pointer">Thể loại</span>
-                        <ul class="dropdown-menu absolute left-1/2 mt-2 w-96 bg-gray-800 rounded-md shadow-lg hidden flex flex-wrap transform -translate-x-1/2">
+                        <ul class="z-50 dropdown-menu absolute left-1/2 mt-2 w-96 bg-gray-800 rounded-md shadow-lg hidden flex flex-wrap transform -translate-x-1/2">
                             <li class="w-1/3">
                                 @Html.ActionLink("Hành động", "FilterMovies_64130299", "Home_64130299", new { GenreName = "Hành động", page = 1 }, new { @class = "block px-4 py-2 text-gray-300 hover:text-orange-500" })
                             </li>
@@ -86,6 +86,7 @@
                             </li>
                         </ul>
                     </li>
+                    <li>@Html.ActionLink("Yêu thích", "Favorites_64130299", "Home_64130299", new { page = 1 }, new { @class = "text-gray-300 hover:text-orange-500" })</li>
                 </ul>
             </nav>
             <div class="flex items-center space-x-4">

@@ -1,0 +1,20 @@
+﻿@{
+    var htmlContent = ViewBag.HtmlContent as string;
+}
+
+<div class="container mt-4">
+    <h2>Báo cáo Doanh Thu Ngày @DateTime.Today:dd/MM/yyyy</h2>
+
+    <!-- Hiển thị báo cáo -->
+    <div>
+        @Html.Raw(htmlContent)
+    </div>
+
+    <div class="flex justify-center mt-6">
+        <a href="@Url.Action("ExportToExcel", "MemberSubscription_64130299")"
+           class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 flex items-center">
+            <img src="~/Images/excel-file.png" alt="Excel Icon" class="w-6 h-6 mr-2">
+            Xuất báo cáo
+        </a>
+    </div>
+</div>

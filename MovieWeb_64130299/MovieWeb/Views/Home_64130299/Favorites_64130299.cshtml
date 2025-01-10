@@ -1,0 +1,85 @@
+﻿@model IEnumerable<MovieWeb.Models.Favorite_64130299>
+
+@{
+    Layout = "~/Views/Shared/_Layout641302999.cshtml";
+}
+
+<div class="container mx-auto py-8">
+    <h1 class="text-4xl font-bold text-center text-orange-500 mb-6">Danh Sách Phim Yêu Thích</h1>
+
+    <!-- Hiển thị thông báo thành công -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="bg-green-500 text-white p-4 rounded mb-4 shadow-lg">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <!-- Hiển thị thông báo lỗi -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="bg-red-500 text-white p-4 rounded mb-4 shadow-lg">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    @foreach (var item in Model)
+    {
+        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer">
+            <!-- Thêm liên kết tới trang Detail_64130299 -->
+            <a href="@Url.Action("Details_64130299", "Home_64130299", new { id = item.Movie_64130299.MovieId })">
+                <img src="@item.Movie_64130299.PosterUrl" class="w-full h-64 object-cover" alt="@item.Movie_64130299.Title">
+                <div class="p-4">
+                    <h5 class="text-lg font-bold text-orange-500">@item.Movie_64130299.Title</h5>
+                    <p class="text-gray-300 mt-2 text-sm">
+                        <strong>Thể loại:</strong> @item.Movie_64130299.GenreName <br>
+                        <strong>Quốc gia:</strong> @item.Movie_64130299.Country <br>
+                        <strong>Phát hành:</strong> @(item.Movie_64130299.ReleaseDate?.ToString("yyyy") ?? "Chưa rõ")
+                    </p>
+                </div>
+            </a>
+            <div class="p-4 border-t border-gray-700">
+                <form method="post" action="@Url.Action("RemoveFromFavorites", "Home_64130299")" class="inline w-full">
+                    <input type="hidden" name="favoriteId" value="@item.FavoriteId" />
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full w-full text-center transition duration-200">
+                        <i class="fa fa-trash-alt mr-2"></i> Xóa khỏi yêu thích
+                    </button>
+                </form>
+            </div>
+        </div>
+    }
+
+    <!-- Phân trang -->
+    @if (ViewBag.TotalPages != null && ViewBag.Page != null)
+    {
+        int currentPage = ViewBag.Page;
+        int totalPages = ViewBag.TotalPages;
+
+        <nav aria-label="Page navigation" class="mt-6">
+            <ul class="flex items-center justify-center space-x-2">
+                <li>
+                    <a href="@Url.Action("Favorites_64130299", "Home_64130299", new { page = currentPage - 1 })"
+                       class="flex items-center justify-center px-4 py-2 text-white bg-orange-600 rounded-md hover:bg-orange-700 transition duration-200 @(currentPage <= 1 ? "opacity-50 cursor-not-allowed pointer-events-none" : "")">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </li>
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li>
+                        <a href="@Url.Action("Favorites_64130299", "Home_64130299", new { page = i })"
+                           class="flex items-center justify-center px-4 py-2 text-white @(currentPage == i ? "bg-orange-600" : "bg-gray-700") rounded-md hover:bg-gray-800 transition duration-200">
+                            @i
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a href="@Url.Action("Favorites_64130299", "Home_64130299", new { page = currentPage + 1 })"
+                       class="flex items-center justify-center px-4 py-2 text-white bg-orange-600 rounded-md hover:bg-orange-700 transition duration-200 @(currentPage >= totalPages ? "opacity-50 cursor-not-allowed pointer-events-none" : "")">
+                        <i class=" fas fa-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>

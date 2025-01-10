@@ -2,17 +2,92 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MovieWeb.Models;
+using OfficeOpenXml;
 
 namespace MovieWeb.Controllers
 {
     public class MemberSubscription_64130299Controller : Controller
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
+        public ActionResult ExportToExcel()
+        {
+            var today = DateTime.Today;
+
+            var subscriptionsToday = db.MemberSubscription_64130299
+                .Include(x => x.User_64130299)
+                .Where(x => DbFunctions.TruncateTime(x.CreatedAt) == today)
+                .ToList();
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Báo cáo");
+
+                // Tiêu đề
+                worksheet.Cells[1, 1].Value = "Báo cáo Doanh Thu Ngày " + today.ToString("dd/MM/yyyy");
+                worksheet.Cells[1, 1, 1, 5].Merge = true;
+                worksheet.Cells[1, 1, 1, 5].Style.Font.Size = 20; // Tăng kích thước chữ cho tiêu đề
+                worksheet.Cells[1, 1, 1, 5].Style.Font.Bold = true;
+                worksheet.Cells[1, 1, 1, 5].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet.Cells[1, 1, 1, 5].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                worksheet.Cells[1, 1, 1, 5].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                worksheet.Cells[1, 1, 1, 5].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+
+                // Header
+                worksheet.Cells[2, 1].Value = "Mã thẻ";
+                worksheet.Cells[2, 2].Value = "Người đăng ký";
+                worksheet.Cells[2, 3].Value = "Email";
+                worksheet.Cells[2, 4].Value = "Ngày tạo";
+                worksheet.Cells[2, 5].Value = "Số tiền";
+                worksheet.Cells[2, 1, 2, 5].Style.Font.Size = 15; // Cỡ chữ tiêu đề
+                worksheet.Cells[2, 1, 2, 5].Style.Font.Bold = true;
+                worksheet.Cells[2, 1, 2, 5].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet.Cells[2, 1, 2, 5].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                worksheet.Cells[2, 1, 2, 5].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                worksheet.Cells[2, 1, 2, 5].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.SkyBlue);
+
+                int row = 3;
+                foreach (var sub in subscriptionsToday)
+                {
+                    worksheet.Cells[row, 1].Value = sub.SubscriptionId;
+                    worksheet.Cells[row, 2].Value = sub.User_64130299?.Username ?? "N/A";
+                    worksheet.Cells[row, 3].Value = sub.User_64130299?.Email ?? "N/A";
+                    worksheet.Cells[row, 4].Value = sub.CreatedAt?.ToString("dd/MM/yyyy");
+                    worksheet.Cells[row, 5].Value = sub.AmountPaid.GetValueOrDefault().ToString("N0") + " ₫";
+                    worksheet.Cells[row, 1, row, 5].Style.Font.Size = 13; // Cỡ chữ cho dữ liệu
+                    worksheet.Cells[row, 1, row, 5].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                    worksheet.Cells[row, 1, row, 5].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                    row++;
+                }
+
+                // Tính tổng doanh thu
+                decimal totalRevenue = subscriptionsToday.Sum(x => x.AmountPaid.GetValueOrDefault());
+                worksheet.Cells[row, 4].Value = "Tổng doanh thu:";
+                worksheet.Cells[row, 5].Value = totalRevenue.ToString("N0") + " ₫";
+                worksheet.Cells[row, 4, row, 5].Style.Font.Bold = true;
+                worksheet.Cells[row, 4, row, 5].Style.Font.Size = 13; // Kích thước chữ lớn hơn
+                worksheet.Cells[row, 4, row, 5].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                worksheet.Cells[row, 4, row, 5].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGreen);
+                worksheet.Cells[row, 5].Style.Numberformat.Format = "#,##0 ₫";
+
+                // Tự động điều chỉnh độ rộng cột
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // Trả về file Excel
+                var fileContent = package.GetAsByteArray();
+                return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "BaoCaoDoanhThu_" + today.ToString("ddMMyyyy") + ".xlsx");
+            }
+        }
+
+        public ActionResult ExportedReport ()
+        {
+            return View();
+        }
 
         // Hàm tạo mã SubscriptionId duy nhất
         private string GenerateUniqueSubscriptionId()
@@ -35,6 +110,7 @@ namespace MovieWeb.Controllers
             return $"SUB{nextId:0000}";
         }
 
+        [AuthorizeAttribute_64130299Controller]
         // GET: MemberSubscription_64130299
         public ActionResult Index()
         {

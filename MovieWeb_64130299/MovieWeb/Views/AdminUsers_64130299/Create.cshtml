@@ -1,0 +1,52 @@
+﻿@model MovieWeb.Models.AdminUsers_64130299
+
+@{
+    ViewBag.Title = "Tạo người dùng quản trị";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-2xl font-semibold mb-6">Tạo người dùng quản trị</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <h4 class="text-xl font-bold mb-4">Tạo người dùng quản trị mới</h4>
+        <hr class="mb-6" />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-red-500 mb-4" })
+
+        <div class="mb-6">
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "block text-gray-700 font-medium" })
+            <div>
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-input p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-red-500 mt-1" })
+            </div>
+        </div>
+
+        <div class="mb-6">
+            @Html.LabelFor(model => model.PasswordHash, htmlAttributes: new { @class = "block text-gray-700 font-medium" })
+            <div>
+                @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-input p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" } })
+                @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-red-500 mt-1" })
+            </div>
+        </div>
+
+        <div class="mb-6">
+            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "block text-gray-700 font-medium" })
+            <div>
+                @Html.DropDownListFor(model => model.Role, new SelectList(new[] { "Quản lý", "Nhân viên" }), "Chọn Vai trò", new { @class = "form-select mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-red-500 mt-1" })
+            </div>
+        </div>
+
+        <div class="mb-6 flex justify-end">
+            <input type="submit" value="Tạo" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg" />
+        </div>
+    </div>
+}
+
+<div class="mt-6">
+    @Html.ActionLink("Quay lại danh sách", "Index", new { @class = "text-blue-600 hover:text-blue-800" })
+</div>

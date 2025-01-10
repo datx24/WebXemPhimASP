@@ -38,10 +38,6 @@
         }
     </div>
 
-    <div class="flex justify-between mb-6">
-        @Html.ActionLink("Tạo mới", "Create", null, new { @class = "bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-md shadow transition-transform transform hover:scale-105" }) <!-- Nút tạo mới -->
-    </div>
-
     <!-- Bảng hiển thị dữ liệu -->
     <div class="overflow-x-auto">
         @grid.GetHtml(
@@ -55,7 +51,7 @@
                 grid.Column("CreatedAt", "Ngày tạo", style: "text-center px-4 py-4 truncate max-w-40"), // Cột ngày tạo
                 grid.Column("Movie_64130299.Title", "Tiêu đề Phim", style: "text-center px-4 py-4 truncate max-w-40"), // Cột tiêu đề phim
                 grid.Column("User_64130299.Username", "Tên người dùng", style: "text-center px-4 py-4 truncate max-w-40"), // Cột tên người dùng
-                grid.Column("User_64130299.Email", "Email Người dùng", style: "text-center px-4 py-4 truncate max-w-40"), // Cột email người dùng
+                grid.Column("User_64130299.Email", "Email người dùng", style: "text-center px-4 py-4 truncate max-w-40"), // Cột email người dùng
                 grid.Column(header: "Chức năng", format: item => MvcHtmlString.Create(
  $"<div class='flex justify-center space-x-4'>" +
                     $"<a href='{Url.Action("Details", new { id = item.FavoriteId })}' class='text-green-600 hover:text-green-800 text-xl' title='Xem chi tiết'><i class='fas fa-info-circle'></i></a>" + // Nút xem chi tiết

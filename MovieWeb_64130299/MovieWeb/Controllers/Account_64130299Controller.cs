@@ -28,13 +28,14 @@ namespace MovieWeb.Controllers
                 {
                     // Lưu thông tin đăng nhập vào session
                     Session["Username"] = user.Username;
+                    Session["Role"] = user.Role; // Lưu Role vào Session
 
                     // Tạo cookie đăng nhập
                     FormsAuthentication.SetAuthCookie(user.Username, false);
 
                     // Thêm thông báo thành công vào TempData
                     TempData["SuccessMessage"] = "Đăng nhập thành công";
-                    return RedirectToAction("Index", "User_64130299"); // Redirect đến trang quản trị
+                    return RedirectToAction("Index", "Movie_64130299"); // Redirect đến trang quản trị
                 }
                 else
                 {
@@ -54,7 +55,11 @@ namespace MovieWeb.Controllers
                 string hashedPassword = HashPassword(password);
                 if (hashedPassword == user.PasswordHash)
                 {
-                    return user;
+                    return new AdminUsers_64130299
+                    {
+                        Username = user.Username,
+                        Role = user.Role // Giả sử có cột Role trong cơ sở dữ liệu
+                    };
                 }
             }
             return null;

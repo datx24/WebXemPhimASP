@@ -1,0 +1,52 @@
+﻿@model MovieWeb.Models.AdminUsers_64130299
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mx-auto py-8" role="form">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Xóa Người Dùng Admin</h2>
+
+    <h3 class="text-lg font-medium text-gray-600 mb-4 text-center">Bạn có chắc chắn muốn xóa người dùng này không?</h3>
+
+    <div class="max-w-md mx-auto space-y-4">
+        <hr class="border-t-2 border-gray-300 mb-4" />
+
+        <dl class="space-y-2">
+            <dt class="text-sm font-medium text-gray-600">
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+            <dd class="text-gray-800">
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+
+            <dt class="text-sm font-medium text-gray-600">
+                @Html.DisplayNameFor(model => model.PasswordHash)
+            </dt>
+            <dd class="text-gray-800">
+                @Html.DisplayFor(model => model.PasswordHash)
+            </dd>
+
+            <dt class="text-sm font-medium text-gray-600">
+                Vai trò
+            </dt>
+            <dd class="text-gray-800">
+                @Html.DisplayFor(model => model.Role)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="mt-6 flex justify-between">
+                <!-- Nút Xóa -->
+                <input type="submit" value="Xóa" class="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" />
+
+                <!-- Nút Quay lại -->
+                @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "px-4 py-2 text-indigo-600 hover:text-indigo-800 bg-transparent border border-indigo-600 rounded-md focus:ring-2 focus:ring-indigo-500 transition duration-200" })
+            </div>
+        }
+    </div>
+</div>

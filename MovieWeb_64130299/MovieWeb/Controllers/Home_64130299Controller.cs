@@ -1,5 +1,6 @@
 ﻿using MovieWeb.Models;
 using System;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,6 +10,111 @@ namespace MovieWeb.Controllers
     public class Home_64130299Controller : Controller
     {
         private MovieDatabase_64130299Entities db = new MovieDatabase_64130299Entities();
+
+        [HttpPost]
+        public ActionResult RemoveFromFavorites(string favoriteId) // Đảm bảo truyền vào FavoriteId kiểu string
+        {
+            try
+            {
+                var userId = Session["UserId"] as string;
+
+                if (string.IsNullOrEmpty(userId))
+                {
+                    // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
+                    return RedirectToAction("Login_64130299", "User_64130299");
+                }
+
+                // Lấy bản ghi Favorite từ cơ sở dữ liệu cho người dùng và FavoriteId
+                var favorite = db.Favorite_64130299
+                                 .FirstOrDefault(f => f.FavoriteId == favoriteId && f.UserId == userId);
+
+                if (favorite == null)
+                {
+                    // Nếu không tìm thấy bản ghi, thông báo lỗi
+                    TempData["ErrorMessage"] = "Phim không tồn tại trong danh sách yêu thích.";
+                    return RedirectToAction("Favorites_64130299");
+                }
+
+                // Xóa phim khỏi danh sách yêu thích
+                db.Favorite_64130299.Remove(favorite);
+                db.SaveChanges();
+
+                // Thông báo thành công
+                TempData["SuccessMessage"] = "Xóa phim khỏi danh sách yêu thích thành công!";
+                return RedirectToAction("Favorites_64130299");
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi và thông báo cho người dùng
+                TempData["ErrorMessage"] = "Có lỗi xảy ra khi xóa phim: " + ex.Message;
+                return RedirectToAction("Favorites_64130299");
+            }
+        }
+
+
+        public ActionResult AddToFavorites(string movieId)
+        {
+            // Lấy userId từ session
+            var userId = Session["UserId"] as string;
+
+            // Kiểm tra nếu không có userId trong session, chuyển hướng đến trang đăng nhập
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Login_64130299", "User_64130299");
+            }
+
+            // Kiểm tra nếu bộ phim đã tồn tại trong danh sách yêu thích của người dùng
+            var existingFavorite = db.Favorite_64130299
+                                     .SingleOrDefault(f => f.UserId == userId && f.MovieId == movieId);
+
+            if (existingFavorite == null)
+            {
+                // Tạo đối tượng mới cho yêu thích
+                var favorite = new Favorite_64130299
+                {
+                    FavoriteId = Guid.NewGuid().ToString(),
+                    UserId = userId,
+                    MovieId = movieId,
+                    CreatedAt = DateTime.Now // Lưu thời gian tạo
+                };
+
+                // Thêm vào bảng Favorite_64130299
+                db.Favorite_64130299.Add(favorite);
+                db.SaveChanges();
+            }
+            else
+            {
+                // Nếu đã tồn tại trong yêu thích, có thể thông báo hoặc bỏ qua
+                ViewBag.Message = "Phim đã có trong danh sách yêu thích.";
+            }
+
+            // Trả về trang trước đó hoặc danh sách yêu thích
+            return RedirectToAction("Favorites_64130299");
+        }
+        public ActionResult Favorites_64130299(int page = 1)
+        {
+            var userId = Session["UserId"] as string;
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Login_64130299", "User_64130299");
+            }
+
+            // Giới hạn số lượng phim hiển thị mỗi trang (20 phim)
+            int pageSize = 20;
+            int skipCount = (page - 1) * pageSize;
+
+            // Lấy danh sách yêu thích cùng thông tin phim, phân trang
+            var favoriteMovies = db.Favorite_64130299
+                                   .Where(f => f.UserId == userId)
+                                   .Include(f => f.Movie_64130299) // Eager loading thông tin phim
+                                   .OrderBy(f => f.Movie_64130299.Title) // Có thể thay đổi cách sắp xếp
+                                   .Skip(skipCount)
+                                   .Take(pageSize)
+                                   .ToList();
+
+            return View(favoriteMovies);
+        }
 
         // GET: Home_64130299 - hiển thị danh sách các bộ phim
         public ActionResult Home_64130299()
